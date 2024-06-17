@@ -1,10 +1,14 @@
 package controller.menu;
 
+import controller.EcommerceController;
+
 public abstract class MenuBase implements IMenu {
     protected MenuController menuController;
+    protected EcommerceController ecommerceController;
 
-    public MenuBase(MenuController menuController) {
+    public MenuBase(MenuController menuController, EcommerceController ecommerceController){
         this.menuController = menuController;
+        this.ecommerceController = ecommerceController;
     }
 
     @Override

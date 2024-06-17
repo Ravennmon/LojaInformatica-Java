@@ -13,14 +13,15 @@ public class Usuario {
     private String endereco;
     private String telefone;
     private List<Endereco> enderecos = new ArrayList<>();
+    private Carrinho carrinho;
 
-    public Usuario(String nome, String email, String senha, String endereco, String telefone) {
+    public Usuario(String nome, String email, String senha, String telefone) {
         this.id = Util.gerarId();
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.endereco = endereco;
         this.telefone = telefone;
+        this.carrinho = new Carrinho(this);
     }
 
     public int getId() {
@@ -77,6 +78,14 @@ public class Usuario {
 
     public void setEnderecos(List<Endereco> enderecos) {
         this.enderecos = enderecos;
+    }
+
+    public Carrinho getCarrinho() {
+        return carrinho;
+    }
+
+    public void setCarrinho(Carrinho carrinho) {
+        this.carrinho = carrinho;
     }
 
     @Override
