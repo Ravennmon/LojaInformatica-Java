@@ -3,12 +3,15 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.pagamento.MetodoDePagamento;
 import util.Util;
 
 public class Carrinho {
     private int id;
     private Usuario usuario;
     private List<Produto> produtos;
+    private MetodoDePagamento metodoDePagamento;
+    private Endereco enderecoEntrega;
     private float valorTotal;
 
     public Carrinho(Usuario usuario) {
@@ -32,12 +35,20 @@ public class Carrinho {
         }
     }
 
-    public float getValorTotal() {
-        return valorTotal;
+    public int getId() {
+        return id;
     }
 
-    public void setValorTotal(float valorTotal) {
-        this.valorTotal = valorTotal;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public List<Produto> getProdutos() {
@@ -48,12 +59,34 @@ public class Carrinho {
         this.produtos = produtos;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public float getValorTotal() {
+        return valorTotal;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setValorTotal(float valorTotal) {
+        this.valorTotal = valorTotal;
     }
     
+    public MetodoDePagamento getMetodoDePagamento() {
+        return metodoDePagamento;
+    }
+
+    public void setMetodoDePagamento(MetodoDePagamento metodoDePagamento) {
+        this.metodoDePagamento = metodoDePagamento;
+    }
+
+    public Endereco getEnderecoEntrega() {
+        return enderecoEntrega;
+    }
+
+    public void setEnderecoEntrega(Endereco enderecoEntrega) {
+        this.enderecoEntrega = enderecoEntrega;
+    }
+
+    
+    @Override
+    public String toString() {
+        return "Carrinho [id=" + id + ", usuario=" + usuario + ", produtos=" + produtos + ", valorTotal=" + valorTotal
+                + "]";
+    }   
 }

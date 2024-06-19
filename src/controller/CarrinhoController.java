@@ -16,6 +16,7 @@ public class CarrinhoController extends MenuBase {
         System.out.println("1. Visualizar Produtos");
         System.out.println("2. Adicionar Produto");
         System.out.println("3. Remover Produto");
+        System.out.println("4. Finalizar Compra");
         System.out.println("0. Voltar");
     }
 
@@ -30,6 +31,9 @@ public class CarrinhoController extends MenuBase {
                 break;
             case 3:
                 removerProduto();
+                break;
+            case 4:
+                menuController.setMenuAtual(menuController.getMenus().get(4));
                 break;
             case 0:
                 menuController.setMenuAtual(menuController.getMenus().get(0));

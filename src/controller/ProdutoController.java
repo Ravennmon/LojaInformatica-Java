@@ -18,6 +18,8 @@ public class ProdutoController extends MenuBase {
             System.out.println((i + 1) + ". " + ecommerceController.getProdutos().get(i).getNome() + " - R$ " + ecommerceController.getProdutos().get(i).getPreco() + " - " + ecommerceController.getProdutos().get(i).getQuantidadeEstoque() + " unidades");
         }
 
+        System.out.println("0. Voltar");
+
     }
 
     @Override

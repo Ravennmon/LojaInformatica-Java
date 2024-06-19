@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import controller.CarrinhoController;
+import controller.CheckoutController;
 import controller.EcommerceController;
 import controller.ProdutoController;
 import controller.UsuarioController;
@@ -13,6 +14,8 @@ import controller.menu.MenuPrincipal;
 import model.Categoria;
 import model.Produto;
 import model.Usuario;
+import model.pagamento.Cartao;
+import model.pagamento.MetodoDePagamento;
 
 public class App {
     public static void main(String[] args) {
@@ -21,14 +24,16 @@ public class App {
 
         fakeUser(ecommerceController);
         fakeProdutosInfomatica(ecommerceController);
+        fakeMetodosDePagamento(ecommerceController);
 
         MenuBase menuPrincipal = new MenuPrincipal(menuController, ecommerceController);
         UsuarioController usuarioController = new UsuarioController(menuController, ecommerceController);
         CarrinhoController carrinhoController = new CarrinhoController(menuController, ecommerceController);
         ProdutoController produtoController = new ProdutoController(menuController, ecommerceController);
+        CheckoutController checkoutController = new CheckoutController(menuController, ecommerceController);
 
         List<IMenu> menus = new ArrayList<>();
-        menus.addAll(Arrays.asList(menuPrincipal, usuarioController, produtoController, carrinhoController));
+        menus.addAll(Arrays.asList(menuPrincipal, usuarioController, produtoController, carrinhoController, checkoutController));
 
         menuController.setMenus(menus);
         menuController.setMenuAtual(menuPrincipal);
@@ -42,6 +47,7 @@ public class App {
     private static void fakeUser(EcommerceController ecommerceController) {
         Usuario usuario = new Usuario("Teste", "teste@teste.com", "123", "123");
         ecommerceController.adicionarUsuario(usuario);
+        ecommerceController.setUsuarioLogado(usuario);
     }
 
     private static void fakeProdutosInfomatica(EcommerceController ecommerceController)
@@ -55,5 +61,15 @@ public class App {
         produtos.addAll(Arrays.asList(produto1, produto2, produto3));
         ecommerceController.setProdutos(produtos);
 
+    }
+
+    private static void fakeMetodosDePagamento(EcommerceController ecommerceController){
+        MetodoDePagamento cartaoDeCredito = new Cartao("Cartão de Crédito", true, false);
+        MetodoDePagamento cartaoDeDebito = new Cartao("Cartão de Débito", true, false);
+
+        List<MetodoDePagamento> metodosDePagamento = new ArrayList<>();
+        metodosDePagamento.addAll(Arrays.asList(cartaoDeCredito, cartaoDeDebito));
+
+        ecommerceController.setMetodosDePagamento(metodosDePagamento);
     }
 }

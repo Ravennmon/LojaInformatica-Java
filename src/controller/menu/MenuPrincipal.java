@@ -26,7 +26,7 @@ public class MenuPrincipal extends MenuBase{
                 menuController.setMenuAtual(menuController.getMenus().get(2));
                 break;
             case 3:
-                menuController.setMenuAtual(menuController.getMenus().get(2));
+                menuController.setMenuAtual(menuController.getMenus().get(3));
                 break;
             case 0:
                 System.out.println("Saindo...");

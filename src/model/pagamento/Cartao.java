@@ -1,16 +1,14 @@
 package model.pagamento;
 
 public class Cartao extends MetodoDePagamento{
-    private String numeroCartao;
-    private String validade;
-    private String codigoSeguranca;
+    private boolean credito;
+    private boolean debito;
 
-    public Cartao(String metodoDePagamento, String numeroCartao, String validade, String codigoSeguranca) {
+    public Cartao(String metodoDePagamento, boolean credito, boolean debito) {
         super(metodoDePagamento);
-        
-        this.numeroCartao = numeroCartao;
-        this.validade = validade;
-        this.codigoSeguranca = codigoSeguranca;
+
+        this.credito = credito;
+        this.debito = debito;
     }
 
     @Override
@@ -18,37 +16,24 @@ public class Cartao extends MetodoDePagamento{
         System.out.println("Processando pagamento de R$ " + valor + " com cartão de crédito.");
     }
 
-    public String getNumeroCartao() {
-
-        return numeroCartao;
+    public boolean isCredito() {
+        return credito;
     }
 
-    public void setNumeroCartao(String numeroCartao) {
-        this.numeroCartao = numeroCartao;
+    public void setCredito(boolean credito) {
+        this.credito = credito;
     }
 
-    public String getValidade() {
-        return validade;
+    public boolean isDebito() {
+        return debito;
     }
 
-    public void setValidade(String validade) {
-        this.validade = validade;
-    }
-
-    public String getCodigoSeguranca() {
-        return codigoSeguranca;
-    }
-
-    public void setCodigoSeguranca(String codigoSeguranca) {
-        this.codigoSeguranca = codigoSeguranca;
+    public void setDebito(boolean debito) {
+        this.debito = debito;
     }
 
     @Override
     public String toString() {
-        return "CartaoDeCredito [numeroCartao=" + numeroCartao + ", descricao=" + descricao + ", validade=" + validade
-                + ", cartao=" + cartao + ", codigoSeguranca=" + codigoSeguranca + ", ativo=" + ativo + "]";
+        return "Cartao [credito=" + credito + ", debito=" + debito + "]";
     }
-
-    
-
 }

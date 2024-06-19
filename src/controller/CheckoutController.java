@@ -12,74 +12,36 @@ public class CheckoutController extends MenuBase {
 
     @Override
     public void mostraMenu() {
-        System.out.println("Checkout:");
-        System.out.println("1. Continuar Comprando");
-        System.out.println("2. Finalizar Compra");
+        System.out.println("Informe o método de pagamento");
+        
+        for(int i = 0; i < ecommerceController.getMetodosDePagamento().size(); i++){
+            System.out.println((i + 1) + ". " + ecommerceController.getMetodosDePagamento().get(i).getDescricao());
+        }
+
         System.out.println("0. Voltar");
     }
 
     @Override
     public void opcao(int opcao, MenuController menuController) {
-        switch (opcao) {
-            case 1:
-                visualizarProdutos();
-                break;
-            case 2:
-                adicionarProduto();
-                break;
-            case 3:
-                removerProduto();
-                break;
-            case 0:
+        if(opcao < 1){
+            if(opcao == 0){
                 menuController.setMenuAtual(menuController.getMenus().get(0));
-                break;
-            default:
-                System.out.println("Opção inválida.");
+                return;
+            } 
+
+            System.out.println("Opção inválida.");
         }
+
+        selecionaMetodoDePagamento(opcao);
     }
 
-    public void visualizarProdutos() {
-        System.out.println("Produtos no carrinho:");
-        ecommerceController.getUsuarioLogado().getCarrinho().getProdutos().forEach(System.out::println);
-    }
-
-    public void adicionarProduto() {
-        System.out.println("Adicionar Produto:");
-        String nome = Util.nextLine("Digite o nome do produto:");
-        int quantidade = Util.nextInt("Digite a quantidade:");
-
-        Produto produto = ecommerceController.getProdutos().stream().filter(p -> p.getNome().equals(nome)).findFirst().orElse(null);
-
-        if (produto == null) {
-            System.out.println("Produto não encontrado.");
+    public void selecionaMetodoDePagamento(int opcao){
+        if(opcao > ecommerceController.getMetodosDePagamento().size()){
+            System.out.println("Opção inválida.");
             return;
         }
 
-        if(produto.getQuantidadeEstoque() < quantidade){
-            System.out.println("Quantidade indisponível.");
-            return;
-        }
-        
-
-        ecommerceController.getUsuarioLogado().getCarrinho().adicionarProduto(produto);
-    }
-
-    public void removerProduto() {
-        System.out.println("Remover Produto:");
-        System.out.println("Digite o nome do produto:");
-        String nome = Util.nextLine("Digite o nome do produto:");
-
-        Produto produto = ecommerceController.getProdutos().stream().filter(p -> p.getNome().equals(nome)).findFirst().orElse(null);
-
-        if (produto == null) {
-            System.out.println("Produto não encontrado.");
-            return;
-        }
-
-        ecommerceController.getUsuarioLogado().getCarrinho().removerProduto(produto);
-    }
-
-    public void listarProdutos() {
-        ecommerceController.getProdutos().forEach(System.out::println);
+        ecommerceController.getUsuarioLogado().getCarrinho().setMetodoDePagamento(ecommerceController.getMetodosDePagamento().get(opcao - 1));
+        System.out.println("Método de pagamento selecionado.");
     }
 }
