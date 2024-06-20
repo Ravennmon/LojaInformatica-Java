@@ -2,8 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import model.Carrinho;
 import model.Pedido;
 import model.Produto;
 import model.Usuario;
@@ -84,10 +84,9 @@ public class EcommerceController {
         this.metodosDePagamento.remove(metodoDePagamento);
     }
 
-    public List<Produto> getCarrinho(Usuario usuario) {
-        return usuario.getCarrinho().getProdutos();
-
-    }
+    public Map<Produto, Integer> getCarrinho(Usuario usuario) {
+    return usuario.getCarrinho().getProdutos();
+}
 
     public Usuario getUsuarioLogado() {
         return usuarioLogado;

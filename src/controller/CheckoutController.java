@@ -2,8 +2,6 @@ package controller;
 
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
-import model.Produto;
-import util.Util;
 
 public class CheckoutController extends MenuBase {
     public CheckoutController(MenuController menuController, EcommerceController ecommerceController) {

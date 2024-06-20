@@ -6,7 +6,6 @@ public class Cartao extends MetodoDePagamento{
 
     public Cartao(String metodoDePagamento, boolean credito, boolean debito) {
         super(metodoDePagamento);
-
         this.credito = credito;
         this.debito = debito;
     }

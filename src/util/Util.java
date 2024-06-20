@@ -30,4 +30,8 @@ public class Util {
     public static boolean validaEmail(String email) {
         return email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
     }
+
+    public static boolean validaTelefone(String telefone) {
+        return telefone.matches("[0-9]+");
+    }
 }

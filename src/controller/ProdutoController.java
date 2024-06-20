@@ -3,7 +3,6 @@ package controller;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Produto;
-import util.Util;
 
 public class ProdutoController extends MenuBase {
     public ProdutoController(MenuController menuController, EcommerceController ecommerceController) {
@@ -39,9 +38,20 @@ public class ProdutoController extends MenuBase {
     }
 
     public void selecionaProduto(int opcao){
+        if (ecommerceController.getUsuarioLogado() == null) {
+            System.out.println("\nVocê precisa estar logado para adicionar produtos ao carrinho.\n");
+            return;
+        }
         Produto produto = ecommerceController.getProdutos().get(opcao - 1);
         
-        ecommerceController.getUsuarioLogado().getCarrinho().adicionarProduto(produto);
-        System.out.println("Produto adicionado ao carrinho.");
+        if (produto.getQuantidadeEstoque() > 0) {
+            ecommerceController.getUsuarioLogado().getCarrinho().adicionarProduto(produto);
+            produto.diminuirQuantidadeEmEstoque(produto, 1);
+            System.out.println("\nProduto adicionado ao carrinho.\n");
+        } else {
+            System.out.println("\nProduto fora de estoque.\n");
+        }
     }
+
+    
 }

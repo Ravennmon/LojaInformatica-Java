@@ -19,6 +19,15 @@ public class Produto {
         this.categoria = categoria;
     }
 
+    public void diminuirQuantidadeEmEstoque(Produto produto, int quantidade){
+        int quantidadeAtual = produto.getQuantidadeEstoque();
+        if (quantidadeAtual < quantidade) {
+            System.out.println("Não é possível diminuir a quantidade. Estoque insuficiente.");
+        } else {
+            produto.setQuantidadeEstoque(quantidadeAtual - quantidade);
+        }
+    }
+
     public int getId() {
         return id;
     }
@@ -69,8 +78,8 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco
-                + ", quantidadeEstoque=" + quantidadeEstoque + ", categoria=" + categoria + "]";
+        return "Produto [Produto id= " + id + ", nome=" + nome + ", descrição= " + descricao + ", preço= " + preco
+                + ", quantidade Estoque= " + quantidadeEstoque + ", categoria= " + categoria + "]";
     }
 
     
