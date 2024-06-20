@@ -4,6 +4,7 @@ import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Usuario;
 import util.Util;
+import views.UsuarioView;
 
 public class UsuarioController extends MenuBase {
     public UsuarioController(MenuController menuController, EcommerceController ecommerceController) {
@@ -12,10 +13,7 @@ public class UsuarioController extends MenuBase {
 
     @Override
     public void mostraMenu() {
-        System.out.println("Usuário:");
-        System.out.println("1. Cadastrar-se");
-        System.out.println("2. Login");
-        System.out.println("0. Voltar");
+        UsuarioView.mostraMenu();
     }
 
     @Override
@@ -36,27 +34,13 @@ public class UsuarioController extends MenuBase {
     }
 
     public void cadastrarUsuario() {
-        String nome = Util.nextLine("Digite seu nome:");
-        String telefone = Util.nextLine("Digite seu telefone:");
-        String email = Util.nextLine("Digite seu email:");
-        String senha = Util.nextLine("Digite sua senha");
-
-        while (!Util.validaEmail(email)) {
-            System.out.println("Email inválido.");
-            email = Util.nextLine("Digite seu email novamente:");
-        }
-
-        Usuario usuario = new Usuario(nome, email, senha, telefone);
+        Usuario usuario = UsuarioView.cadastrarUsuario();
 
         ecommerceController.adicionarUsuario(usuario);
     }
 
     public void login() {
-        String email = Util.nextLine("Digite seu email:");
-        String senha = Util.nextLine("Digite sua senha:");
-
-        Usuario usuario = ecommerceController.getUsuarios().stream()
-                .filter(u -> u.getEmail().equals(email) && u.getSenha().equals(senha)).findFirst().orElse(null);
+        Usuario usuario = UsuarioView.login(ecommerceController);
 
         if (usuario != null) {
             ecommerceController.setUsuarioLogado(usuario);

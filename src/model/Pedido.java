@@ -12,18 +12,23 @@ public class Pedido {
     private Usuario usuario;
     private List<Produto> produtos;
     private MetodoDePagamento metodoDePagamento;
+    private FormaDeEntrega formaDeEntrega;
+    private Endereco enderecoEntrega;
     private Date data;
     private float valorTotal;
     private String situacao;
 
-    public Pedido(Usuario usuario, MetodoDePagamento metodoDePagamento, List<Produto> produtos) {
+    public Pedido() {
+    }
+
+    public Pedido(Usuario usuario, List<Produto> produtos, MetodoDePagamento metodoDePagamento, FormaDeEntrega formaDeEntrega, Endereco enderecoEntrega) {
         this.id = Util.gerarId();
         this.usuario = usuario;
-        this.data = new Date();
-        this.metodoDePagamento = metodoDePagamento;
         this.produtos = produtos;
+        this.metodoDePagamento = metodoDePagamento;
         this.situacao = "Em processamento";
         this.valorTotal = calculaValorTotal();
+        this.data = new Date();
     }
 
     public void adicionarProduto(Produto produto) {
@@ -113,11 +118,32 @@ public class Pedido {
         this.situacao = situacao;
     }
 
+    public FormaDeEntrega getFormaDeEntrega() {
+        return formaDeEntrega;
+    }
+
+    public void setFormaDeEntrega(FormaDeEntrega formaDeEntrega) {
+        this.formaDeEntrega = formaDeEntrega;
+    }
+
+    public Endereco getEnderecoEntrega() {
+        return enderecoEntrega;
+    }
+
+    public void setEnderecoEntrega(Endereco enderecoEntrega) {
+        this.enderecoEntrega = enderecoEntrega;
+    }
+
     @Override
     public String toString() {
         return "Pedido [id=" + id + ", usuario=" + usuario + ", produtos=" + produtos + ", metodoDePagamento="
-                + metodoDePagamento + ", data=" + data + ", valorTotal=" + valorTotal + ", situacao=" + situacao + "]";
+                + metodoDePagamento + ", formaDeEntrega=" + formaDeEntrega + ", enderecoEntrega=" + enderecoEntrega
+                + ", data=" + data + ", valorTotal=" + valorTotal + ", situacao=" + situacao + "]";
     }
+
+    
+
+    
 
     
 }

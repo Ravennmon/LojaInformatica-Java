@@ -4,14 +4,18 @@ import java.util.List;
 
 import controller.CarrinhoController;
 import controller.CheckoutController;
+import controller.MetodoDePagamentoController;
 import controller.EcommerceController;
+import controller.EnderecoController;
+import controller.FormaDeEntregaController;
+import controller.MenuPrincipal;
 import controller.ProdutoController;
 import controller.UsuarioController;
 import controller.menu.IMenu;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
-import controller.menu.MenuPrincipal;
 import model.Categoria;
+import model.FormaDeEntrega;
 import model.Produto;
 import model.Usuario;
 import model.pagamento.Cartao;
@@ -25,15 +29,19 @@ public class App {
         fakeUser(ecommerceController);
         fakeProdutosInfomatica(ecommerceController);
         fakeMetodosDePagamento(ecommerceController);
-
+        fakeFormasDePagamentos(ecommerceController);
+        
         MenuBase menuPrincipal = new MenuPrincipal(menuController, ecommerceController);
         UsuarioController usuarioController = new UsuarioController(menuController, ecommerceController);
         CarrinhoController carrinhoController = new CarrinhoController(menuController, ecommerceController);
         ProdutoController produtoController = new ProdutoController(menuController, ecommerceController);
+        MetodoDePagamentoController metodoDePagamentoController = new MetodoDePagamentoController(menuController, ecommerceController);
+        EnderecoController enderecoController = new EnderecoController(menuController, ecommerceController);
+        FormaDeEntregaController formaDeEntregaController = new FormaDeEntregaController(menuController, ecommerceController);
         CheckoutController checkoutController = new CheckoutController(menuController, ecommerceController);
 
         List<IMenu> menus = new ArrayList<>();
-        menus.addAll(Arrays.asList(menuPrincipal, usuarioController, produtoController, carrinhoController, checkoutController));
+        menus.addAll(Arrays.asList(menuPrincipal, usuarioController, produtoController, carrinhoController, metodoDePagamentoController, enderecoController, formaDeEntregaController, checkoutController));
 
         menuController.setMenus(menus);
         menuController.setMenuAtual(menuPrincipal);
@@ -71,5 +79,16 @@ public class App {
         metodosDePagamento.addAll(Arrays.asList(cartaoDeCredito, cartaoDeDebito));
 
         ecommerceController.setMetodosDePagamento(metodosDePagamento);
+    }
+
+    private static void fakeFormasDePagamentos(EcommerceController ecommerceController){
+        FormaDeEntrega retiradaLoja = new FormaDeEntrega("Retirar na loja", 20);
+        FormaDeEntrega entregaNormal = new FormaDeEntrega("Entrega Normal", 10);
+        FormaDeEntrega entregaExpressa = new FormaDeEntrega("Entrega Expressa", 20);
+
+        List<FormaDeEntrega> formasDeEntrega = new ArrayList<>();
+        formasDeEntrega.addAll(Arrays.asList(entregaNormal, entregaExpressa, retiradaLoja));
+
+        ecommerceController.setFormasDeEntrega(formasDeEntrega);
     }
 }

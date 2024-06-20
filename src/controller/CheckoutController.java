@@ -1,9 +1,19 @@
 package controller;
 
+import java.util.List;
+
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
+import model.Carrinho;
+import model.Endereco;
+import model.FormaDeEntrega;
+import model.Pedido;
 import model.Produto;
+import model.Usuario;
+import model.pagamento.Cartao;
+import model.pagamento.MetodoDePagamento;
 import util.Util;
+import views.CheckoutView;
 
 public class CheckoutController extends MenuBase {
     public CheckoutController(MenuController menuController, EcommerceController ecommerceController) {
@@ -12,36 +22,38 @@ public class CheckoutController extends MenuBase {
 
     @Override
     public void mostraMenu() {
-        System.out.println("Informe o método de pagamento");
-        
-        for(int i = 0; i < ecommerceController.getMetodosDePagamento().size(); i++){
-            System.out.println((i + 1) + ". " + ecommerceController.getMetodosDePagamento().get(i).getDescricao());
-        }
-
-        System.out.println("0. Voltar");
+        CheckoutView.mostraMenu(ecommerceController);
     }
 
     @Override
     public void opcao(int opcao, MenuController menuController) {
-        if(opcao < 1){
-            if(opcao == 0){
+        switch (opcao) {
+            case 1:
+                confirmarCompra();
+                break;
+            case 0:
                 menuController.setMenuAtual(menuController.getMenus().get(0));
-                return;
-            } 
-
-            System.out.println("Opção inválida.");
+                break;
+            default:
+                System.out.println("Opção inválida.");
         }
-
-        selecionaMetodoDePagamento(opcao);
     }
 
-    public void selecionaMetodoDePagamento(int opcao){
-        if(opcao > ecommerceController.getMetodosDePagamento().size()){
-            System.out.println("Opção inválida.");
-            return;
-        }
+    public void confirmarCompra() {
+        Carrinho carrinho = ecommerceController.getUsuarioLogado().getCarrinho();
 
-        ecommerceController.getUsuarioLogado().getCarrinho().setMetodoDePagamento(ecommerceController.getMetodosDePagamento().get(opcao - 1));
-        System.out.println("Método de pagamento selecionado.");
+        Usuario usuario = carrinho.getUsuario();
+        List<Produto> produtos = carrinho.getProdutos();
+        Endereco enderecoEntrega = carrinho.getEnderecoEntrega();
+        FormaDeEntrega formaDeEntrega = carrinho.getFormaDeEntrega();
+        MetodoDePagamento metodoDePagamento = carrinho.getMetodoDePagamento();
+        
+        Pedido pedido = new Pedido(usuario, produtos, metodoDePagamento, formaDeEntrega, enderecoEntrega);
+
+        ecommerceController.getPedidos().add(pedido);
+
+        System.out.println("Compra realizada com sucesso!");
     }
+
+
 }

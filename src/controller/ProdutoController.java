@@ -4,6 +4,7 @@ import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Produto;
 import util.Util;
+import views.ProdutoView;
 
 public class ProdutoController extends MenuBase {
     public ProdutoController(MenuController menuController, EcommerceController ecommerceController) {
@@ -12,14 +13,7 @@ public class ProdutoController extends MenuBase {
 
     @Override
     public void mostraMenu() {
-        System.out.println("Produtos:");
-
-        for (int i = 0; i < ecommerceController.getProdutos().size(); i++) {
-            System.out.println((i + 1) + ". " + ecommerceController.getProdutos().get(i).getNome() + " - R$ " + ecommerceController.getProdutos().get(i).getPreco() + " - " + ecommerceController.getProdutos().get(i).getQuantidadeEstoque() + " unidades");
-        }
-
-        System.out.println("0. Voltar");
-
+        ProdutoView.mostraMenu(ecommerceController);
     }
 
     @Override
@@ -42,6 +36,5 @@ public class ProdutoController extends MenuBase {
         Produto produto = ecommerceController.getProdutos().get(opcao - 1);
         
         ecommerceController.getUsuarioLogado().getCarrinho().adicionarProduto(produto);
-        System.out.println("Produto adicionado ao carrinho.");
     }
 }

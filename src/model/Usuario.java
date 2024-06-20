@@ -24,6 +24,10 @@ public class Usuario {
         this.carrinho = new Carrinho(this);
     }
 
+    public void addEndereco(Endereco endereco){
+        this.enderecos.add(endereco);
+    }
+
     public int getId() {
         return id;
     }

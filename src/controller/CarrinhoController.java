@@ -4,6 +4,7 @@ import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Produto;
 import util.Util;
+import views.CarrinhoView;
 
 public class CarrinhoController extends MenuBase {
     public CarrinhoController(MenuController menuController, EcommerceController ecommerceController) {
@@ -12,12 +13,7 @@ public class CarrinhoController extends MenuBase {
 
     @Override
     public void mostraMenu() {
-        System.out.println("Carrinho:");
-        System.out.println("1. Visualizar Produtos");
-        System.out.println("2. Adicionar Produto");
-        System.out.println("3. Remover Produto");
-        System.out.println("4. Finalizar Compra");
-        System.out.println("0. Voltar");
+        CarrinhoView.mostraMenu();
     }
 
     @Override
