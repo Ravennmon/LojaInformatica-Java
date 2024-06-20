@@ -4,7 +4,7 @@ import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Produto;
 import util.Util;
-import views.CarrinhoView;
+import view.CarrinhoView;
 
 public class CarrinhoController extends MenuBase {
     public CarrinhoController(MenuController menuController, EcommerceController ecommerceController) {

@@ -3,7 +3,7 @@ package controller;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.FormaDeEntrega;
-import views.FormaDeEntregaView;
+import view.FormaDeEntregaView;
 
 
 public class FormaDeEntregaController extends MenuBase {

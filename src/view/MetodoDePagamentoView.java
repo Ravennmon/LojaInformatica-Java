@@ -1,4 +1,4 @@
-package views;
+package view;
 
 import controller.EcommerceController;
 import util.Util;

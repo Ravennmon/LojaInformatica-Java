@@ -2,7 +2,7 @@ package controller;
 
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
-import views.MenuPrincipalView;
+import view.MenuPrincipalView;
 
 public class MenuPrincipal extends MenuBase{
     public MenuPrincipal(MenuController menuController, EcommerceController ecommerceController) {

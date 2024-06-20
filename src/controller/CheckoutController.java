@@ -11,7 +11,7 @@ import model.Pedido;
 import model.Produto;
 import model.Usuario;
 import model.pagamento.MetodoDePagamento;
-import views.CheckoutView;
+import view.CheckoutView;
 
 public class CheckoutController extends MenuBase {
     public CheckoutController(MenuController menuController, EcommerceController ecommerceController) {
@@ -49,8 +49,9 @@ public class CheckoutController extends MenuBase {
         Pedido pedido = new Pedido(usuario, produtos, metodoDePagamento, formaDeEntrega, enderecoEntrega);
 
         ecommerceController.getPedidos().add(pedido);
+        usuario.getPedidos().add(pedido);
 
-        System.out.println("Compra realizada com sucesso!");
+        menuController.setMenuAtual(menuController.getMenus().get(8));
     }
 
 

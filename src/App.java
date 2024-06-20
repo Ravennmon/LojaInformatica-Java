@@ -5,6 +5,7 @@ import java.util.List;
 import controller.CarrinhoController;
 import controller.CheckoutController;
 import controller.MetodoDePagamentoController;
+import controller.PedidoController;
 import controller.EcommerceController;
 import controller.EnderecoController;
 import controller.FormaDeEntregaController;
@@ -39,9 +40,10 @@ public class App {
         EnderecoController enderecoController = new EnderecoController(menuController, ecommerceController);
         FormaDeEntregaController formaDeEntregaController = new FormaDeEntregaController(menuController, ecommerceController);
         CheckoutController checkoutController = new CheckoutController(menuController, ecommerceController);
+        PedidoController pedidoController = new PedidoController(menuController, ecommerceController);
 
         List<IMenu> menus = new ArrayList<>();
-        menus.addAll(Arrays.asList(menuPrincipal, usuarioController, produtoController, carrinhoController, metodoDePagamentoController, enderecoController, formaDeEntregaController, checkoutController));
+        menus.addAll(Arrays.asList(menuPrincipal, usuarioController, produtoController, carrinhoController, metodoDePagamentoController, enderecoController, formaDeEntregaController, checkoutController, pedidoController));
 
         menuController.setMenus(menus);
         menuController.setMenuAtual(menuPrincipal);

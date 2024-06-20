@@ -3,7 +3,7 @@ package controller;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.pagamento.MetodoDePagamento;
-import views.MetodoDePagamentoView;
+import view.MetodoDePagamentoView;
 
 public class MetodoDePagamentoController extends MenuBase {
     public MetodoDePagamentoController(MenuController menuController, EcommerceController ecommerceController) {

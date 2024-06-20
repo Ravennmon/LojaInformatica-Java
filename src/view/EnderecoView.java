@@ -1,4 +1,4 @@
-package views;
+package view;
 
 import model.Endereco;
 import util.Util;

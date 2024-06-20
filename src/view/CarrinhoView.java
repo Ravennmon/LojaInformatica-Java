@@ -1,4 +1,4 @@
-package views;
+package view;
 
 public class CarrinhoView {
     public static void mostraMenu() {

@@ -4,7 +4,7 @@ import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Endereco;
 import model.Usuario;
-import views.EnderecoView;
+import view.EnderecoView;
 
 public class EnderecoController extends MenuBase {
     public EnderecoController(MenuController menuController, EcommerceController ecommerceController) {
