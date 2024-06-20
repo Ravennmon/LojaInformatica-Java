@@ -3,7 +3,6 @@ package controller;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Produto;
-import util.Util;
 import views.ProdutoView;
 
 public class ProdutoController extends MenuBase {

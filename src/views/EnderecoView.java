@@ -1,6 +1,5 @@
 package views;
 
-import controller.EcommerceController;
 import model.Endereco;
 import util.Util;
 

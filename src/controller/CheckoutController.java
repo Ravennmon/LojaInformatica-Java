@@ -10,9 +10,7 @@ import model.FormaDeEntrega;
 import model.Pedido;
 import model.Produto;
 import model.Usuario;
-import model.pagamento.Cartao;
 import model.pagamento.MetodoDePagamento;
-import util.Util;
 import views.CheckoutView;
 
 public class CheckoutController extends MenuBase {
