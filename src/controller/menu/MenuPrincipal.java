@@ -1,16 +1,18 @@
 package controller.menu;
 
+import controller.EcommerceController;
+
 public class MenuPrincipal extends MenuBase{
-    public MenuPrincipal(MenuController menuController) {
-        super(menuController);
+    public MenuPrincipal(MenuController menuController, EcommerceController ecommerceController) {
+        super(menuController, ecommerceController);
     }
 
     @Override
     public void mostraMenu() {
         System.out.println("Menu Principal:");
-        System.out.println("1. Cadastrar-se");
-        System.out.println("2. Login");
-        System.out.println("3. Produtos");
+        System.out.println("1. Usuário");
+        System.out.println("2. Produtos");
+        System.out.println("3. Carrinho");
         System.out.println("0. Sair");
     }
 
@@ -24,7 +26,7 @@ public class MenuPrincipal extends MenuBase{
                 menuController.setMenuAtual(menuController.getMenus().get(2));
                 break;
             case 3:
-                menuController.setMenuAtual(menuController.getMenus().get(5));
+                menuController.setMenuAtual(menuController.getMenus().get(3));
                 break;
             case 0:
                 System.out.println("Saindo...");

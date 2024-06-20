@@ -1,5 +1,6 @@
 package controller.menu;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,6 +12,8 @@ public class MenuController {
 
     public MenuController() {
     }
+
+    private Scanner scanner = new Scanner(System.in);
     
     public void setMenus(List<IMenu> menus) {
         this.menus = menus;
@@ -34,8 +37,12 @@ public class MenuController {
     }
 
     public void gerenciaOpcao() {
-        Scanner sc = new Scanner(System.in);
-        int opcao = sc.nextInt();
-        menuAtual.opcao(opcao, this);
+         try {
+            int opcao = scanner.nextInt();
+            menuAtual.opcao(opcao, this);
+        } catch (InputMismatchException e) {
+            System.out.println("Opção inválida. Por favor, insira um número.");
+            scanner.nextLine(); 
+        }
     }
 }
