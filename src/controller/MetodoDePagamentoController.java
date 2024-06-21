@@ -48,6 +48,6 @@ public class MetodoDePagamentoController extends MenuBase {
             usuario.getCartoes().add(usuarioCartao);
         }
 
-        this.menuController.setMenuAtual(menuController.getMenus().get(5));
+        this.menuController.setMenuAtual(menuController.getMenus().get(10));
     }
 }

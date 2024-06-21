@@ -4,6 +4,7 @@ import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Endereco;
 import model.Usuario;
+import util.Util;
 import view.EnderecoView;
 
 public class EnderecoController extends MenuBase {
@@ -20,9 +21,16 @@ public class EnderecoController extends MenuBase {
     public void opcao(int opcao, MenuController menuController) {
         switch (opcao) {
             case 1:
+                cadastrarEndereco();
                 break;
             case 2:
-                cadastrarEndereco();
+                visualizarEnderecos();
+                break;
+            case 3:
+                editarEndereco();
+                break;
+            case 4:
+                excluirEndereco();
                 break;
             case 0:
                 menuController.setMenuAtual(menuController.getMenus().get(0));
@@ -38,10 +46,37 @@ public class EnderecoController extends MenuBase {
         Usuario usuario = ecommerceController.getUsuarioLogado();
         usuario.addEndereco(endereco);
         usuario.getCarrinho().setEnderecoEntrega(endereco);
-
-        menuController.setMenuAtual(menuController.getMenus().get(6));
     }
 
+    public void visualizarEnderecos() {
+        Usuario usuario = ecommerceController.getUsuarioLogado();
+        EnderecoView.visualizarEnderecos(usuario.getEnderecos());
+    }
 
+    public void editarEndereco() {
+        visualizarEnderecos();
+        int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja editar:"));
+
+        Usuario usuario = ecommerceController.getUsuarioLogado();
+        Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
+
+        Endereco enderecoAlterado = EnderecoView.cadastrarEndereco();
+        endereco.setCep(enderecoAlterado.getCep());
+        endereco.setBairro(enderecoAlterado.getBairro());   
+        endereco.setCidade(enderecoAlterado.getCidade());
+        endereco.setComplemento(enderecoAlterado.getComplemento());
+        endereco.setEstado(enderecoAlterado.getEstado());
+        endereco.setRua(enderecoAlterado.getRua());
+        endereco.setNumero(enderecoAlterado.getNumero());
+   
+    }
     
+    public void excluirEndereco() {
+        visualizarEnderecos();
+        int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja excluir:"));
+
+        Usuario usuario = ecommerceController.getUsuarioLogado();
+        Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
+        usuario.getEnderecos().remove(endereco);
+    }
 }

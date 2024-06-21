@@ -5,11 +5,19 @@ import model.Usuario;
 import util.Util;
 
 public class UsuarioView {
-    public static void mostraMenu() {
+    public static void mostraMenu(EcommerceController ecommerceController) {
         System.out.println("Usuário:");
-        System.out.println("1. Cadastrar-se");
-        System.out.println("2. Login");
-        System.out.println("0. Voltar");
+        if(ecommerceController.getUsuarioLogado() != null){
+            System.out.println("1. Perfil");
+            System.out.println("2. Enderecos");
+            System.out.println("3. Cartoes");
+            System.out.println("4. Pedidos");
+            System.out.println("0. Logout");
+        } else {
+            System.out.println("1. Cadastrar-se");
+            System.out.println("2. Login");
+            System.out.println("0. Voltar");
+        }
     }
 
     public static Usuario cadastrarUsuario(){

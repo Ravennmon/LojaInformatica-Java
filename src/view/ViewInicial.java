@@ -7,18 +7,21 @@ import java.util.List;
 import controller.CarrinhoController;
 import controller.CheckoutController;
 import controller.EcommerceController;
+import controller.EnderecoCheckoutController;
 import controller.EnderecoController;
 import controller.FormaDeEntregaController;
 import controller.MenuPrincipal;
 import controller.MetodoDePagamentoController;
 import controller.PedidoController;
 import controller.ProdutoController;
+import controller.UsuarioCartaoController;
 import controller.UsuarioController;
 import controller.menu.IMenu;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Categoria;
 import model.FormaDeEntrega;
+import model.Pedido;
 import model.Produto;
 import model.Usuario;
 import model.pagamento.MetodoDePagamento;
@@ -51,9 +54,23 @@ public class ViewInicial {
         FormaDeEntregaController formaDeEntregaController = MenuControllerFactory.criarFormaDeEntregaController(menuController, ecommerceController);
         CheckoutController checkoutController = MenuControllerFactory.criarCheckoutController(menuController, ecommerceController);
         PedidoController pedidoController = new PedidoController(menuController, ecommerceController);
+        UsuarioCartaoController usuarioCartaoController = MenuControllerFactory.criarUsuarioCartaoController(menuController, ecommerceController);
+        EnderecoCheckoutController enderecoCheckoutController = MenuControllerFactory.criarEnderecoCheckoutController(menuController, ecommerceController);
 
         List<IMenu> menus = new ArrayList<>();
-        menus.addAll(Arrays.asList(menuPrincipal, usuarioController, produtoController, carrinhoController, metodoDePagamentoController, enderecoController, formaDeEntregaController, checkoutController, pedidoController));
+        menus.addAll(Arrays.asList(
+            menuPrincipal, 
+            usuarioController, 
+            produtoController, 
+            carrinhoController, 
+            metodoDePagamentoController, 
+            enderecoController, 
+            formaDeEntregaController, 
+            checkoutController, 
+            pedidoController, 
+            usuarioCartaoController,
+            enderecoCheckoutController
+        ));
 
         menuController.setMenus(menus);
         menuController.setMenuAtual(menuPrincipal);

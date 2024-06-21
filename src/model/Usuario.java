@@ -12,9 +12,9 @@ public class Usuario {
     private String senha;
     private String endereco;
     private String telefone;
-    private List<Endereco> enderecos = new ArrayList<>();
-    private List<Pedido> pedidos = new ArrayList<>();
-    private List<UsuarioCartao> cartoes = new ArrayList<>();
+    private List<Endereco> enderecos;
+    private List<Pedido> pedidos;
+    private List<UsuarioCartao> cartoes;
     private Carrinho carrinho;
 
     public Usuario(String nome, String email, String senha, String telefone) {
@@ -24,12 +24,19 @@ public class Usuario {
         this.senha = senha;
         this.telefone = telefone;
         this.carrinho = new Carrinho(this);
+        this.enderecos = new ArrayList<>();
+        this.pedidos = new ArrayList<>();
+        this.cartoes = new ArrayList<>();
     }
 
     public void addEndereco(Endereco endereco){
         this.enderecos.add(endereco);
     }
 
+    public void addCartao(UsuarioCartao cartao){
+        this.cartoes.add(cartao);
+    }
+    
     public int getId() {
         return id;
     }

@@ -3,6 +3,8 @@ package controller;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Pedido;
+import model.Usuario;
+import util.Util;
 import view.PedidoView;
 
 public class PedidoController extends MenuBase {
@@ -12,19 +14,50 @@ public class PedidoController extends MenuBase {
 
     @Override
     public void mostraMenu() {
-        Pedido ultimoPedido = ecommerceController.getUsuarioLogado().getPedidos().get(ecommerceController.getUsuarioLogado().getPedidos().size() - 1);
-        PedidoView.mostrarPedido(ultimoPedido);
+        PedidoView.mostraMenu();
     }
 
     @Override
     public void opcao(int opcao, MenuController menuController) {
         switch (opcao) {
+            case 1:
+                PedidoView.visualizarPedidos(ecommerceController.getPedidos());
+                break;
+            case 2:
+                cancelarPedido();
+                break;
             case 0:
                 menuController.setMenuAtual(menuController.getMenus().get(0));
                 break;
             default:
                 System.out.println("Opção inválida.");
         }
+    }
+
+    public void visualizarPedidos() {
+        Usuario usuario = ecommerceController.getUsuarioLogado();
+        PedidoView.visualizarPedidos(usuario.getPedidos());
+    }
+    
+    public void cancelarPedido() {
+        visualizarPedidos();
+
+        Usuario usuario = ecommerceController.getUsuarioLogado();
+
+        if(usuario.getPedidos().isEmpty()){
+            return;
+        }
+
+        int id = Integer.parseInt(Util.nextLine("Informe o id do pedido que deseja cancelar:"));
+        
+        Pedido pedido = usuario.getPedidos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
+        
+        if(pedido.getSituacao().equals("Cancelado")){
+            System.out.println("Pedido já está cancelado");
+            return;
+        }
+
+        pedido.setSituacao("Cancelado");
     }
     
 }

@@ -12,11 +12,34 @@ public class UsuarioController extends MenuBase {
 
     @Override
     public void mostraMenu() {
-        UsuarioView.mostraMenu();
+        UsuarioView.mostraMenu(ecommerceController);
     }
 
     @Override
     public void opcao(int opcao, MenuController menuController) {
+        if(ecommerceController.getUsuarioLogado() != null){
+            switch (opcao) {
+                case 1:
+                    break;
+                case 2:
+                    menuController.setMenuAtual(menuController.getMenus().get(5));
+                    break;
+                case 3:
+                    menuController.setMenuAtual(menuController.getMenus().get(9));
+                    break;
+                case 4:
+                    menuController.setMenuAtual(menuController.getMenus().get(8));
+                    break;
+                case 0:
+                    ecommerceController.setUsuarioLogado(null);
+                    menuController.setMenuAtual(menuController.getMenus().get(0));
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+            return;
+        } 
+
         switch (opcao) {
             case 1:
                 cadastrarUsuario();

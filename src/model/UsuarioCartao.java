@@ -1,6 +1,9 @@
 package model;
 
+import util.Util;
+
 public class UsuarioCartao{
+    private int id;
     private String titular;
     private String numero;
     private String validade;
@@ -9,12 +12,21 @@ public class UsuarioCartao{
     private boolean debito;
 
     public UsuarioCartao(String titular, String numero, String validade, String cvv, boolean credito, boolean debito) {
+        this.id = Util.gerarId();
         this.titular = titular;
         this.numero = numero;
         this.validade = validade;
         this.cvv = cvv;
         this.credito = credito;
         this.debito = debito;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitular() {
@@ -67,11 +79,7 @@ public class UsuarioCartao{
 
     @Override
     public String toString() {
-        return "Cartao [titular=" + titular + ", numero=" + numero + ", validade=" + validade + ", cvv=" + cvv
-                + ", credito=" + credito + ", debito=" + debito + "]";
+        return "UsuarioCartao [id=" + id + ", titular=" + titular + ", numero=" + numero + ", validade=" + validade
+                + ", cvv=" + cvv + ", credito=" + credito + ", debito=" + debito + "]";
     }
-
-    
-
-
 }
