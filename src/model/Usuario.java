@@ -14,6 +14,7 @@ public class Usuario {
     private String telefone;
     private List<Endereco> enderecos = new ArrayList<>();
     private List<Pedido> pedidos = new ArrayList<>();
+    private List<UsuarioCartao> cartoes = new ArrayList<>();
     private Carrinho carrinho;
 
     public Usuario(String nome, String email, String senha, String telefone) {
@@ -101,11 +102,21 @@ public class Usuario {
         this.pedidos = pedidos;
     }
 
+    public List<UsuarioCartao> getCartoes() {
+        return cartoes;
+    }
+
+    public void setCartoes(List<UsuarioCartao> cartoes) {
+        this.cartoes = cartoes;
+    }
+
     @Override
     public String toString() {
         return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", endereco="
                 + endereco + ", telefone=" + telefone + ", enderecos=" + enderecos + ", pedidos=" + pedidos
-                + ", carrinho=" + carrinho + "]";
+                + ", cartoes=" + cartoes + ", carrinho=" + carrinho + "]";
     }
+
+
     
 }

@@ -1,6 +1,9 @@
 package view;
 
 import controller.EcommerceController;
+import model.UsuarioCartao;
+import model.pagamento.Cartao;
+import model.pagamento.MetodoDePagamento;
 import util.Util;
 
 public class MetodoDePagamentoView {
@@ -14,7 +17,7 @@ public class MetodoDePagamentoView {
         System.out.println("0. Voltar");
     }
 
-    public static void cadastrarCartao(){
+    public static UsuarioCartao cadastrarCartao(){
         System.out.println("Informe o número do cartão:");
         String numeroCartao = Util.nextLine("Informe o número do cartão:");
         System.out.println("Informe o nome do titular:");
@@ -23,5 +26,12 @@ public class MetodoDePagamentoView {
         String validade = Util.nextLine("Informe a validade:");
         System.out.println("Informe o CVV:");
         String cvv = Util.nextLine("Informe o CVV:");
+        String debito = Util.nextLine("O cartão é de débito? (S/N)");
+        String credito = Util.nextLine("O cartão é de crédito? (S/N)");
+
+        boolean isDebito = debito.equalsIgnoreCase("S");
+        boolean isCredito = credito.equalsIgnoreCase("S");
+
+        return new UsuarioCartao(nomeTitular, numeroCartao, validade, cvv, isCredito, isDebito);
     }
 }

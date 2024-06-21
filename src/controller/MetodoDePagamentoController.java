@@ -2,6 +2,8 @@ package controller;
 
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
+import model.Usuario;
+import model.UsuarioCartao;
 import model.pagamento.MetodoDePagamento;
 import view.MetodoDePagamentoView;
 
@@ -35,12 +37,15 @@ public class MetodoDePagamentoController extends MenuBase {
             return;
         }
 
+        Usuario usuario =  ecommerceController.getUsuarioLogado();
+
         MetodoDePagamento metodoDePagamento = ecommerceController.getMetodosDePagamento().get(opcao - 1);
 
-        ecommerceController.getUsuarioLogado().getCarrinho().setMetodoDePagamento(metodoDePagamento);
+        usuario.getCarrinho().setMetodoDePagamento(metodoDePagamento);
 
-        if(metodoDePagamento.getDescricao().contains("Cartão")){
-            MetodoDePagamentoView.cadastrarCartao();
+        if(metodoDePagamento.isCartao()){
+            UsuarioCartao usuarioCartao = MetodoDePagamentoView.cadastrarCartao();
+            usuario.getCartoes().add(usuarioCartao);
         }
 
         this.menuController.setMenuAtual(menuController.getMenus().get(5));
