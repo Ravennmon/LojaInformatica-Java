@@ -9,7 +9,7 @@ import util.Util;
 public class Carrinho {
     private int id;
     private Usuario usuario;
-    private List<Produto> produtos;
+    private List<ProdutoCarrinho> produtos;
     private MetodoDePagamento metodoDePagamento;
     private FormaDeEntrega formaDeEntrega;
     private Endereco enderecoEntrega;
@@ -19,18 +19,24 @@ public class Carrinho {
     public Carrinho(Usuario usuario) {
         this.id = Util.gerarId();
         this.usuario = usuario;
+        this.produtos = new ArrayList<>();
     }
 
-    public void adicionarProduto(Produto produto) {
-        if (produtos == null) {
-            produtos = new ArrayList<>();
+    public void adicionarProduto(Produto produto, int quantidade) {
+        ProdutoCarrinho produtoCarrinho = produtos.stream().filter(p -> p.getProduto().getId() == produto.getId()).findFirst().orElse(null);
+
+        if (produtoCarrinho != null) {
+            produtoCarrinho.adicionarQuantidade(quantidade);
+            valorTotal += produto.getPreco() * quantidade;
+        } else {
+            ProdutoCarrinho novoProdutoCarrinho = new ProdutoCarrinho(produto, produto.getPreco(), quantidade);
+
+            produtos.add(novoProdutoCarrinho);
+            valorTotal += produto.getPreco();
         }
-
-        produtos.add(produto);
-        valorTotal += produto.getPreco();
     }
 
-    public void removerProduto(Produto produto) {
+    public void removerProduto(ProdutoCarrinho produto) {
         if (produtos != null) {
             produtos.remove(produto);
             valorTotal -= produto.getPreco();
@@ -53,11 +59,11 @@ public class Carrinho {
         this.usuario = usuario;
     }
 
-    public List<Produto> getProdutos() {
+    public List<ProdutoCarrinho> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(List<Produto> produtos) {
+    public void setProdutos(List<ProdutoCarrinho> produtos) {
         this.produtos = produtos;
     }
 

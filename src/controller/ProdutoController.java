@@ -1,8 +1,12 @@
 package controller;
 
+import java.util.List;
+
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
+import model.Carrinho;
 import model.Produto;
+import model.ProdutoCarrinho;
 import view.ProdutoView;
 
 public class ProdutoController extends MenuBase {
@@ -33,7 +37,13 @@ public class ProdutoController extends MenuBase {
 
     public void selecionaProduto(int opcao){
         Produto produto = ecommerceController.getProdutos().get(opcao - 1);
-        
-        ecommerceController.getUsuarioLogado().getCarrinho().adicionarProduto(produto);
+
+        List<ProdutoCarrinho> produtosCarrinho =  ecommerceController.getUsuarioLogado().getCarrinho().getProdutos();
+
+        Carrinho carrinho = ecommerceController.getUsuarioLogado().getCarrinho();
+
+        carrinho.adicionarProduto(produto, 1);
+
+        ProdutoView.selecionaProduto(produtosCarrinho, produto);
     }
 }

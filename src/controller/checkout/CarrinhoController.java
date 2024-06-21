@@ -3,6 +3,7 @@ package controller.checkout;
 import controller.EcommerceController;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
+import model.Carrinho;
 import model.Produto;
 import util.Util;
 import view.checkout.CarrinhoView;
@@ -63,7 +64,7 @@ public class CarrinhoController extends MenuBase {
         }
         
 
-        ecommerceController.getUsuarioLogado().getCarrinho().adicionarProduto(produto);
+        ecommerceController.getUsuarioLogado().getCarrinho().adicionarProduto(produto, 1);
     }
 
     public void removerProduto() {
@@ -71,14 +72,10 @@ public class CarrinhoController extends MenuBase {
         System.out.println("Digite o nome do produto:");
         String nome = Util.nextLine("Digite o nome do produto:");
 
-        Produto produto = ecommerceController.getProdutos().stream().filter(p -> p.getNome().equals(nome)).findFirst().orElse(null);
+        
+        Carrinho carrinho = ecommerceController.getUsuarioLogado().getCarrinho();
 
-        if (produto == null) {
-            System.out.println("Produto não encontrado.");
-            return;
-        }
-
-        ecommerceController.getUsuarioLogado().getCarrinho().removerProduto(produto);
+        carrinho.getProdutos().stream().filter(p -> p.getProduto().getNome().equals(nome)).findFirst().ifPresent(carrinho::removerProduto);
     }
 
     public void listarProdutos() {

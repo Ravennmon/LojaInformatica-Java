@@ -6,11 +6,11 @@ public class Produto {
     private int id;
     private String nome;
     private String descricao;
-    private double preco;
+    private float preco;
     private int quantidadeEstoque;
     private Categoria categoria;
 
-    public Produto(String nome, String descricao, double preco, int quantidadeEstoque, Categoria categoria) {
+    public Produto(String nome, String descricao, float preco, int quantidadeEstoque, Categoria categoria) {
         this.id = Util.gerarId();
         this.nome = nome;
         this.descricao = descricao;
@@ -43,11 +43,11 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public double getPreco() {
+    public float getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(float preco) {
         this.preco = preco;
     }
 

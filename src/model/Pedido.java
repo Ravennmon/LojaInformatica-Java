@@ -10,7 +10,7 @@ import util.Util;
 public class Pedido {
     private int id;
     private Usuario usuario;
-    private List<Produto> produtos;
+    private List<ProdutoCarrinho> produtos;
     private MetodoDePagamento metodoDePagamento;
     private FormaDeEntrega formaDeEntrega;
     private Endereco enderecoEntrega;
@@ -22,7 +22,7 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Usuario usuario, List<Produto> produtos, MetodoDePagamento metodoDePagamento, FormaDeEntrega formaDeEntrega, Endereco enderecoEntrega) {
+    public Pedido(Usuario usuario, List<ProdutoCarrinho> produtos, MetodoDePagamento metodoDePagamento, FormaDeEntrega formaDeEntrega, Endereco enderecoEntrega) {
         this.id = Util.gerarId();
         this.usuario = usuario;
         this.produtos = produtos;
@@ -32,7 +32,7 @@ public class Pedido {
         this.data = new Date();
     }
 
-    public void adicionarProduto(Produto produto) {
+    public void adicionarProduto(ProdutoCarrinho produto) {
         if (produtos == null) {
             produtos = new ArrayList<>();
         }
@@ -41,7 +41,7 @@ public class Pedido {
         valorTotal += produto.getPreco();
     }
 
-    public void removerProduto(Produto produto) {
+    public void removerProduto(ProdutoCarrinho produto) {
         if (produtos != null) {
             produtos.remove(produto);
             valorTotal -= produto.getPreco();
@@ -51,7 +51,7 @@ public class Pedido {
     public float calculaValorTotal() {
         float valorTotal = 0.0f;
 
-        for (Produto produto : produtos) {
+        for (ProdutoCarrinho produto : produtos) {
             valorTotal += produto.getPreco();
         }
 
@@ -79,11 +79,11 @@ public class Pedido {
         this.usuario = usuario;
     }
 
-    public List<Produto> getProdutos() {
+    public List<ProdutoCarrinho> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(List<Produto> produtos) {
+    public void setProdutos(List<ProdutoCarrinho> produtos) {
         this.produtos = produtos;
     }
 

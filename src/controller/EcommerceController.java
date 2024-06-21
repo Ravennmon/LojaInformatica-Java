@@ -6,6 +6,7 @@ import java.util.List;
 import model.FormaDeEntrega;
 import model.Pedido;
 import model.Produto;
+import model.ProdutoCarrinho;
 import model.Usuario;
 import model.pagamento.MetodoDePagamento;
 
@@ -85,7 +86,7 @@ public class EcommerceController {
         this.metodosDePagamento.remove(metodoDePagamento);
     }
 
-    public List<Produto> getCarrinho(Usuario usuario) {
+    public List<ProdutoCarrinho> getCarrinho(Usuario usuario) {
         return usuario.getCarrinho().getProdutos();
 
     }

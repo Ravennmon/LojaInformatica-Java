@@ -3,7 +3,7 @@ package view;
 import java.util.List;
 
 import model.Pedido;
-import model.Produto;
+import model.ProdutoCarrinho;
 
 public class PedidoView {
     public static void mostraMenu() {
@@ -37,8 +37,8 @@ public class PedidoView {
 
         System.out.println("");
         System.out.println("Produtos: ");
-        for (Produto produto : pedido.getProdutos()) {
-            System.out.println(produto.getNome() + " - " + produto.getPreco());
+        for (ProdutoCarrinho produto : pedido.getProdutos()) {
+            System.out.println("Produto: " +  produto.getProduto().getNome() + " - Valor Unitário: " + produto.getPreco() + " - Quantidade: " + produto.getQuantidade() + " - Valor Total: " + produto.getPrecoTotal());
         }
 
         System.out.println("");

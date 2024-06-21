@@ -10,6 +10,7 @@ import model.Endereco;
 import model.FormaDeEntrega;
 import model.Pedido;
 import model.Produto;
+import model.ProdutoCarrinho;
 import model.Usuario;
 import model.pagamento.MetodoDePagamento;
 import view.checkout.CheckoutView;
@@ -42,7 +43,7 @@ public class CheckoutController extends MenuBase {
         Carrinho carrinho = ecommerceController.getUsuarioLogado().getCarrinho();
 
         Usuario usuario = carrinho.getUsuario();
-        List<Produto> produtos = carrinho.getProdutos();
+        List<ProdutoCarrinho> produtos = carrinho.getProdutos();
         Endereco enderecoEntrega = carrinho.getEnderecoEntrega();
         FormaDeEntrega formaDeEntrega = carrinho.getFormaDeEntrega();
         MetodoDePagamento metodoDePagamento = carrinho.getMetodoDePagamento();
