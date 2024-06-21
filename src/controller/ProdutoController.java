@@ -38,17 +38,7 @@ public class ProdutoController extends MenuBase {
         }
         Produto produto = ecommerceController.getProdutos().get(opcao - 1);
         
-<<<<<<< HEAD
-        if (produto.getQuantidadeEstoque() > 0) {
-            ecommerceController.getUsuarioLogado().getCarrinho().adicionarProduto(produto);
-            produto.diminuirQuantidadeEmEstoque(produto, 1);
-            System.out.println("\nProduto adicionado ao carrinho.\n");
-        } else {
-            System.out.println("\nProduto fora de estoque.\n");
-        }
-=======
         ecommerceController.getUsuarioLogado().getCarrinho().adicionarProduto(produto);
->>>>>>> 71db87af833fd8124b4ac0b9d9ed114372408f40
     }
 
     
