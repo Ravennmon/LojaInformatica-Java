@@ -14,17 +14,17 @@ public class EnderecoView {
     public static Endereco cadastrarEndereco(){
         String cep = Util.nextLine("Informe o CEP:");
 
+        String estado = Util.nextLine("Informe o estado:");
+        
+        String cidade = Util.nextLine("Informe a cidade:");
+
+        String bairro = Util.nextLine("Informe o bairro:");
+        
         String logradouro = Util.nextLine("Informe o logradouro:");
 
         String numero = Util.nextLine("Informe o número:");
 
         String complemento = Util.nextLine("Informe o complemento:");
-
-        String bairro = Util.nextLine("Informe o bairro:");
-
-        String cidade = Util.nextLine("Informe a cidade:");
-
-        String estado = Util.nextLine("Informe o estado:");
 
         return new Endereco(logradouro, numero, complemento, bairro, cidade, estado, cep, estado, false);
     }

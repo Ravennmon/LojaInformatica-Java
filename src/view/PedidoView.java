@@ -14,7 +14,7 @@ public class PedidoView {
         System.out.println("Valor total: " + pedido.getValorTotal());
         System.out.println("Situação: " + pedido.getSituacao());
         System.out.println("Método de pagamento: " + pedido.getMetodoDePagamento().getDescricao());
-        System.out.println("Endereço de entrega: " + pedido.getEnderecoEntrega().getRua() + ", " + pedido.getEnderecoEntrega().getNumero() + " - " + pedido.getEnderecoEntrega().getBairro());
+        //System.out.println("Endereço de entrega: " + pedido.getEnderecoEntrega().getRua() + ", " + pedido.getEnderecoEntrega().getNumero() + " - " + pedido.getEnderecoEntrega().getBairro());
         //System.out.printl
 
         System.out.println("Produtos: ");
