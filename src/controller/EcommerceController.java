@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import model.FormaDeEntrega;
 import model.Pedido;
 import model.Produto;
 import model.Usuario;
@@ -14,6 +15,7 @@ public class EcommerceController {
     private List<Usuario> usuarios = new ArrayList<>();
     private List<Pedido> pedidos = new ArrayList<>();
     private List<MetodoDePagamento> metodosDePagamento = new ArrayList<>();
+    private List<FormaDeEntrega> formasDeEntrega = new ArrayList<>();
     private Usuario usuarioLogado;
 
     public EcommerceController() {
@@ -100,12 +102,19 @@ public class EcommerceController {
         return usuarioLogado != null;
     }
 
+    public List<FormaDeEntrega> getFormasDeEntrega() {
+        return formasDeEntrega;
+    }
+
+    public void setFormasDeEntrega(List<FormaDeEntrega> formasDeEntrega) {
+        this.formasDeEntrega = formasDeEntrega;
+    }
+
     @Override
     public String toString() {
         return "EcommerceController [produtos=" + produtos + ", usuarios=" + usuarios + ", pedidos=" + pedidos
-                + ", metodosDePagamento=" + metodosDePagamento + "]";
+                + ", metodosDePagamento=" + metodosDePagamento + ", formasDeEntrega=" + formasDeEntrega
+                + ", usuarioLogado=" + usuarioLogado + "]";
     }
-
-    
     
 }

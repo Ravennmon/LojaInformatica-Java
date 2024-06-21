@@ -13,6 +13,7 @@ public class Usuario {
     private String endereco;
     private String telefone;
     private List<Endereco> enderecos = new ArrayList<>();
+    private List<Pedido> pedidos = new ArrayList<>();
     private Carrinho carrinho;
 
     public Usuario(String nome, String email, String senha, String telefone) {
@@ -22,6 +23,10 @@ public class Usuario {
         this.senha = senha;
         this.telefone = telefone;
         this.carrinho = new Carrinho(this);
+    }
+
+    public void addEndereco(Endereco endereco){
+        this.enderecos.add(endereco);
     }
 
     public int getId() {
@@ -88,13 +93,19 @@ public class Usuario {
         this.carrinho = carrinho;
     }
 
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+
     @Override
     public String toString() {
         return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", endereco="
-                + endereco + ", telefone=" + telefone + ", enderecos=" + enderecos + "]";
+                + endereco + ", telefone=" + telefone + ", enderecos=" + enderecos + ", pedidos=" + pedidos
+                + ", carrinho=" + carrinho + "]";
     }
-
-    
-
     
 }

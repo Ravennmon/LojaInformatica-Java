@@ -13,6 +13,7 @@ public class Carrinho implements CarrinhoRepository{
     private Usuario usuario;
     private Map<Produto, Integer> produtos;
     private MetodoDePagamento metodoDePagamento;
+    private FormaDeEntrega formaDeEntrega;
     private Endereco enderecoEntrega;
     private float valorTotal;
 
@@ -95,10 +96,20 @@ public class Carrinho implements CarrinhoRepository{
         this.enderecoEntrega = enderecoEntrega;
     }
 
-    
+    public FormaDeEntrega getFormaDeEntrega() {
+        return formaDeEntrega;
+    }
+
+    public void setFormaDeEntrega(FormaDeEntrega formaDeEntrega) {
+        this.formaDeEntrega = formaDeEntrega;
+    }
+
     @Override
     public String toString() {
-        return "Carrinho [id=" + id + ", usuario=" + usuario + ", produtos=" + produtos + ", valorTotal=" + valorTotal
-                + "]";
-    }   
+        return "Carrinho [id=" + id + ", usuario=" + usuario + ", produtos=" + produtos + ", metodoDePagamento="
+                + metodoDePagamento + ", formaDeEntrega=" + formaDeEntrega + ", enderecoEntrega=" + enderecoEntrega
+                + ", valorTotal=" + valorTotal + "]";
+    }  
+    
+    
 }

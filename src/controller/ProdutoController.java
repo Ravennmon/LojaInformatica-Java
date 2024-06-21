@@ -3,6 +3,7 @@ package controller;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Produto;
+import view.ProdutoView;
 
 public class ProdutoController extends MenuBase {
     public ProdutoController(MenuController menuController, EcommerceController ecommerceController) {
@@ -11,14 +12,7 @@ public class ProdutoController extends MenuBase {
 
     @Override
     public void mostraMenu() {
-        System.out.println("Produtos:");
-
-        for (int i = 0; i < ecommerceController.getProdutos().size(); i++) {
-            System.out.println((i + 1) + ". " + ecommerceController.getProdutos().get(i).getNome() + " - R$ " + ecommerceController.getProdutos().get(i).getPreco() + " - " + ecommerceController.getProdutos().get(i).getQuantidadeEstoque() + " unidades");
-        }
-
-        System.out.println("0. Voltar");
-
+        ProdutoView.mostraMenu(ecommerceController);
     }
 
     @Override
@@ -44,6 +38,7 @@ public class ProdutoController extends MenuBase {
         }
         Produto produto = ecommerceController.getProdutos().get(opcao - 1);
         
+<<<<<<< HEAD
         if (produto.getQuantidadeEstoque() > 0) {
             ecommerceController.getUsuarioLogado().getCarrinho().adicionarProduto(produto);
             produto.diminuirQuantidadeEmEstoque(produto, 1);
@@ -51,6 +46,9 @@ public class ProdutoController extends MenuBase {
         } else {
             System.out.println("\nProduto fora de estoque.\n");
         }
+=======
+        ecommerceController.getUsuarioLogado().getCarrinho().adicionarProduto(produto);
+>>>>>>> 71db87af833fd8124b4ac0b9d9ed114372408f40
     }
 
     
