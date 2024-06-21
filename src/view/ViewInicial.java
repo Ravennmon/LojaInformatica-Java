@@ -11,6 +11,7 @@ import controller.MenuPrincipal;
 import controller.PedidoController;
 import controller.ProdutoController;
 import controller.UsuarioCartaoController;
+import controller.UsuarioContaController;
 import controller.UsuarioController;
 import controller.checkout.CarrinhoController;
 import controller.checkout.CartaoCheckoutController;
@@ -57,6 +58,7 @@ public class ViewInicial {
         UsuarioCartaoController usuarioCartaoController = MenuControllerFactory.criarUsuarioCartaoController(menuController, ecommerceController);
         EnderecoCheckoutController enderecoCheckoutController = MenuControllerFactory.criarEnderecoCheckoutController(menuController, ecommerceController);
         CartaoCheckoutController cartaoCheckoutController = MenuControllerFactory.criarCartaoCheckoutController(menuController, ecommerceController);
+        UsuarioContaController usuarioContaController = MenuControllerFactory.criarUsuarioContaController(menuController, ecommerceController);
 
         List<IMenu> menus = new ArrayList<>();
         menus.addAll(Arrays.asList(
@@ -71,7 +73,8 @@ public class ViewInicial {
             pedidoController, 
             usuarioCartaoController,
             enderecoCheckoutController,
-            cartaoCheckoutController
+            cartaoCheckoutController,
+            usuarioContaController
         ));
 
         menuController.setMenus(menus);

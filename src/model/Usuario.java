@@ -10,7 +10,6 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    private String endereco;
     private String telefone;
     private List<Endereco> enderecos;
     private List<Pedido> pedidos;
@@ -69,14 +68,6 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
     public String getTelefone() {
         return telefone;
     }
@@ -119,10 +110,12 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", endereco="
-                + endereco + ", telefone=" + telefone + ", enderecos=" + enderecos + ", pedidos=" + pedidos
-                + ", cartoes=" + cartoes + ", carrinho=" + carrinho + "]";
+        return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", telefone="
+                + telefone + ", enderecos=" + enderecos + ", pedidos=" + pedidos + ", cartoes=" + cartoes
+                + ", carrinho=" + carrinho + "]";
     }
+
+    
 
 
     

@@ -13,6 +13,7 @@ import controller.checkout.MetodoDePagamentoController;
 import controller.menu.MenuController;
 import controller.ProdutoController;
 import controller.UsuarioCartaoController;
+import controller.UsuarioContaController;
 
 public class MenuControllerFactory {
 
@@ -66,6 +67,10 @@ public class MenuControllerFactory {
 
     public static CartaoCheckoutController criarCartaoCheckoutController(MenuController menuController, EcommerceController ecommerceController){
         return new CartaoCheckoutController(menuController, ecommerceController);
+    }
+
+    public static UsuarioContaController criarUsuarioContaController(MenuController menuController, EcommerceController ecommerceController) {
+        return new UsuarioContaController(menuController, ecommerceController);
     }
 
 }
