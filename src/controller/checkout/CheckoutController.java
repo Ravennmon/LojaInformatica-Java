@@ -1,7 +1,8 @@
-package controller;
+package controller.checkout;
 
 import java.util.List;
 
+import controller.EcommerceController;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Carrinho;
@@ -11,7 +12,7 @@ import model.Pedido;
 import model.Produto;
 import model.Usuario;
 import model.pagamento.MetodoDePagamento;
-import view.CheckoutView;
+import view.checkout.CheckoutView;
 
 public class CheckoutController extends MenuBase {
     public CheckoutController(MenuController menuController, EcommerceController ecommerceController) {

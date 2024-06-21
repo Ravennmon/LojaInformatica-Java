@@ -1,4 +1,4 @@
-package view;
+package view.checkout;
 
 public class CarrinhoView {
     public static void mostraMenu() {

@@ -14,6 +14,7 @@ public class Pedido {
     private MetodoDePagamento metodoDePagamento;
     private FormaDeEntrega formaDeEntrega;
     private Endereco enderecoEntrega;
+    private UsuarioCartao cartao;
     private Date data;
     private float valorTotal;
     private String situacao;
@@ -134,16 +135,19 @@ public class Pedido {
         this.enderecoEntrega = enderecoEntrega;
     }
 
+    public UsuarioCartao getCartao() {
+        return cartao;
+    }
+
+    public void setCartao(UsuarioCartao cartao) {
+        this.cartao = cartao;
+    }
+
     @Override
     public String toString() {
         return "Pedido [id=" + id + ", usuario=" + usuario + ", produtos=" + produtos + ", metodoDePagamento="
                 + metodoDePagamento + ", formaDeEntrega=" + formaDeEntrega + ", enderecoEntrega=" + enderecoEntrega
-                + ", data=" + data + ", valorTotal=" + valorTotal + ", situacao=" + situacao + "]";
-    }
-
-    
-
-    
-
-    
+                + ", cartao=" + cartao + ", data=" + data + ", valorTotal=" + valorTotal + ", situacao=" + situacao
+                + "]";
+    }    
 }

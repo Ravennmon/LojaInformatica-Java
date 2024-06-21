@@ -1,12 +1,13 @@
-package controller;
+package controller.checkout;
 
+import controller.EcommerceController;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Endereco;
 import model.Usuario;
 import util.Util;
-import view.EnderecoCheckoutView;
 import view.EnderecoView;
+import view.checkout.EnderecoCheckoutView;
 
 public class EnderecoCheckoutController extends MenuBase {
     public EnderecoCheckoutController(MenuController menuController, EcommerceController ecommerceController) {

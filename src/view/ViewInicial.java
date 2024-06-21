@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import controller.CarrinhoController;
-import controller.CheckoutController;
 import controller.EcommerceController;
-import controller.EnderecoCheckoutController;
 import controller.EnderecoController;
 import controller.FormaDeEntregaController;
 import controller.MenuPrincipal;
-import controller.MetodoDePagamentoController;
 import controller.PedidoController;
 import controller.ProdutoController;
 import controller.UsuarioCartaoController;
 import controller.UsuarioController;
+import controller.checkout.CarrinhoController;
+import controller.checkout.CartaoCheckoutController;
+import controller.checkout.CheckoutController;
+import controller.checkout.EnderecoCheckoutController;
+import controller.checkout.MetodoDePagamentoController;
 import controller.menu.IMenu;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Categoria;
 import model.FormaDeEntrega;
-import model.Pedido;
 import model.Produto;
 import model.Usuario;
 import model.pagamento.MetodoDePagamento;
@@ -56,6 +56,7 @@ public class ViewInicial {
         PedidoController pedidoController = new PedidoController(menuController, ecommerceController);
         UsuarioCartaoController usuarioCartaoController = MenuControllerFactory.criarUsuarioCartaoController(menuController, ecommerceController);
         EnderecoCheckoutController enderecoCheckoutController = MenuControllerFactory.criarEnderecoCheckoutController(menuController, ecommerceController);
+        CartaoCheckoutController cartaoCheckoutController = MenuControllerFactory.criarCartaoCheckoutController(menuController, ecommerceController);
 
         List<IMenu> menus = new ArrayList<>();
         menus.addAll(Arrays.asList(
@@ -69,7 +70,8 @@ public class ViewInicial {
             checkoutController, 
             pedidoController, 
             usuarioCartaoController,
-            enderecoCheckoutController
+            enderecoCheckoutController,
+            cartaoCheckoutController
         ));
 
         menuController.setMenus(menus);
@@ -113,7 +115,7 @@ public class ViewInicial {
     }
 
     private static void fakeFormasDePagamentos(EcommerceController ecommerceController){
-        FormaDeEntrega retiradaLoja = FormaDePagamentoFactory.criarFormaDePagamento("Retirar na loja", 20);
+        FormaDeEntrega retiradaLoja = FormaDePagamentoFactory.criarFormaDePagamento("Retirar na loja", 0);
         FormaDeEntrega entregaNormal = FormaDePagamentoFactory.criarFormaDePagamento("Entrega Normal", 10);
         FormaDeEntrega entregaExpressa = FormaDePagamentoFactory.criarFormaDePagamento("Entrega Expressa", 20);
 

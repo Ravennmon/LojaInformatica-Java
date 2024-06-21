@@ -1,4 +1,4 @@
-package view;
+package view.checkout;
 
 public class EnderecoCheckoutView {
     public static void mostraMenu() {

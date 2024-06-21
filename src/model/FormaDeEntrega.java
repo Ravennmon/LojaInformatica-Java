@@ -10,6 +10,7 @@ public class FormaDeEntrega {
     public FormaDeEntrega(String nome, float valor) {
         this.id = Util.gerarId();
         this.nome = nome;
+        this.valor = valor;
     }
 
     public int getId() {

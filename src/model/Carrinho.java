@@ -14,6 +14,7 @@ public class Carrinho {
     private FormaDeEntrega formaDeEntrega;
     private Endereco enderecoEntrega;
     private float valorTotal;
+    private UsuarioCartao cartao;
 
     public Carrinho(Usuario usuario) {
         this.id = Util.gerarId();
@@ -92,12 +93,18 @@ public class Carrinho {
         this.formaDeEntrega = formaDeEntrega;
     }
 
+    public UsuarioCartao getCartao() {
+        return cartao;
+    }
+
+    public void setCartao(UsuarioCartao cartao) {
+        this.cartao = cartao;
+    }
+
     @Override
     public String toString() {
         return "Carrinho [id=" + id + ", usuario=" + usuario + ", produtos=" + produtos + ", metodoDePagamento="
                 + metodoDePagamento + ", formaDeEntrega=" + formaDeEntrega + ", enderecoEntrega=" + enderecoEntrega
-                + ", valorTotal=" + valorTotal + "]";
-    }  
-    
-    
+                + ", valorTotal=" + valorTotal + ", cartao=" + cartao + "]";
+    }      
 }

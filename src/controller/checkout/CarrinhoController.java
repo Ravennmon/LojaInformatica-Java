@@ -1,10 +1,11 @@
-package controller;
+package controller.checkout;
 
+import controller.EcommerceController;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Produto;
 import util.Util;
-import view.CarrinhoView;
+import view.checkout.CarrinhoView;
 
 public class CarrinhoController extends MenuBase {
     public CarrinhoController(MenuController menuController, EcommerceController ecommerceController) {

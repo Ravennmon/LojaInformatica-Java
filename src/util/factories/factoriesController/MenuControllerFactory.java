@@ -1,17 +1,18 @@
 package util.factories.factoriesController;
 
 import controller.EcommerceController;
-import controller.EnderecoCheckoutController;
 import controller.EnderecoController;
 import controller.FormaDeEntregaController;
-import controller.MetodoDePagamentoController;
 import controller.PedidoController;
 import controller.UsuarioController;
+import controller.checkout.CarrinhoController;
+import controller.checkout.CartaoCheckoutController;
+import controller.checkout.CheckoutController;
+import controller.checkout.EnderecoCheckoutController;
+import controller.checkout.MetodoDePagamentoController;
 import controller.menu.MenuController;
-import controller.CarrinhoController;
 import controller.ProdutoController;
 import controller.UsuarioCartaoController;
-import controller.CheckoutController;
 
 public class MenuControllerFactory {
 
@@ -61,6 +62,10 @@ public class MenuControllerFactory {
 
     public static EnderecoCheckoutController criarEnderecoCheckoutController(MenuController menuController, EcommerceController ecommerceController){
         return new EnderecoCheckoutController(menuController, ecommerceController);
+    }
+
+    public static CartaoCheckoutController criarCartaoCheckoutController(MenuController menuController, EcommerceController ecommerceController){
+        return new CartaoCheckoutController(menuController, ecommerceController);
     }
 
 }
