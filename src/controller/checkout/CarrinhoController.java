@@ -6,6 +6,7 @@ import model.Ecommerce;
 import model.Produto;
 import model.ProdutoCarrinho;
 import util.Util;
+import util.enums.MenuType;
 import view.MenuPrincipalView;
 import view.checkout.CarrinhoView;
 
@@ -32,10 +33,10 @@ public class CarrinhoController extends MenuBase {
                 removerProduto();
                 break;
             case 4:
-                menuController.setMenuAtual(menuController.getMenus().get(4));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.METODO_DE_PAGAMENTO_CONTROLLER.getIndex()));
                 break;
             case 0:
-                menuController.setMenuAtual(menuController.getMenus().get(0));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
                 break;
             default:
                 MenuPrincipalView.opcaoInvalida();

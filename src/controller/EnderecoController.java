@@ -6,6 +6,7 @@ import model.Ecommerce;
 import model.Endereco;
 import model.Usuario;
 import util.Util;
+import util.enums.MenuType;
 import view.EnderecoView;
 import view.ErroView;
 import view.MenuPrincipalView;
@@ -36,7 +37,7 @@ public class EnderecoController extends MenuBase {
                 excluirEndereco();
                 break;
             case 0:
-                menuController.setMenuAtual(menuController.getMenus().get(0));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
                 break;
             default:
                 MenuPrincipalView.opcaoInvalida();
@@ -50,7 +51,7 @@ public class EnderecoController extends MenuBase {
             Usuario usuario = ecommerce.getUsuarioLogado();
             usuario.addEndereco(endereco);
             usuario.getCarrinho().setEnderecoEntrega(endereco);
-            menuController.setMenuAtual(menuController.getMenus().get(6));
+            menuController.setMenuAtual(menuController.getMenus().get(MenuType.USUARIO_CONTROLLER.getIndex()));
             Util.salvarLogEndereco(endereco);
 
         } catch (Exception e) {

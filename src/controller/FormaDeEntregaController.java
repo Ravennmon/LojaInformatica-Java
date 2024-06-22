@@ -5,6 +5,7 @@ import controller.menu.MenuController;
 import model.Ecommerce;
 import model.FormaDeEntrega;
 import util.Util;
+import util.enums.MenuType;
 import view.ErroView;
 import view.FormaDeEntregaView;
 import view.MenuPrincipalView;
@@ -24,7 +25,7 @@ public class FormaDeEntregaController extends MenuBase {
     public void opcao(int opcao, MenuController menuController) {
         if(opcao < 1){
             if(opcao == 0){
-                menuController.setMenuAtual(menuController.getMenus().get(0));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
                 return;
             } 
             MenuPrincipalView.opcaoInvalida();
@@ -38,7 +39,7 @@ public class FormaDeEntregaController extends MenuBase {
          try {
             FormaDeEntrega formaDeEntrega = ecommerce.getFormasDeEntrega().get(opcao - 1);
             ecommerce.getUsuarioLogado().getCarrinho().setFormaDeEntrega(formaDeEntrega);
-            menuController.setMenuAtual(menuController.getMenus().get(7));
+            menuController.setMenuAtual(menuController.getMenus().get(MenuType.CHECKOUT_CONTROLLER.getIndex()));
             Util.salvarLogFormaDeEntrega(formaDeEntrega.getNome(), formaDeEntrega.getValor());
             
         } catch (Exception e) {

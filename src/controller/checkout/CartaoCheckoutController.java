@@ -4,6 +4,7 @@ import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.UsuarioCartao;
 import util.Util;
+import util.enums.MenuType;
 import model.Ecommerce;
 import model.Usuario;
 import view.CartaoCheckoutView;
@@ -31,7 +32,7 @@ public class CartaoCheckoutController extends MenuBase {
                 selecionarCartao();
                 break;
             case 0:
-                menuController.setMenuAtual(menuController.getMenus().get(0));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
                 break;
             default:
                 MenuPrincipalView.opcaoInvalida();
@@ -84,7 +85,7 @@ public class CartaoCheckoutController extends MenuBase {
         try {
             usuario.getCarrinho().setCartao(cartao);
 
-            menuController.setMenuAtual(menuController.getMenus().get(10));
+            menuController.setMenuAtual(menuController.getMenus().get(MenuType.ENDERECO_CHECKOUT_CONTROLLER.getIndex()));
     
         } catch (Exception e) {
             ErroView.mostrarErro("\nErro ao selecionar cartão:" + e.getMessage() + "\n");

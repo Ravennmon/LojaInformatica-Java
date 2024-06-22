@@ -6,6 +6,7 @@ import model.Ecommerce;
 import model.Pedido;
 import model.Usuario;
 import util.Util;
+import util.enums.MenuType;
 import view.MenuPrincipalView;
 import view.PedidoView;
 
@@ -29,7 +30,7 @@ public class PedidoController extends MenuBase {
                 cancelarPedido();
                 break;
             case 0:
-                menuController.setMenuAtual(menuController.getMenus().get(0));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
                 break;
             default:
                 MenuPrincipalView.opcaoInvalida();

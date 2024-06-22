@@ -7,6 +7,7 @@ import model.Usuario;
 import view.ErroView;
 import view.MenuPrincipalView;
 import util.Util;
+import util.enums.MenuType;
 import view.UsuarioContaView;
 import view.UsuarioView;
 
@@ -33,7 +34,7 @@ public class UsuarioContaController extends MenuBase {
                 excluirConta();
                 break;
             case 0:
-                menuController.setMenuAtual(menuController.getMenus().get(0));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
                 break;
             default:
                 MenuPrincipalView.opcaoInvalida();
@@ -71,7 +72,7 @@ public class UsuarioContaController extends MenuBase {
             ecommerce.setUsuarioLogado(null);
             ecommerce.getUsuarios().remove(usuario);
     
-            menuController.setMenuAtual(menuController.getMenus().get(0));
+            menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
             UsuarioContaView.excluirConta();
             Util.salvarLogEcxcluirConta(usuario);
         } catch (Exception e) {

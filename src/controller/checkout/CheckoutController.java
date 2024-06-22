@@ -15,6 +15,7 @@ import model.pagamento.MetodoDePagamento;
 import view.ErroView;
 import view.MenuPrincipalView;
 import util.Util;
+import util.enums.MenuType;
 import view.checkout.CheckoutView;
 
 public class CheckoutController extends MenuBase {
@@ -34,7 +35,7 @@ public class CheckoutController extends MenuBase {
                 confirmarCompra();
                 break;
             case 0:
-                menuController.setMenuAtual(menuController.getMenus().get(0));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
                 break;
             default:
                 MenuPrincipalView.opcaoInvalida();
@@ -55,7 +56,7 @@ public class CheckoutController extends MenuBase {
             ecommerce.getPedidos().add(pedido);
             usuario.getPedidos().add(pedido);
     
-            menuController.setMenuAtual(menuController.getMenus().get(8));
+            menuController.setMenuAtual(menuController.getMenus().get(MenuType.PEDIDO_CONTROLLER.getIndex()));
             Util.salvarLogConfirmarCompra(carrinho, usuario, pedido, enderecoEntrega, formaDeEntrega);
     
         } catch (Exception e) {

@@ -11,6 +11,7 @@ import model.ProdutoCarrinho;
 import view.ErroView;
 import view.MenuPrincipalView;
 import util.Util;
+import util.enums.MenuType;
 import view.ProdutoView;
 
 public class ProdutoController extends MenuBase {
@@ -27,7 +28,7 @@ public class ProdutoController extends MenuBase {
     public void opcao(int opcao, MenuController menuController) {
         if(opcao < 1 || opcao > ecommerce.getProdutos().size()){
             if(opcao == 0){
-                menuController.setMenuAtual(menuController.getMenus().get(0));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
                 return;
             } 
         }

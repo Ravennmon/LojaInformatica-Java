@@ -6,6 +6,7 @@ import model.Ecommerce;
 import model.Endereco;
 import model.Usuario;
 import util.Util;
+import util.enums.MenuType;
 import view.EnderecoView;
 import view.ErroView;
 import view.MenuPrincipalView;
@@ -31,7 +32,7 @@ public class EnderecoCheckoutController extends MenuBase {
                 selecionarEndereco();
                 break;
             case 0:
-                menuController.setMenuAtual(menuController.getMenus().get(0));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
                 break;
             default:
                 MenuPrincipalView.opcaoInvalida();
@@ -84,7 +85,7 @@ public class EnderecoCheckoutController extends MenuBase {
 
     private void avancaCheckout() {
         try {
-            menuController.setMenuAtual(menuController.getMenus().get(8));
+            menuController.setMenuAtual(menuController.getMenus().get(MenuType.FORMA_DE_ENTREGA_CONTROLLER.getIndex()));
         } catch (Exception e) {
             ErroView.mostrarErro("\nErro ao avançar no checkout: " + e.getMessage() + "\n");
         }

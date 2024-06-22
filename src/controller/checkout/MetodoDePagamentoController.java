@@ -7,6 +7,7 @@ import model.Usuario;
 import model.pagamento.MetodoDePagamento;
 import view.ErroView;
 import util.Util;
+import util.enums.MenuType;
 import view.MenuPrincipalView;
 import view.checkout.MetodoDePagamentoView;
 
@@ -28,7 +29,7 @@ public class MetodoDePagamentoController extends MenuBase {
     public void opcao(int opcao, MenuController menuController) {
         if(opcao < 1){
             if(opcao == 0){
-                menuController.setMenuAtual(menuController.getMenus().get(0));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
                 return;
             } 
             MenuPrincipalView.opcaoInvalida();
@@ -53,11 +54,11 @@ public class MetodoDePagamentoController extends MenuBase {
     
             usuario.getCarrinho().setMetodoDePagamento(metodoDePagamento);
             if(metodoDePagamento.isCartao()){
-                menuController.setMenuAtual(menuController.getMenus().get(11));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.CARTAO_CHECKOUT_CONTROLLER.getIndex()));
                 return;
             }
             Util.salvarLogPagamento(metodoDePagamento.getDescricao());
-            this.menuController.setMenuAtual(menuController.getMenus().get(10));
+            this.menuController.setMenuAtual(menuController.getMenus().get(MenuType.ENDERECO_CHECKOUT_CONTROLLER.getIndex()));
         } catch (Exception e) {
             ErroView.mostrarErro("\nErro ao selecionar método de pagamento: " + e.getMessage() + "\n");
         }

@@ -10,6 +10,7 @@ import view.ErroView;
 import view.MenuPrincipalView;
 import util.Log;
 import util.Util;
+import util.enums.MenuType;
 import util.factories.CollectionFactory;
 import view.UsuarioView;
 
@@ -36,23 +37,23 @@ public class UsuarioController extends MenuBase {
     public void opcoesLogado(int opcao){
         switch (opcao) {
             case 1:
-                menuController.setMenuAtual(menuController.getMenus().get(5));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.ENDERECO_CONTROLLER.getIndex()));
                 break;
             case 2:
-                menuController.setMenuAtual(menuController.getMenus().get(9));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.USUARIO_CARTAO_CONTROLLER.getIndex()));
                 break;
             case 3:
-                menuController.setMenuAtual(menuController.getMenus().get(8));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.PEDIDO_CONTROLLER.getIndex()));
                 break;
             case 4:
-                menuController.setMenuAtual(menuController.getMenus().get(12));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.USUARIO_CONTA_CONTROLLER.getIndex()));
                 break;
             case 5:
                 ecommerce.setUsuarioLogado(null);
-                menuController.setMenuAtual(menuController.getMenus().get(0));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
                 break;
             case 0:
-                menuController.setMenuAtual(menuController.getMenus().get(0));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
                 break;
             default:
                 MenuPrincipalView.opcaoInvalida();
@@ -68,7 +69,7 @@ public class UsuarioController extends MenuBase {
                 login();
                 break;
             case 0:
-                menuController.setMenuAtual(menuController.getMenus().get(0));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
                 break;
             default:
                 MenuPrincipalView.opcaoInvalida();

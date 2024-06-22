@@ -4,6 +4,7 @@ import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.UsuarioCartao;
 import util.Util;
+import util.enums.MenuType;
 import model.Ecommerce;
 import model.Usuario;
 import view.ErroView;
@@ -36,7 +37,7 @@ public class UsuarioCartaoController extends MenuBase {
                 excluirUsuarioCartao();
                 break;
             case 0:
-                menuController.setMenuAtual(menuController.getMenus().get(0));
+                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
                 break;
             default:
                 MenuPrincipalView.opcaoInvalida();
