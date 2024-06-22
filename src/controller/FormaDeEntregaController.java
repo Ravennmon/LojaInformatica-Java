@@ -30,7 +30,6 @@ public class FormaDeEntregaController extends MenuBase {
             selecionaFormaDeEntrega(opcao);
         } else {
             MenuPrincipalView.opcaoInvalida();
-            System.out.println("Opção inválida.");
         }
     }
 
