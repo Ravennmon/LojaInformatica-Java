@@ -59,14 +59,6 @@ public class UsuarioContaController extends MenuBase {
     }
     
     public void excluirConta() {
-<<<<<<< HEAD
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        ecommerceController.setUsuarioLogado(null);
-        ecommerceController.getUsuarios().remove(usuario);
-
-        menuController.setMenuAtual(menuController.getMenus().get(0));
-        UsuarioContaView.excluirConta();
-=======
         try {
             Usuario usuario = ecommerceController.getUsuarioLogado();
             ecommerceController.setUsuarioLogado(null);
@@ -77,6 +69,5 @@ public class UsuarioContaController extends MenuBase {
         } catch (Exception e) {
             System.out.println("Erro ao excluir conta: " + e.getMessage());
         }
->>>>>>> 9670d0c (logs e tratamentos de erro.)
     }
 }
