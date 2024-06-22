@@ -7,11 +7,8 @@ import controller.menu.MenuController;
 import model.Carrinho;
 import model.Produto;
 import model.ProdutoCarrinho;
-<<<<<<< HEAD
 import view.MenuPrincipalView;
-=======
 import util.Util;
->>>>>>> 020e90df3550f51aff67dfae4d3e9348576a53ae
 import view.ProdutoView;
 
 public class ProdutoController extends MenuBase {

@@ -5,6 +5,7 @@ import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Usuario;
 import model.pagamento.MetodoDePagamento;
+import view.MenuPrincipalView;
 import view.checkout.MetodoDePagamentoView;
 
 public class MetodoDePagamentoController extends MenuBase {
