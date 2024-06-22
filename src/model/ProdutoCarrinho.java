@@ -70,7 +70,7 @@ public class ProdutoCarrinho {
 
     @Override
     public String toString() {
-        return "ProdutoCarrinho [id=" + id + ", produto=" + produto + ", preco=" + preco + ", quantidade=" + quantidade
+        return "Produto Carrinho [Id= " + id + ", Produto= " + produto + ", Preco= " + preco + ", Quantidade= " + quantidade
                 + "]";
-    }    
+    }   
 }

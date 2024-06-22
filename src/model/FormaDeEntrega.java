@@ -39,6 +39,6 @@ public class FormaDeEntrega {
 
     @Override
     public String toString() {
-        return "FormaDeEntrega [id=" + id + ", nome=" + nome + ", valor=" + valor + "]";
+        return "FormaDeEntrega [id= " + id + ", Nome= " + nome + ", Valor= " + valor + "]";
     }    
 }

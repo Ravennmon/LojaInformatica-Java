@@ -145,9 +145,9 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido [id=" + id + ", usuario=" + usuario + ", produtos=" + produtos + ", metodoDePagamento="
-                + metodoDePagamento + ", formaDeEntrega=" + formaDeEntrega + ", enderecoEntrega=" + enderecoEntrega
-                + ", cartao=" + cartao + ", data=" + data + ", valorTotal=" + valorTotal + ", situacao=" + situacao
+        return "Pedido [Id= " + id + ", Usuario= " + usuario + ", Produtos= " + produtos + ", MetodoDePagamento= "
+                + metodoDePagamento + ", FormaDeEntrega= " + formaDeEntrega + ", EnderecoEntrega= " + enderecoEntrega
+                + ", Cartao= " + cartao + ", Data= " + data + ", ValorTotal= " + valorTotal + ", Situacao= " + situacao
                 + "]";
-    }    
+    } 
 }
