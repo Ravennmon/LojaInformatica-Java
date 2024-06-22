@@ -10,8 +10,9 @@ import view.ErroView;
 import view.FormaDeEntregaView;
 import view.MenuPrincipalView;
 
-
 public class FormaDeEntregaController extends MenuBase {
+    private static final int MENU_PRINCIPAL = 0;
+
     public FormaDeEntregaController(MenuController menuController, Ecommerce ecommerce) {
         super(menuController, ecommerce);
     }
@@ -23,25 +24,24 @@ public class FormaDeEntregaController extends MenuBase {
 
     @Override
     public void opcao(int opcao, MenuController menuController) {
-        if(opcao < 1){
-            if(opcao == 0){
-                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
-                return;
-            } 
+        if (opcao == MENU_PRINCIPAL) {
+            menuNavegacao(menuController, MenuType.MENU_PRINCIPAL);
+        } else if (opcao > 0 && opcao <= ecommerce.getFormasDeEntrega().size()) {
+            selecionaFormaDeEntrega(opcao);
+        } else {
             MenuPrincipalView.opcaoInvalida();
             System.out.println("Opção inválida.");
-
         }
-        selecionaFormaDePagamento(opcao);
     }
 
-    public void selecionaFormaDePagamento(int opcao){
-         try {
+    public void selecionaFormaDeEntrega(int opcao) {
+        try {
             FormaDeEntrega formaDeEntrega = ecommerce.getFormasDeEntrega().get(opcao - 1);
+            menuNavegacao(menuController, MenuType.CHECKOUT_CONTROLLER);
             ecommerce.getUsuarioLogado().getCarrinho().setFormaDeEntrega(formaDeEntrega);
-            menuController.setMenuAtual(menuController.getMenus().get(MenuType.CHECKOUT_CONTROLLER.getIndex()));
             Util.salvarLogFormaDeEntrega(formaDeEntrega.getNome(), formaDeEntrega.getValor());
-            
+        } catch (IndexOutOfBoundsException e) {
+            ErroView.mostrarErro("Forma de entrega inválida selecionada.");
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao selecionar a forma de entrega: " + e.getMessage());
         }

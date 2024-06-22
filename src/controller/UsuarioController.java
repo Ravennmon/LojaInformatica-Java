@@ -15,6 +15,16 @@ import util.factories.CollectionFactory;
 import view.UsuarioView;
 
 public class UsuarioController extends MenuBase {
+    private static final int OPCAO_LOGADO_ENDERECO = 1;
+    private static final int OPCAO_LOGADO_USUARIO_CARTAO = 2;
+    private static final int OPCAO_LOGADO_PEDIDO = 3;
+    private static final int OPCAO_LOGADO_USUARIO_CONTA = 4;
+    private static final int OPCAO_LOGADO_LOGOUT = 5;
+    private static final int OPCAO_DESLOGADO_CADASTRAR = 1;
+    private static final int OPCAO_DESLOGADO_LOGIN = 2;
+    private static final int OPCAO_MENU_PRINCIPAL = 0;
+
+    
     public UsuarioController(MenuController menuController, Ecommerce ecommerce) {
         super(menuController, ecommerce);
     }
@@ -26,57 +36,57 @@ public class UsuarioController extends MenuBase {
 
     @Override
     public void opcao(int opcao, MenuController menuController) {
-        if(ecommerce.isUsuarioLogado()){
+        if (ecommerce.isUsuarioLogado()) {
             opcoesLogado(opcao);
-            return;
-        } 
-
-        opcoesDeslogado(opcao);
-    }
-
-    public void opcoesLogado(int opcao){
-        switch (opcao) {
-            case 1:
-                menuController.setMenuAtual(menuController.getMenus().get(MenuType.ENDERECO_CONTROLLER.getIndex()));
-                break;
-            case 2:
-                menuController.setMenuAtual(menuController.getMenus().get(MenuType.USUARIO_CARTAO_CONTROLLER.getIndex()));
-                break;
-            case 3:
-                menuController.setMenuAtual(menuController.getMenus().get(MenuType.PEDIDO_CONTROLLER.getIndex()));
-                break;
-            case 4:
-                menuController.setMenuAtual(menuController.getMenus().get(MenuType.USUARIO_CONTA_CONTROLLER.getIndex()));
-                break;
-            case 5:
-                ecommerce.setUsuarioLogado(null);
-                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
-                break;
-            case 0:
-                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
-                break;
-            default:
-                MenuPrincipalView.opcaoInvalida();
+        } else {
+            opcoesDeslogado(opcao);
         }
     }
 
-    public void opcoesDeslogado(int opcao){
+    private void opcoesLogado(int opcao) {
         switch (opcao) {
-            case 1:
+            case OPCAO_LOGADO_ENDERECO:
+                menuNavegacao(menuController, MenuType.ENDERECO_CONTROLLER);
+                break;
+            case OPCAO_LOGADO_USUARIO_CARTAO:
+                menuNavegacao(menuController, MenuType.USUARIO_CARTAO_CONTROLLER);
+                break;
+            case OPCAO_LOGADO_PEDIDO:
+                menuNavegacao(menuController, MenuType.PEDIDO_CONTROLLER);
+                break;
+            case OPCAO_LOGADO_USUARIO_CONTA:
+                menuNavegacao(menuController, MenuType.USUARIO_CONTA_CONTROLLER);
+                break;
+            case OPCAO_LOGADO_LOGOUT:
+                logout();
+                break;
+            case OPCAO_MENU_PRINCIPAL:
+                menuNavegacao(menuController, MenuType.MENU_PRINCIPAL);
+                break;
+            default:
+                MenuPrincipalView.opcaoInvalida();
+                break;
+        }
+    }
+
+    private void opcoesDeslogado(int opcao) {
+        switch (opcao) {
+            case OPCAO_DESLOGADO_CADASTRAR:
                 cadastrarUsuario();
                 break;
-            case 2:
-                login();
+            case OPCAO_DESLOGADO_LOGIN:
+                realizarLogin();
                 break;
-            case 0:
-                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
+            case OPCAO_MENU_PRINCIPAL:
+                menuNavegacao(menuController, MenuType.MENU_PRINCIPAL);
                 break;
             default:
                 MenuPrincipalView.opcaoInvalida();
+                break;
         }
     }
 
-    public void cadastrarUsuario() {
+    private void cadastrarUsuario() {
         try {
             Usuario usuario = UsuarioView.cadastrarUsuario();
             ecommerce.adicionarUsuario(usuario);
@@ -87,7 +97,7 @@ public class UsuarioController extends MenuBase {
         }
     }
 
-    public void login() {
+    private void realizarLogin() {
         try {
             Usuario usuario = UsuarioView.login(ecommerce);
 
@@ -97,15 +107,26 @@ public class UsuarioController extends MenuBase {
                 UsuarioView.loginSucesso();
             } else {
                 UsuarioView.loginFalha();
-
-                List<String> logs = CollectionFactory.createArrayList();
-                logs.add("Tentativa de login falhou.");
-
-                Log.salvar(logs, "logLogin");
+                registrarTentativaLoginFalha();
             }
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao realizar o login: " + e.getMessage());
         }
     }
     
+    private void logout() {
+        ecommerce.setUsuarioLogado(null);
+        menuNavegacao(menuController, MenuType.MENU_PRINCIPAL);
+    }
+
+    private void registrarTentativaLoginFalha() {
+        List<String> logs = CollectionFactory.createArrayList();
+        logs.add("Tentativa de login falhou.");
+
+        try {
+            Log.salvar(logs, "logLogin");
+        } catch (Exception e) {
+            ErroView.mostrarErro("Erro ao salvar log de tentativa de login falha: " + e.getMessage());
+        }
+    }
 }

@@ -312,7 +312,7 @@ public class Util {
             System.out.println("Erro ao salvar o log do usuário: " + e.getMessage());
         }
     }
-    public static void salvarLogEcxcluirConta(Usuario usuario){
+    public static void salvarLogExcluirConta(Usuario usuario){
         try {
             List<String> logs = new ArrayList<>();
             logs.add("Conta Excluida:");

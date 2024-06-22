@@ -7,10 +7,14 @@ import model.Pedido;
 import model.Usuario;
 import util.Util;
 import util.enums.MenuType;
+import view.ErroView;
 import view.MenuPrincipalView;
 import view.PedidoView;
 
+import java.util.NoSuchElementException;
+
 public class PedidoController extends MenuBase {
+
     public PedidoController(MenuController menuController, Ecommerce ecommerce) {
         super(menuController, ecommerce);
     }
@@ -24,48 +28,61 @@ public class PedidoController extends MenuBase {
     public void opcao(int opcao, MenuController menuController) {
         switch (opcao) {
             case 1:
-                PedidoView.visualizarPedidos(ecommerce.getPedidos());
+                visualizarTodosPedidos();
                 break;
             case 2:
                 cancelarPedido();
                 break;
             case 0:
-                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
+                menuNavegacao(menuController, MenuType.MENU_PRINCIPAL);
                 break;
             default:
                 MenuPrincipalView.opcaoInvalida();
+                break;
         }
     }
 
-    public void visualizarPedidos() {
+    private void visualizarTodosPedidos() {
+        PedidoView.visualizarPedidos(ecommerce.getPedidos());
+    }
+
+    public void visualizarPedidosUsuario() {
         Usuario usuario = ecommerce.getUsuarioLogado();
         PedidoView.visualizarPedidos(usuario.getPedidos());
     }
-    
-    public void cancelarPedido() {
+
+    private void cancelarPedido() {
         Usuario usuario = ecommerce.getUsuarioLogado();
 
-        if(usuario.getPedidos().isEmpty()){
+        if (usuario.getPedidos().isEmpty()) {
+            PedidoView.nenhumPedidoDisponivel();
             return;
         }
 
         try {
-            visualizarPedidos();
+            visualizarPedidosUsuario();
 
-            if(usuario.getPedidos().isEmpty()){
+            int id = PedidoView.informarIdPedido();
+            
+            Pedido pedido = usuario.getPedidos().stream()
+                                   .filter(p -> p.getId() == id)
+                                   .findFirst()
+                                   .orElseThrow(() -> new NoSuchElementException("Pedido não encontrado."));
+
+            if (pedido.getSituacao().equals("Cancelado")) {
+                PedidoView.pedidoJaCancelado();
                 return;
             }
-            int id = Integer.parseInt(Util.nextLine("Informe o id do pedido que deseja cancelar:"));
-            Pedido pedido = usuario.getPedidos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
-            if(pedido.getSituacao().equals("Cancelado")){
-                System.out.println("Pedido já está cancelado");
-                return;
-            }
+
             pedido.setSituacao("Cancelado");
             Util.salvarLogPedidoCancelado(pedido);
+            PedidoView.pedidoCancelado();
+        } catch (NumberFormatException e) {
+            ErroView.mostrarErro("ID de pedido inválido.");
+        } catch (NoSuchElementException e) {
+            ErroView.mostrarErro(e.getMessage());
         } catch (Exception e) {
-            System.out.println("Erro ao cancelar pedido: " + e.getMessage());
+            ErroView.mostrarErro("Erro ao cancelar pedido: " + e.getMessage());
         }
     }
-    
 }

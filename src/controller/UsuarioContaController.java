@@ -12,6 +12,11 @@ import view.UsuarioContaView;
 import view.UsuarioView;
 
 public class UsuarioContaController extends MenuBase {
+    private static final int OPCAO_VISUALIZAR_CONTA = 1;
+    private static final int OPCAO_EDITAR_CONTA = 2;
+    private static final int OPCAO_EXCLUIR_CONTA = 3;
+    private static final int OPCAO_MENU_PRINCIPAL = 0;
+
     public UsuarioContaController(MenuController menuController, Ecommerce ecommerce) {
         super(menuController, ecommerce);
     }
@@ -24,59 +29,68 @@ public class UsuarioContaController extends MenuBase {
     @Override
     public void opcao(int opcao, MenuController menuController) {
         switch (opcao) {
-            case 1:
+            case OPCAO_VISUALIZAR_CONTA:
                 visualizarConta();
                 break;
-            case 2:
+            case OPCAO_EDITAR_CONTA:
                 editarConta();
                 break;
-            case 3:
+            case OPCAO_EXCLUIR_CONTA:
                 excluirConta();
                 break;
-            case 0:
-                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
+            case OPCAO_MENU_PRINCIPAL:
+                menuNavegacao(menuController, MenuType.MENU_PRINCIPAL);
                 break;
             default:
                 MenuPrincipalView.opcaoInvalida();
+                break;
         }
     }
 
-    public void visualizarConta() {
+    private void visualizarConta() {
         try {
-            Usuario usuario = ecommerce.getUsuarioLogado();
+            Usuario usuario = getUsuarioLogado();
             UsuarioContaView.visualizarConta(usuario);
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao visualizar a conta: " + e.getMessage());
         }
     }
 
-    public void editarConta() {
+    private void editarConta() {
         try {
             Usuario usuarioAlterado = UsuarioView.cadastrarUsuario();
-            Usuario usuario = ecommerce.getUsuarioLogado();
+            Usuario usuario = getUsuarioLogado();
     
-            usuario.setNome(usuarioAlterado.getNome());
-            usuario.setEmail(usuarioAlterado.getEmail());
-            usuario.setSenha(usuarioAlterado.getSenha());
-            usuario.setTelefone(usuarioAlterado.getTelefone());
+            atualizarDadosUsuario(usuario, usuarioAlterado);
             Util.salvarLogEditarConta(usuario);
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao editar a conta: " + e.getMessage());
-            
         }
     }
-    
-    public void excluirConta() {
+
+    private void excluirConta() {
         try {
-            Usuario usuario = ecommerce.getUsuarioLogado();
+            Usuario usuario = getUsuarioLogado();
             ecommerce.setUsuarioLogado(null);
             ecommerce.getUsuarios().remove(usuario);
     
-            menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
             UsuarioContaView.excluirConta();
-            Util.salvarLogEcxcluirConta(usuario);
+            Util.salvarLogExcluirConta(usuario);
+
+            menuNavegacao(menuController, MenuType.MENU_PRINCIPAL);
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao excluir a conta: " + e.getMessage());
         }
+    }
+
+    private Usuario getUsuarioLogado() {
+        return ecommerce.getUsuarioLogado();
+    }
+
+    private void atualizarDadosUsuario(Usuario usuario, Usuario usuarioAlterado) {
+        usuario.setNome(usuarioAlterado.getNome());
+        usuario.setEmail(usuarioAlterado.getEmail());
+        usuario.setSenha(usuarioAlterado.getSenha());
+        usuario.setTelefone(usuarioAlterado.getTelefone());
     }
 }

@@ -37,8 +37,6 @@ public class PedidoView {
         System.out.println("Valor total: " + pedido.getValorTotal());
         System.out.println("Situação: " + pedido.getSituacao());
         System.out.println("Método de pagamento: " + pedido.getMetodoDePagamento().getDescricao());
-        //System.out.println("Endereço de entrega: " + pedido.getEnderecoEntrega().getRua() + ", " + pedido.getEnderecoEntrega().getNumero() + " - " + pedido.getEnderecoEntrega().getBairro());
-        //System.out.printl
 
         System.out.println("");
         System.out.println("Produtos: ");
@@ -50,5 +48,24 @@ public class PedidoView {
         System.out.println("--------------------");
 
         System.out.println("0. Voltar");
+    }
+
+    public static int informarIdPedido() {
+        return Util.nextInt("Informe o ID do pedido: ");
+    }
+    public static void pedidoCancelado() {
+        System.out.println("Pedido cancelado com sucesso.");
+    }
+
+    public static void pedidoNaoEncontrado() {
+        System.out.println("Pedido não encontrado.");
+    }
+
+    public static void pedidoJaCancelado() {
+        System.out.println("Pedido já está cancelado.");
+    }
+
+    public static void nenhumPedidoDisponivel() {
+        System.out.println("Nenhum pedido disponível para cancelar.");
     }
 }

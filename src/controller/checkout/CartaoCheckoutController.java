@@ -13,6 +13,10 @@ import view.MenuPrincipalView;
 import view.UsuarioCartaoView;
 
 public class CartaoCheckoutController extends MenuBase {
+    private static final int OPCAO_CADASTRAR_CARTAO = 1;
+    private static final int OPCAO_SELECIONAR_CARTAO = 2;
+    private static final int OPCAO_MENU_PRINCIPAL = 0;
+
     public CartaoCheckoutController(MenuController menuController, Ecommerce ecommerce) {
         super(menuController, ecommerce);
     }
@@ -25,14 +29,14 @@ public class CartaoCheckoutController extends MenuBase {
     @Override
     public void opcao(int opcao, MenuController menuController) {
         switch (opcao) {
-            case 1:
+            case OPCAO_CADASTRAR_CARTAO:
                 cadastrarCartao();
                 break;
-            case 2:
+            case OPCAO_SELECIONAR_CARTAO:
                 selecionarCartao();
                 break;
-            case 0:
-                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
+            case OPCAO_MENU_PRINCIPAL:
+                menuNavegacao(menuController, MenuType.MENU_PRINCIPAL);
                 break;
             default:
                 MenuPrincipalView.opcaoInvalida();
@@ -45,51 +49,49 @@ public class CartaoCheckoutController extends MenuBase {
 
             Usuario usuario = ecommerce.getUsuarioLogado();
             usuario.addCartao(cartao);
-            setCarrinhoCartao(usuario, cartao);  
+            setCarrinhoCartao(usuario, cartao);
             UsuarioCartaoView.cartaoSucesso();
             Util.salvarLogCartaoCadastro(cartao);
 
         } catch (Exception e) {
-            ErroView.mostrarErro("\nErro ao cadastrar cartão.\n");
+            ErroView.mostrarErro("\nErro ao cadastrar cartão: " + e.getMessage() + "\n");
         }
     }
 
-    public void visualizarUsuarioCartaos() {
+    public void visualizarUsuarioCartoes() {
         try {
             Usuario usuario = ecommerce.getUsuarioLogado();
-            UsuarioCartaoView.visualizarUsuarioCartaos(usuario.getCartoes());
+            UsuarioCartaoView.visualizarUsuarioCartoes(usuario.getCartoes());
         } catch (Exception e) {
-            ErroView.mostrarErro("\nErro ao visualizar cartões" + e.getMessage() + "\n");
+            ErroView.mostrarErro("\nErro ao visualizar cartões: " + e.getMessage() + "\n");
         }
     }
 
-    
     public void selecionarCartao() {
         try {
-            visualizarUsuarioCartaos();
+            visualizarUsuarioCartoes();
             int id = CartaoCheckoutView.informarIdCartao();
-    
+
             Usuario usuario = ecommerce.getUsuarioLogado();
-            UsuarioCartao cartao = usuario.getCartoes().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
-            
+            UsuarioCartao cartao = usuario.getCartoes().stream().filter(e -> e.getId() == id).findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("Cartão não encontrado"));
+
             setCarrinhoCartao(usuario, cartao);
             Util.salvarLogCartaoSelecionado(cartao);
-    
+
         } catch (Exception e) {
-            ErroView.mostrarErro("\nErro ao selecionar cartão:" + e.getMessage() + "\n");;
-            
+            ErroView.mostrarErro("\nErro ao selecionar cartão: " + e.getMessage() + "\n");
         }
     }
 
     private void setCarrinhoCartao(Usuario usuario, UsuarioCartao cartao) {
         try {
             usuario.getCarrinho().setCartao(cartao);
+            menuNavegacao(menuController, MenuType.ENDERECO_CHECKOUT_CONTROLLER);
 
-            menuController.setMenuAtual(menuController.getMenus().get(MenuType.ENDERECO_CHECKOUT_CONTROLLER.getIndex()));
-    
         } catch (Exception e) {
-            ErroView.mostrarErro("\nErro ao selecionar cartão:" + e.getMessage() + "\n");
-        
+            ErroView.mostrarErro("\nErro ao selecionar cartão: " + e.getMessage() + "\n");
+
         }
     }
 }

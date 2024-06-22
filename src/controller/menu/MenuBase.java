@@ -1,6 +1,7 @@
 package controller.menu;
 
 import model.Ecommerce;
+import util.enums.MenuType;
 
 public abstract class MenuBase implements IMenu {
     protected MenuController menuController;
@@ -23,6 +24,10 @@ public abstract class MenuBase implements IMenu {
 
     public void setMenuController(MenuController menuController) {
         this.menuController = menuController;
+    }
+    
+    public void menuNavegacao(MenuController menuController, MenuType menuType) {
+        menuController.setMenuAtual(menuController.getMenus().get(menuType.getIndex()));
     }
 
     

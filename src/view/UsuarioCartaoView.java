@@ -31,7 +31,7 @@ public class UsuarioCartaoView {
         return new UsuarioCartao(nomeTitular, numeroCartao, validade, cvv, isCredito, isDebito);
     }
 
-    public static void visualizarUsuarioCartaos(List<UsuarioCartao> cartoes) {
+    public static void visualizarUsuarioCartoes(List<UsuarioCartao> cartoes) {
         Util.limpaConsole();
 
         if(cartoes.isEmpty()){

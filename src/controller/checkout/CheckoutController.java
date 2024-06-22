@@ -19,6 +19,10 @@ import util.enums.MenuType;
 import view.checkout.CheckoutView;
 
 public class CheckoutController extends MenuBase {
+    private static final int OPCAO_CONFIRMAR_COMPRA = 1;
+    private static final int OPCAO_MENU_PRINCIPAL = 0;
+
+
     public CheckoutController(MenuController menuController, Ecommerce ecommerce) {
         super(menuController, ecommerce);
     }
@@ -31,14 +35,15 @@ public class CheckoutController extends MenuBase {
     @Override
     public void opcao(int opcao, MenuController menuController) {
         switch (opcao) {
-            case 1:
+            case OPCAO_CONFIRMAR_COMPRA:
                 confirmarCompra();
                 break;
-            case 0:
-                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
+            case OPCAO_MENU_PRINCIPAL:
+                menuNavegacao(menuController, MenuType.MENU_PRINCIPAL);
                 break;
             default:
                 MenuPrincipalView.opcaoInvalida();
+                break;
         }
     }
 
@@ -50,19 +55,19 @@ public class CheckoutController extends MenuBase {
             Endereco enderecoEntrega = carrinho.getEnderecoEntrega();
             FormaDeEntrega formaDeEntrega = carrinho.getFormaDeEntrega();
             MetodoDePagamento metodoDePagamento = carrinho.getMetodoDePagamento();
-            
+
             Pedido pedido = new Pedido(usuario, produtos, metodoDePagamento, formaDeEntrega, enderecoEntrega);
-    
+
             ecommerce.getPedidos().add(pedido);
             usuario.getPedidos().add(pedido);
-    
-            menuController.setMenuAtual(menuController.getMenus().get(MenuType.PEDIDO_CONTROLLER.getIndex()));
+
+            menuNavegacao(menuController, MenuType.PEDIDO_CONTROLLER);
+
             Util.salvarLogConfirmarCompra(carrinho, usuario, pedido, enderecoEntrega, formaDeEntrega);
-    
+
         } catch (Exception e) {
-            ErroView.mostrarErro("\nErro ao confirmar compra" + e.getMessage() + "\n");            
+            ErroView.mostrarErro("\nErro ao confirmar compra: " + e.getMessage() + "\n");
+            e.printStackTrace();
         }
     }
-
-
 }

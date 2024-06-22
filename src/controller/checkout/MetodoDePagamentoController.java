@@ -22,46 +22,37 @@ public class MetodoDePagamentoController extends MenuBase {
             MetodoDePagamentoView.mostraMenu(ecommerce);
         } catch (Exception e) {
             ErroView.mostrarErro("\nErro ao mostrar menu de métodos de pagamento: " + e.getMessage() + "\n");
+            e.printStackTrace();
         }
     }
 
     @Override
     public void opcao(int opcao, MenuController menuController) {
-        if(opcao < 1){
-            if(opcao == 0){
-                menuController.setMenuAtual(menuController.getMenus().get(MenuType.MENU_PRINCIPAL.getIndex()));
-                return;
-            } 
+        if (opcao == 0) {
+            menuNavegacao(menuController, MenuType.MENU_PRINCIPAL);
+        } else if (opcao > 0 && opcao <= ecommerce.getMetodosDePagamento().size()) {
+            selecionaMetodoDePagamento(opcao);
+        } else {
             MenuPrincipalView.opcaoInvalida();
-            System.out.println("Opção inválida.");
         }
-        selecionaMetodoDePagamento(opcao);
-
     }
 
-    public void selecionaMetodoDePagamento(int opcao){
+    public void selecionaMetodoDePagamento(int opcao) {
         try {
-            if(opcao > ecommerce.getMetodosDePagamento().size()){
-                MenuPrincipalView.opcaoInvalida();
-                return;
-            }
-
-            Usuario usuario =  ecommerce.getUsuarioLogado();
-
+            Usuario usuario = ecommerce.getUsuarioLogado();
             MetodoDePagamento metodoDePagamento = ecommerce.getMetodosDePagamento().get(opcao - 1);
-    
+
             usuario.getCarrinho().setMetodoDePagamento(metodoDePagamento);
-    
-            usuario.getCarrinho().setMetodoDePagamento(metodoDePagamento);
-            if(metodoDePagamento.isCartao()){
-                menuController.setMenuAtual(menuController.getMenus().get(MenuType.CARTAO_CHECKOUT_CONTROLLER.getIndex()));
-                return;
+
+            if (metodoDePagamento.isCartao()) {
+                menuNavegacao(menuController, MenuType.CARTAO_CHECKOUT_CONTROLLER);
+            } else {
+                Util.salvarLogPagamento(metodoDePagamento.getDescricao());
+                menuNavegacao(menuController, MenuType.ENDERECO_CHECKOUT_CONTROLLER);
             }
-            Util.salvarLogPagamento(metodoDePagamento.getDescricao());
-            this.menuController.setMenuAtual(menuController.getMenus().get(MenuType.ENDERECO_CHECKOUT_CONTROLLER.getIndex()));
         } catch (Exception e) {
             ErroView.mostrarErro("\nErro ao selecionar método de pagamento: " + e.getMessage() + "\n");
+            e.printStackTrace();
         }
-        
     }
 }
