@@ -2,15 +2,17 @@ package controller;
 
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
+import model.Ecommerce;
 import model.Endereco;
 import model.Usuario;
 import util.Util;
 import view.EnderecoView;
+import view.ErroView;
 import view.MenuPrincipalView;
 
 public class EnderecoController extends MenuBase {
-    public EnderecoController(MenuController menuController, EcommerceController ecommerceController) {
-        super(menuController, ecommerceController);
+    public EnderecoController(MenuController menuController, Ecommerce ecommerce) {
+        super(menuController, ecommerce);
     }
 
     @Override
@@ -45,7 +47,7 @@ public class EnderecoController extends MenuBase {
         try {
             Endereco endereco = EnderecoView.cadastrarEndereco();
 
-            Usuario usuario = ecommerceController.getUsuarioLogado();
+            Usuario usuario = ecommerce.getUsuarioLogado();
             usuario.addEndereco(endereco);
             usuario.getCarrinho().setEnderecoEntrega(endereco);
 
@@ -53,21 +55,21 @@ public class EnderecoController extends MenuBase {
             Util.salvarLogEndereco(endereco);
 
         } catch (Exception e) {
-            System.out.println("Erro ao cadastrar o endereço: " + e.getMessage());
+            ErroView.mostrarErro("Erro ao cadastrar o endereço: " + e.getMessage());
         }
     }
 
     public void visualizarEnderecos() {
-        Usuario usuario = ecommerceController.getUsuarioLogado();
+        Usuario usuario = ecommerce.getUsuarioLogado();
         EnderecoView.visualizarEnderecos(usuario.getEnderecos());
     }
 
     public void editarEndereco() {
         try {
             visualizarEnderecos();
-            int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja editar:"));
+            int id = EnderecoView.informarIdEndereco();
     
-            Usuario usuario = ecommerceController.getUsuarioLogado();
+            Usuario usuario = ecommerce.getUsuarioLogado();
             Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
     
             Endereco enderecoAlterado = EnderecoView.cadastrarEndereco();
@@ -81,7 +83,7 @@ public class EnderecoController extends MenuBase {
             Util.salvarLogEnderecoEditado(endereco);
             
         } catch (Exception e) {
-            System.out.println("Erro ao editar o endereço: " + e.getMessage());
+            ErroView.mostrarErro("Erro ao editar o endereço: " + e.getMessage());
         }
     }
     
@@ -90,12 +92,12 @@ public class EnderecoController extends MenuBase {
             visualizarEnderecos();
             int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja excluir:"));
     
-            Usuario usuario = ecommerceController.getUsuarioLogado();
+            Usuario usuario = ecommerce.getUsuarioLogado();
             Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
             usuario.getEnderecos().remove(endereco);
             Util.salvarLogEnderecoExcluido(endereco);
         } catch (Exception e) {
-            System.out.println("Erro ao excluir o endereço: " + e.getMessage());
+            ErroView.mostrarErro("Erro ao excluir o endereço: " + e.getMessage());
         }
     }
 }

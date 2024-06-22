@@ -2,17 +2,17 @@ package view;
 
 import java.util.List;
 
-import controller.EcommerceController;
+import model.Ecommerce;
 import model.Produto;
 import model.ProdutoCarrinho;
 import util.Util;
 
 public class ProdutoView {
-    public static void mostraMenu(EcommerceController ecommerceController) {
+    public static void mostraMenu(Ecommerce ecommerce) {
         System.out.println("Produtos:");
 
-        for (int i = 0; i < ecommerceController.getProdutos().size(); i++) {
-            System.out.println((i + 1) + ". " + ecommerceController.getProdutos().get(i).getNome() + " - R$ " + ecommerceController.getProdutos().get(i).getPreco() + " - " + ecommerceController.getProdutos().get(i).getQuantidadeEstoque() + " unidades");
+        for (int i = 0; i < ecommerce.getProdutos().size(); i++) {
+            System.out.println((i + 1) + ". " + ecommerce.getProdutos().get(i).getNome() + " - R$ " + ecommerce.getProdutos().get(i).getPreco() + " - " + ecommerce.getProdutos().get(i).getQuantidadeEstoque() + " unidades");
         }
 
         System.out.println("0. Voltar");

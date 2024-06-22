@@ -1,18 +1,18 @@
 package controller.checkout;
 
-import controller.EcommerceController;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
+import model.Ecommerce;
 import model.Endereco;
 import model.Usuario;
-import util.Util;
 import view.EnderecoView;
+import view.ErroView;
 import view.MenuPrincipalView;
 import view.checkout.EnderecoCheckoutView;
 
 public class EnderecoCheckoutController extends MenuBase {
-    public EnderecoCheckoutController(MenuController menuController, EcommerceController ecommerceController) {
-        super(menuController, ecommerceController);
+    public EnderecoCheckoutController(MenuController menuController, Ecommerce ecommerce) {
+        super(menuController, ecommerce);
     }
 
     @Override
@@ -38,34 +38,54 @@ public class EnderecoCheckoutController extends MenuBase {
     }
 
     public void visualizarEnderecos() {
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        EnderecoView.visualizarEnderecos(usuario.getEnderecos());
+        try {
+            Usuario usuario = ecommerce.getUsuarioLogado();
+            EnderecoView.visualizarEnderecos(usuario.getEnderecos());
+        } catch (Exception e) {
+            ErroView.mostrarErro("\nErro ao visualizar endereços: " + e.getMessage() + "\n");
+        }
+
     }
 
     public void cadastrarEndereco() {
-        Endereco endereco = EnderecoView.cadastrarEndereco();
 
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        usuario.addEndereco(endereco);
-        usuario.getCarrinho().setEnderecoEntrega(endereco);
+        try {
+            Endereco endereco = EnderecoView.cadastrarEndereco();
 
-        avancaCheckout();
+            Usuario usuario = ecommerce.getUsuarioLogado();
+            usuario.addEndereco(endereco);
+            usuario.getCarrinho().setEnderecoEntrega(endereco);
+    
+            avancaCheckout();
+        } catch (Exception e) {
+            ErroView.mostrarErro("\nErro ao cadastrar endereço: " + e.getMessage() + "\n");
+        }
     }
 
     
     public void selecionarEndereco() {
-        visualizarEnderecos();
-        int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja selecionar:"));
+        try {
+            visualizarEnderecos();
+            int id = EnderecoCheckoutView.informarIdEndereco();
+    
+            Usuario usuario = ecommerce.getUsuarioLogado();
+            Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
+            
+            usuario.getCarrinho().setEnderecoEntrega(endereco);
+    
+            avancaCheckout();
+    
+        } catch (Exception e) {
+            ErroView.mostrarErro("\nErro ao selecionar endereço: " + e.getMessage() + "\n");
+        }
 
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
-        
-        usuario.getCarrinho().setEnderecoEntrega(endereco);
-
-        avancaCheckout();
     }
 
     private void avancaCheckout() {
-        menuController.setMenuAtual(menuController.getMenus().get(6));
+        try {
+            menuController.setMenuAtual(menuController.getMenus().get(8));
+        } catch (Exception e) {
+            ErroView.mostrarErro("\nErro ao avançar no checkout: " + e.getMessage() + "\n");
+        }
     }
 }

@@ -3,14 +3,15 @@ package controller;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.UsuarioCartao;
+import model.Ecommerce;
 import model.Usuario;
-import util.Util;
+import view.ErroView;
 import view.MenuPrincipalView;
 import view.UsuarioCartaoView;
 
 public class UsuarioCartaoController extends MenuBase {
-    public UsuarioCartaoController(MenuController menuController, EcommerceController ecommerceController) {
-        super(menuController, ecommerceController);
+    public UsuarioCartaoController(MenuController menuController, Ecommerce ecommerce) {
+        super(menuController, ecommerce);
     }
 
     @Override
@@ -42,39 +43,60 @@ public class UsuarioCartaoController extends MenuBase {
     }
 
     public void cadastrarUsuarioCartao() {
-        UsuarioCartao cartao = UsuarioCartaoView.cadastrarUsuarioCartao();
+        try {
+            UsuarioCartao cartao = UsuarioCartaoView.cadastrarUsuarioCartao();
 
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        usuario.addCartao(cartao);
+            Usuario usuario = ecommerce.getUsuarioLogado();
+            usuario.addCartao(cartao);
+        } catch (Exception e) {
+            ErroView.mostrarErro("Erro ao cadastrar o cartão: " + e.getMessage());
+        }
     }
 
     public void visualizarUsuarioCartaos() {
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        UsuarioCartaoView.visualizarUsuarioCartaos(usuario.getCartoes());
+        try {
+            Usuario usuario = ecommerce.getUsuarioLogado();
+            UsuarioCartaoView.visualizarUsuarioCartaos(usuario.getCartoes());
+        } catch (Exception e) {
+            ErroView.mostrarErro("Erro ao visualizar os cartões: " + e.getMessage());
+        }
     }
 
     public void editarUsuarioCartao() {
-        visualizarUsuarioCartaos();
-        int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja editar:"));
+        try {
+            int id = informarIdCartao();
 
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        UsuarioCartao cartao = usuario.getCartoes().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
+            Usuario usuario = ecommerce.getUsuarioLogado();
+            UsuarioCartao cartao = usuario.getCartoes().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
+    
+            UsuarioCartao cartaoAlterado = UsuarioCartaoView.cadastrarUsuarioCartao();
+            cartao.setTitular(cartaoAlterado.getTitular());
+            cartao.setNumero(cartaoAlterado.getNumero());
+            cartao.setValidade(cartaoAlterado.getValidade());
+            cartao.setCvv(cartaoAlterado.getCvv());
+            cartao.setCredito(cartaoAlterado.isCredito());
+            cartao.setDebito(cartaoAlterado.isDebito());
 
-        UsuarioCartao cartaoAlterado = UsuarioCartaoView.cadastrarUsuarioCartao();
-        cartao.setTitular(cartaoAlterado.getTitular());
-        cartao.setNumero(cartaoAlterado.getNumero());
-        cartao.setValidade(cartaoAlterado.getValidade());
-        cartao.setCvv(cartaoAlterado.getCvv());
-        cartao.setCredito(cartaoAlterado.isCredito());
-        cartao.setDebito(cartaoAlterado.isDebito());
+        } catch (Exception e) {
+            ErroView.mostrarErro("Erro ao editar o cartão: " + e.getMessage());
+        } 
     }
     
     public void excluirUsuarioCartao() {
-        visualizarUsuarioCartaos();
-        int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja excluir:"));
+        try {
+            int id = informarIdCartao();
+    
+            Usuario usuario = ecommerce.getUsuarioLogado();
+            UsuarioCartao cartao = usuario.getCartoes().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
+            usuario.getCartoes().remove(cartao);
+        
+        } catch (Exception e) {
+            ErroView.mostrarErro("Erro ao excluir o cartão: " + e.getMessage());
+        }
+    }
 
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        UsuarioCartao cartao = usuario.getCartoes().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
-        usuario.getCartoes().remove(cartao);
+    private int informarIdCartao() {
+        visualizarUsuarioCartaos();
+        return UsuarioCartaoView.informarIdCartao();
     }
 }

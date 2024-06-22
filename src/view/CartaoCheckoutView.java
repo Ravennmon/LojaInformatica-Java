@@ -37,4 +37,8 @@ public class CartaoCheckoutView {
             System.out.println(cartao);
         }
     }
+
+    public static int informarIdCartao() {
+       return Util.nextInt("Informe o id do cartão que deseja utilizar:");
+    }
 }

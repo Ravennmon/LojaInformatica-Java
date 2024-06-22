@@ -1,27 +1,27 @@
 package view.checkout;
 
-import controller.EcommerceController;
+import model.Ecommerce;
 
 public class CheckoutView {
-    public static void mostraMenu(EcommerceController ecommerceController) {
+    public static void mostraMenu(Ecommerce ecommerce) {
         System.out.println("Produtos no carrinho:");
-        ecommerceController.getUsuarioLogado().getCarrinho().getProdutos().forEach(System.out::println);
+        ecommerce.getUsuarioLogado().getCarrinho().getProdutos().forEach(System.out::println);
 
         System.out.println("--------------------------------------------------");
 
-        System.out.println("Forma de entrega: " + ecommerceController.getUsuarioLogado().getCarrinho().getFormaDeEntrega().getNome());
+        System.out.println("Forma de entrega: " + ecommerce.getUsuarioLogado().getCarrinho().getFormaDeEntrega().getNome());
 
         System.out.println("--------------------------------------------------");
 
-        System.out.println("Endereço de entrega: " + ecommerceController.getUsuarioLogado().getCarrinho().getEnderecoEntrega());
+        System.out.println("Endereço de entrega: " + ecommerce.getUsuarioLogado().getCarrinho().getEnderecoEntrega());
 
         System.out.println("--------------------------------------------------");
 
-        System.out.println("Método de pagamento: " + ecommerceController.getUsuarioLogado().getCarrinho().getMetodoDePagamento().getDescricao());
+        System.out.println("Método de pagamento: " + ecommerce.getUsuarioLogado().getCarrinho().getMetodoDePagamento().getDescricao());
 
         System.out.println("--------------------------------------------------");
 
-        System.out.println("Valor total: " + ecommerceController.getUsuarioLogado().getCarrinho().getValorTotal());
+        System.out.println("Valor total: " + ecommerce.getUsuarioLogado().getCarrinho().getValorTotal());
 
         System.out.println("--------------------------------------------------");
 

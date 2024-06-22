@@ -1,18 +1,18 @@
 package controller.checkout;
 
-import controller.EcommerceController;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.UsuarioCartao;
+import model.Ecommerce;
 import model.Usuario;
-import util.Util;
 import view.CartaoCheckoutView;
+import view.ErroView;
 import view.MenuPrincipalView;
 import view.UsuarioCartaoView;
 
 public class CartaoCheckoutController extends MenuBase {
-    public CartaoCheckoutController(MenuController menuController, EcommerceController ecommerceController) {
-        super(menuController, ecommerceController);
+    public CartaoCheckoutController(MenuController menuController, Ecommerce ecommerce) {
+        super(menuController, ecommerce);
     }
 
     @Override
@@ -38,32 +38,52 @@ public class CartaoCheckoutController extends MenuBase {
     }
 
     public void cadastrarCartao() {
-        UsuarioCartao cartao = UsuarioCartaoView.cadastrarUsuarioCartao();
+        try {
+            UsuarioCartao cartao = UsuarioCartaoView.cadastrarUsuarioCartao();
 
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        usuario.addCartao(cartao);
-        setCarrinhoCartao(usuario, cartao);
+            Usuario usuario = ecommerce.getUsuarioLogado();
+            usuario.addCartao(cartao);
+            setCarrinhoCartao(usuario, cartao);  
+
+        } catch (Exception e) {
+            ErroView.mostrarErro("\nErro ao cadastrar cartão.\n");
+        }
     }
 
     public void visualizarUsuarioCartaos() {
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        UsuarioCartaoView.visualizarUsuarioCartaos(usuario.getCartoes());
+        try {
+            Usuario usuario = ecommerce.getUsuarioLogado();
+            UsuarioCartaoView.visualizarUsuarioCartaos(usuario.getCartoes());
+        } catch (Exception e) {
+            ErroView.mostrarErro("\nErro ao visualizar cartões" + e.getMessage() + "\n");
+        }
     }
 
     
     public void selecionarCartao() {
-        visualizarUsuarioCartaos();
-        int id = Integer.parseInt(Util.nextLine("Informe o id do cartão que deseja utilizar:"));
-
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        UsuarioCartao cartao = usuario.getCartoes().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
-        
-        setCarrinhoCartao(usuario, cartao);
+        try {
+            visualizarUsuarioCartaos();
+            int id = CartaoCheckoutView.informarIdCartao();
+    
+            Usuario usuario = ecommerce.getUsuarioLogado();
+            UsuarioCartao cartao = usuario.getCartoes().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
+            
+            setCarrinhoCartao(usuario, cartao);
+    
+        } catch (Exception e) {
+            ErroView.mostrarErro("\nErro ao selecionar cartão:" + e.getMessage() + "\n");
+        }
     }
 
     private void setCarrinhoCartao(Usuario usuario, UsuarioCartao cartao) {
-        usuario.getCarrinho().setCartao(cartao);
+        try {
+            usuario.getCarrinho().setCartao(cartao);
 
-        menuController.setMenuAtual(menuController.getMenus().get(10));
+            menuController.setMenuAtual(menuController.getMenus().get(10));
+    
+        } catch (Exception e) {
+            ErroView.mostrarErro("\nErro ao selecionar cartão:" + e.getMessage() + "\n");
+        
+        }
     }
 }

@@ -2,6 +2,7 @@ package controller;
 
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
+import model.Ecommerce;
 import model.Pedido;
 import model.Usuario;
 import util.Util;
@@ -9,8 +10,8 @@ import view.MenuPrincipalView;
 import view.PedidoView;
 
 public class PedidoController extends MenuBase {
-    public PedidoController(MenuController menuController, EcommerceController ecommerceController) {
-        super(menuController, ecommerceController);
+    public PedidoController(MenuController menuController, Ecommerce ecommerce) {
+        super(menuController, ecommerce);
     }
 
     @Override
@@ -22,7 +23,7 @@ public class PedidoController extends MenuBase {
     public void opcao(int opcao, MenuController menuController) {
         switch (opcao) {
             case 1:
-                PedidoView.visualizarPedidos(ecommerceController.getPedidos());
+                PedidoView.visualizarPedidos(ecommerce.getPedidos());
                 break;
             case 2:
                 cancelarPedido();
@@ -36,14 +37,14 @@ public class PedidoController extends MenuBase {
     }
 
     public void visualizarPedidos() {
-        Usuario usuario = ecommerceController.getUsuarioLogado();
+        Usuario usuario = ecommerce.getUsuarioLogado();
         PedidoView.visualizarPedidos(usuario.getPedidos());
     }
     
     public void cancelarPedido() {
         visualizarPedidos();
 
-        Usuario usuario = ecommerceController.getUsuarioLogado();
+        Usuario usuario = ecommerce.getUsuarioLogado();
 
         if(usuario.getPedidos().isEmpty()){
             return;

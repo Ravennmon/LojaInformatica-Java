@@ -3,7 +3,6 @@ package view;
 import java.util.Arrays;
 import java.util.List;
 
-import controller.EcommerceController;
 import controller.EnderecoController;
 import controller.FormaDeEntregaController;
 import controller.MenuPrincipal;
@@ -21,6 +20,7 @@ import controller.menu.IMenu;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Categoria;
+import model.Ecommerce;
 import model.FormaDeEntrega;
 import model.Produto;
 import model.pagamento.MetodoDePagamento;
@@ -32,30 +32,30 @@ import util.factories.ProdutoFactory;
 import util.factories.factoriesController.MenuControllerFactory;
 
 public class ViewInicial {
-    private EcommerceController ecommerceController;
+    private Ecommerce ecommerce;
     private MenuController menuController;
 
     public ViewInicial() {
-        ecommerceController = MenuControllerFactory.criarEcommerceController();
+        ecommerce = MenuControllerFactory.criarecommerce();
         menuController = MenuControllerFactory.criarMenuController();
 
         addProdutosInfomatica();
         addMetodosDePagamento();
         addFormasDeEntrega();
 
-        MenuBase menuPrincipal = new MenuPrincipal(menuController, ecommerceController);
-        UsuarioController usuarioController = MenuControllerFactory.criarUsuarioController(menuController, ecommerceController);
-        CarrinhoController carrinhoController = MenuControllerFactory.criarCarrinhoController(menuController, ecommerceController);
-        ProdutoController produtoController = MenuControllerFactory.criarProdutoController(menuController, ecommerceController);
-        MetodoDePagamentoController metodoDePagamentoController = MenuControllerFactory.criarMetodoDePagamentoController(menuController, ecommerceController);
-        EnderecoController enderecoController = MenuControllerFactory.criarEnderecoController(menuController, ecommerceController);
-        FormaDeEntregaController formaDeEntregaController = MenuControllerFactory.criarFormaDeEntregaController(menuController, ecommerceController);
-        CheckoutController checkoutController = MenuControllerFactory.criarCheckoutController(menuController, ecommerceController);
-        PedidoController pedidoController = new PedidoController(menuController, ecommerceController);
-        UsuarioCartaoController usuarioCartaoController = MenuControllerFactory.criarUsuarioCartaoController(menuController, ecommerceController);
-        EnderecoCheckoutController enderecoCheckoutController = MenuControllerFactory.criarEnderecoCheckoutController(menuController, ecommerceController);
-        CartaoCheckoutController cartaoCheckoutController = MenuControllerFactory.criarCartaoCheckoutController(menuController, ecommerceController);
-        UsuarioContaController usuarioContaController = MenuControllerFactory.criarUsuarioContaController(menuController, ecommerceController);
+        MenuBase menuPrincipal = new MenuPrincipal(menuController, ecommerce);
+        UsuarioController usuarioController = MenuControllerFactory.criarUsuarioController(menuController, ecommerce);
+        CarrinhoController carrinhoController = MenuControllerFactory.criarCarrinhoController(menuController, ecommerce);
+        ProdutoController produtoController = MenuControllerFactory.criarProdutoController(menuController, ecommerce);
+        MetodoDePagamentoController metodoDePagamentoController = MenuControllerFactory.criarMetodoDePagamentoController(menuController, ecommerce);
+        EnderecoController enderecoController = MenuControllerFactory.criarEnderecoController(menuController, ecommerce);
+        FormaDeEntregaController formaDeEntregaController = MenuControllerFactory.criarFormaDeEntregaController(menuController, ecommerce);
+        CheckoutController checkoutController = MenuControllerFactory.criarCheckoutController(menuController, ecommerce);
+        PedidoController pedidoController = new PedidoController(menuController, ecommerce);
+        UsuarioCartaoController usuarioCartaoController = MenuControllerFactory.criarUsuarioCartaoController(menuController, ecommerce);
+        EnderecoCheckoutController enderecoCheckoutController = MenuControllerFactory.criarEnderecoCheckoutController(menuController, ecommerce);
+        CartaoCheckoutController cartaoCheckoutController = MenuControllerFactory.criarCartaoCheckoutController(menuController, ecommerce);
+        UsuarioContaController usuarioContaController = MenuControllerFactory.criarUsuarioContaController(menuController, ecommerce);
 
         List<IMenu> menus = CollectionFactory.createArrayList();
         menus.addAll(Arrays.asList(
@@ -95,7 +95,7 @@ public class ViewInicial {
         List<Produto> produtos = CollectionFactory.createArrayList();
 
         produtos.addAll(Arrays.asList(produto1, produto2, produto3));
-        ecommerceController.setProdutos(produtos);
+        ecommerce.setProdutos(produtos);
     }
 
     private void addMetodosDePagamento(){
@@ -105,7 +105,7 @@ public class ViewInicial {
         List<MetodoDePagamento> metodosDePagamento = CollectionFactory.createArrayList();
         metodosDePagamento.addAll(Arrays.asList(cartaoDeCredito, cartaoDeDebito));
 
-        ecommerceController.setMetodosDePagamento(metodosDePagamento);
+        ecommerce.setMetodosDePagamento(metodosDePagamento);
     }
 
     private void addFormasDeEntrega(){
@@ -116,6 +116,6 @@ public class ViewInicial {
         List<FormaDeEntrega> formasDeEntrega = CollectionFactory.createArrayList();
         formasDeEntrega.addAll(Arrays.asList(entregaNormal, entregaExpressa, retiradaLoja));
 
-        ecommerceController.setFormasDeEntrega(formasDeEntrega);
+        ecommerce.setFormasDeEntrega(formasDeEntrega);
     }
 }

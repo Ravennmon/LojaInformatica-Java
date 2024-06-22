@@ -43,4 +43,8 @@ public class EnderecoView {
             System.out.println(endereco);
         }
     }
+
+    public static int informarIdEndereco() {
+        return Util.nextInt("Informe o id do endereco:");
+    }
 }

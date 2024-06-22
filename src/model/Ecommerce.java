@@ -1,16 +1,11 @@
-package controller;
+package model;
 
 import java.util.List;
 
-import model.FormaDeEntrega;
-import model.Pedido;
-import model.Produto;
-import model.ProdutoCarrinho;
-import model.Usuario;
 import model.pagamento.MetodoDePagamento;
 import util.factories.CollectionFactory;
 
-public class EcommerceController {
+public class Ecommerce {
     private List<Produto> produtos;
     private List<Usuario> usuarios;
     private List<Pedido> pedidos;
@@ -18,7 +13,7 @@ public class EcommerceController {
     private List<FormaDeEntrega> formasDeEntrega;
     private Usuario usuarioLogado;
 
-    public EcommerceController() {
+    public Ecommerce() {
         this.produtos = CollectionFactory.createArrayList();
         this.usuarios = CollectionFactory.createArrayList();
         this.pedidos = CollectionFactory.createArrayList();
@@ -118,7 +113,7 @@ public class EcommerceController {
 
     @Override
     public String toString() {
-        return "EcommerceController [produtos= " + produtos + ", Usuarios= " + usuarios + ", Pedidos= " + pedidos
+        return "ecommerce [produtos= " + produtos + ", Usuarios= " + usuarios + ", Pedidos= " + pedidos
                 + ", Metodos de pagamento= " + metodosDePagamento + ", Forma de entrega= " + formasDeEntrega
                 + ", Usuario logado= " + usuarioLogado + "]";
     }

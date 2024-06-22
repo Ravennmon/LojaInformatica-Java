@@ -2,11 +2,12 @@ package controller;
 
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
+import model.Ecommerce;
 import view.MenuPrincipalView;
 
 public class MenuPrincipal extends MenuBase{
-    public MenuPrincipal(MenuController menuController, EcommerceController ecommerceController) {
-        super(menuController, ecommerceController);
+    public MenuPrincipal(MenuController menuController, Ecommerce ecommerce) {
+        super(menuController, ecommerce);
     }
 
     @Override

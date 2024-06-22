@@ -5,25 +5,27 @@ import java.util.List;
 
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
+import model.Ecommerce;
 import model.Usuario;
+import view.ErroView;
 import view.MenuPrincipalView;
 import util.Log;
 import util.Util;
 import view.UsuarioView;
 
 public class UsuarioController extends MenuBase {
-    public UsuarioController(MenuController menuController, EcommerceController ecommerceController) {
-        super(menuController, ecommerceController);
+    public UsuarioController(MenuController menuController, Ecommerce ecommerce) {
+        super(menuController, ecommerce);
     }
 
     @Override
     public void mostraMenu() {
-        UsuarioView.mostraMenu(ecommerceController);
+        UsuarioView.mostraMenu(ecommerce);
     }
 
     @Override
     public void opcao(int opcao, MenuController menuController) {
-        if(ecommerceController.isUsuarioLogado()){
+        if(ecommerce.isUsuarioLogado()){
             opcoesLogado(opcao);
             return;
         } 
@@ -46,7 +48,7 @@ public class UsuarioController extends MenuBase {
                 menuController.setMenuAtual(menuController.getMenus().get(12));
                 break;
             case 5:
-                ecommerceController.setUsuarioLogado(null);
+                ecommerce.setUsuarioLogado(null);
                 menuController.setMenuAtual(menuController.getMenus().get(0));
                 break;
             case 0:
@@ -76,7 +78,7 @@ public class UsuarioController extends MenuBase {
     public void cadastrarUsuario() {
         try {
             Usuario usuario = UsuarioView.cadastrarUsuario();
-            ecommerceController.adicionarUsuario(usuario);
+            ecommerce.adicionarUsuario(usuario);
             Util.salvarLogUsuario(usuario);
             
         } catch (Exception e) {
@@ -86,14 +88,14 @@ public class UsuarioController extends MenuBase {
 
     public void login() {
         try {
-            Usuario usuario = UsuarioView.login(ecommerceController);
+            Usuario usuario = UsuarioView.login(ecommerce);
 
             if (usuario != null) {
-                ecommerceController.setUsuarioLogado(usuario);
+                ecommerce.setUsuarioLogado(usuario);
                 Util.salvarLogLogin(usuario.getEmail());
-                System.out.println("\nLogin efetuado com sucesso.\n");
+                UsuarioView.loginSucesso();
             } else {
-                System.out.println("\nEmail ou senha inválidos.\n");
+                UsuarioView.loginFalha();
 
                 List<String> logs = new ArrayList<>();
                 logs.add("Tentativa de login falhou.");
@@ -101,7 +103,7 @@ public class UsuarioController extends MenuBase {
                 Log.salvar(logs, "logLogin");
             }
         } catch (Exception e) {
-            System.out.println("Erro ao realizar o login: " + e.getMessage());
+            ErroView.mostrarErro("Erro ao realizar o login: " + e.getMessage());
         }
     }
     

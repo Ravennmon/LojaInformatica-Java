@@ -2,27 +2,28 @@ package controller.checkout;
 
 import java.util.List;
 
-import controller.EcommerceController;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Carrinho;
+import model.Ecommerce;
 import model.Endereco;
 import model.FormaDeEntrega;
 import model.Pedido;
 import model.ProdutoCarrinho;
 import model.Usuario;
 import model.pagamento.MetodoDePagamento;
+import view.ErroView;
 import view.MenuPrincipalView;
 import view.checkout.CheckoutView;
 
 public class CheckoutController extends MenuBase {
-    public CheckoutController(MenuController menuController, EcommerceController ecommerceController) {
-        super(menuController, ecommerceController);
+    public CheckoutController(MenuController menuController, Ecommerce ecommerce) {
+        super(menuController, ecommerce);
     }
 
     @Override
     public void mostraMenu() {
-        CheckoutView.mostraMenu(ecommerceController);
+        CheckoutView.mostraMenu(ecommerce);
     }
 
     @Override
@@ -40,20 +41,25 @@ public class CheckoutController extends MenuBase {
     }
 
     public void confirmarCompra() {
-        Carrinho carrinho = ecommerceController.getUsuarioLogado().getCarrinho();
+        try {
+            Carrinho carrinho = ecommerce.getUsuarioLogado().getCarrinho();
 
-        Usuario usuario = carrinho.getUsuario();
-        List<ProdutoCarrinho> produtos = carrinho.getProdutos();
-        Endereco enderecoEntrega = carrinho.getEnderecoEntrega();
-        FormaDeEntrega formaDeEntrega = carrinho.getFormaDeEntrega();
-        MetodoDePagamento metodoDePagamento = carrinho.getMetodoDePagamento();
-        
-        Pedido pedido = new Pedido(usuario, produtos, metodoDePagamento, formaDeEntrega, enderecoEntrega);
-
-        ecommerceController.getPedidos().add(pedido);
-        usuario.getPedidos().add(pedido);
-
-        menuController.setMenuAtual(menuController.getMenus().get(8));
+            Usuario usuario = carrinho.getUsuario();
+            List<ProdutoCarrinho> produtos = carrinho.getProdutos();
+            Endereco enderecoEntrega = carrinho.getEnderecoEntrega();
+            FormaDeEntrega formaDeEntrega = carrinho.getFormaDeEntrega();
+            MetodoDePagamento metodoDePagamento = carrinho.getMetodoDePagamento();
+            
+            Pedido pedido = new Pedido(usuario, produtos, metodoDePagamento, formaDeEntrega, enderecoEntrega);
+    
+            ecommerce.getPedidos().add(pedido);
+            usuario.getPedidos().add(pedido);
+    
+            menuController.setMenuAtual(menuController.getMenus().get(8));
+    
+        } catch (Exception e) {
+            ErroView.mostrarErro("\nErro ao confirmar compra" + e.getMessage() + "\n");
+        }
     }
 
 

@@ -39,4 +39,8 @@ public class UsuarioCartaoView {
             System.out.println(cartao);
         }
     }
+
+    public static int informarIdCartao() {
+        return Util.nextInt("Informe o id do cartão:");
+    }
 }

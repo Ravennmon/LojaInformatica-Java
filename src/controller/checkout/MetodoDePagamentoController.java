@@ -1,21 +1,26 @@
 package controller.checkout;
 
-import controller.EcommerceController;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
+import model.Ecommerce;
 import model.Usuario;
 import model.pagamento.MetodoDePagamento;
+import view.ErroView;
 import view.MenuPrincipalView;
 import view.checkout.MetodoDePagamentoView;
 
 public class MetodoDePagamentoController extends MenuBase {
-    public MetodoDePagamentoController(MenuController menuController, EcommerceController ecommerceController) {
-        super(menuController, ecommerceController);
+    public MetodoDePagamentoController(MenuController menuController, Ecommerce ecommerce) {
+        super(menuController, ecommerce);
     }
 
     @Override
     public void mostraMenu() {
-        MetodoDePagamentoView.mostraMenu(ecommerceController);
+        try {
+            MetodoDePagamentoView.mostraMenu(ecommerce);
+        } catch (Exception e) {
+            ErroView.mostrarErro("\nErro ao mostrar menu de métodos de pagamento: " + e.getMessage() + "\n");
+        }
     }
 
     @Override
@@ -33,22 +38,27 @@ public class MetodoDePagamentoController extends MenuBase {
     }
 
     public void selecionaMetodoDePagamento(int opcao){
-        if(opcao > ecommerceController.getMetodosDePagamento().size()){
-            System.out.println("Opção inválida.");
+        if(opcao > ecommerce.getMetodosDePagamento().size()){
+            MenuPrincipalView.opcaoInvalida();
             return;
         }
 
-        Usuario usuario =  ecommerceController.getUsuarioLogado();
+        try {
+            Usuario usuario =  ecommerce.getUsuarioLogado();
 
-        MetodoDePagamento metodoDePagamento = ecommerceController.getMetodosDePagamento().get(opcao - 1);
-
-        usuario.getCarrinho().setMetodoDePagamento(metodoDePagamento);
-
-        if(metodoDePagamento.isCartao()){
-            menuController.setMenuAtual(menuController.getMenus().get(11));
-            return;
+            MetodoDePagamento metodoDePagamento = ecommerce.getMetodosDePagamento().get(opcao - 1);
+    
+            usuario.getCarrinho().setMetodoDePagamento(metodoDePagamento);
+    
+            if(metodoDePagamento.isCartao()){
+                menuController.setMenuAtual(menuController.getMenus().get(11));
+                return;
+            }
+    
+            this.menuController.setMenuAtual(menuController.getMenus().get(10));
+        } catch (Exception e) {
+            ErroView.mostrarErro("\nErro ao selecionar método de pagamento: " + e.getMessage() + "\n");
         }
 
-        this.menuController.setMenuAtual(menuController.getMenus().get(10));
     }
 }

@@ -2,20 +2,22 @@ package controller;
 
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
+import model.Ecommerce;
 import model.FormaDeEntrega;
 import util.Util;
+import view.ErroView;
 import view.FormaDeEntregaView;
 import view.MenuPrincipalView;
 
 
 public class FormaDeEntregaController extends MenuBase {
-    public FormaDeEntregaController(MenuController menuController, EcommerceController ecommerceController) {
-        super(menuController, ecommerceController);
+    public FormaDeEntregaController(MenuController menuController, Ecommerce ecommerce) {
+        super(menuController, ecommerce);
     }
 
     @Override
     public void mostraMenu() {
-        FormaDeEntregaView.mostraMenu(ecommerceController);
+        FormaDeEntregaView.mostraMenu(ecommerce);
     }
 
     @Override
@@ -36,12 +38,12 @@ public class FormaDeEntregaController extends MenuBase {
 
     public void selecionaFormaDePagamento(int opcao){
          try {
-            FormaDeEntrega formaDeEntrega = ecommerceController.getFormasDeEntrega().get(opcao - 1);
-            ecommerceController.getUsuarioLogado().getCarrinho().setFormaDeEntrega(formaDeEntrega);
+            FormaDeEntrega formaDeEntrega = ecommerce.getFormasDeEntrega().get(opcao - 1);
+            ecommerce.getUsuarioLogado().getCarrinho().setFormaDeEntrega(formaDeEntrega);
             menuController.setMenuAtual(menuController.getMenus().get(7));
             Util.salvarLogFormaDeEntrega(formaDeEntrega.getNome(), formaDeEntrega.getValor());
         } catch (Exception e) {
-            System.out.println("Erro ao selecionar a forma de entrega: " + e.getMessage());
+            ErroView.mostrarErro("Erro ao selecionar a forma de entrega: " + e.getMessage());
         }
     }
 }

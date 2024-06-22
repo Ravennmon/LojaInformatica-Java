@@ -2,14 +2,16 @@ package controller;
 
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
+import model.Ecommerce;
 import model.Usuario;
+import view.ErroView;
 import view.MenuPrincipalView;
 import view.UsuarioContaView;
 import view.UsuarioView;
 
 public class UsuarioContaController extends MenuBase {
-    public UsuarioContaController(MenuController menuController, EcommerceController ecommerceController) {
-        super(menuController, ecommerceController);
+    public UsuarioContaController(MenuController menuController, Ecommerce ecommerce) {
+        super(menuController, ecommerce);
     }
 
     @Override
@@ -38,26 +40,38 @@ public class UsuarioContaController extends MenuBase {
     }
 
     public void visualizarConta() {
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        UsuarioContaView.visualizarConta(usuario);
+        try {
+            Usuario usuario = ecommerce.getUsuarioLogado();
+            UsuarioContaView.visualizarConta(usuario);
+        } catch (Exception e) {
+            ErroView.mostrarErro("Erro ao visualizar a conta: " + e.getMessage());
+        }
     }
 
     public void editarConta() {
-        Usuario usuarioAlterado = UsuarioView.cadastrarUsuario();
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-
-        usuario.setNome(usuarioAlterado.getNome());
-        usuario.setEmail(usuarioAlterado.getEmail());
-        usuario.setSenha(usuarioAlterado.getSenha());
-        usuario.setTelefone(usuarioAlterado.getTelefone());
+        try {
+            Usuario usuarioAlterado = UsuarioView.cadastrarUsuario();
+            Usuario usuario = ecommerce.getUsuarioLogado();
+    
+            usuario.setNome(usuarioAlterado.getNome());
+            usuario.setEmail(usuarioAlterado.getEmail());
+            usuario.setSenha(usuarioAlterado.getSenha());
+            usuario.setTelefone(usuarioAlterado.getTelefone());
+        } catch (Exception e) {
+            ErroView.mostrarErro("Erro ao editar a conta: " + e.getMessage());
+        }
     }
     
     public void excluirConta() {
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        ecommerceController.setUsuarioLogado(null);
-        ecommerceController.getUsuarios().remove(usuario);
-
-        menuController.setMenuAtual(menuController.getMenus().get(0));
-        UsuarioContaView.excluirConta();
+        try {
+            Usuario usuario = ecommerce.getUsuarioLogado();
+            ecommerce.setUsuarioLogado(null);
+            ecommerce.getUsuarios().remove(usuario);
+    
+            menuController.setMenuAtual(menuController.getMenus().get(0));
+            UsuarioContaView.excluirConta();
+        } catch (Exception e) {
+            ErroView.mostrarErro("Erro ao excluir a conta: " + e.getMessage());
+        }
     }
 }

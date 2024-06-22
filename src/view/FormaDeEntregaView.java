@@ -1,13 +1,13 @@
 package view;
 
-import controller.EcommerceController;
+import model.Ecommerce;
 
 public class FormaDeEntregaView {
-    public static void mostraMenu(EcommerceController ecommerceController) {
+    public static void mostraMenu(Ecommerce ecommerce) {
         System.out.println("Formas de Entrega:");
 
-        for (int i = 0; i < ecommerceController.getFormasDeEntrega().size(); i++) {
-            System.out.println((i + 1) + ". " + ecommerceController.getFormasDeEntrega().get(i).getNome() + " - R$ " + ecommerceController.getFormasDeEntrega().get(i).getValor());
+        for (int i = 0; i < ecommerce.getFormasDeEntrega().size(); i++) {
+            System.out.println((i + 1) + ". " + ecommerce.getFormasDeEntrega().get(i).getNome() + " - R$ " + ecommerce.getFormasDeEntrega().get(i).getValor());
         }
 
         System.out.println("0. Voltar");
