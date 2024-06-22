@@ -5,6 +5,7 @@ import controller.menu.MenuController;
 import model.Pedido;
 import model.Usuario;
 import util.Util;
+import view.MenuPrincipalView;
 import view.PedidoView;
 
 public class PedidoController extends MenuBase {
@@ -30,7 +31,7 @@ public class PedidoController extends MenuBase {
                 menuController.setMenuAtual(menuController.getMenus().get(0));
                 break;
             default:
-                System.out.println("Opção inválida.");
+                MenuPrincipalView.opcaoInvalida();
         }
     }
 

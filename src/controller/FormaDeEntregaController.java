@@ -4,6 +4,7 @@ import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.FormaDeEntrega;
 import view.FormaDeEntregaView;
+import view.MenuPrincipalView;
 
 
 public class FormaDeEntregaController extends MenuBase {
@@ -24,7 +25,7 @@ public class FormaDeEntregaController extends MenuBase {
                 return;
             } 
 
-            System.out.println("Opção inválida.");
+            MenuPrincipalView.opcaoInvalida();
         }
 
         selecionaFormaDePagamento(opcao);

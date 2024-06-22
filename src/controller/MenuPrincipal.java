@@ -27,11 +27,11 @@ public class MenuPrincipal extends MenuBase{
                 menuController.setMenuAtual(menuController.getMenus().get(3));
                 break;
             case 0:
-                System.out.println("Saindo...");
+                MenuPrincipalView.saindoMenu();
                 System.exit(0);
                 break;
             default:
-                System.out.println("Opção inválida.");
+                MenuPrincipalView.opcaoInvalida();
         }
     }
 }

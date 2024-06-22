@@ -7,6 +7,7 @@ import controller.menu.MenuController;
 import model.Carrinho;
 import model.Produto;
 import model.ProdutoCarrinho;
+import view.MenuPrincipalView;
 import view.ProdutoView;
 
 public class ProdutoController extends MenuBase {
@@ -27,12 +28,10 @@ public class ProdutoController extends MenuBase {
                 return;
             } 
 
-            System.out.println("Opção inválida.");
+            MenuPrincipalView.opcaoInvalida();
         }
 
         selecionaProduto(opcao);
-
-
     }
 
     public void selecionaProduto(int opcao){

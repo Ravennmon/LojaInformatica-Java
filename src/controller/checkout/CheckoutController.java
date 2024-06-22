@@ -12,6 +12,7 @@ import model.Pedido;
 import model.ProdutoCarrinho;
 import model.Usuario;
 import model.pagamento.MetodoDePagamento;
+import view.MenuPrincipalView;
 import view.checkout.CheckoutView;
 
 public class CheckoutController extends MenuBase {
@@ -34,7 +35,7 @@ public class CheckoutController extends MenuBase {
                 menuController.setMenuAtual(menuController.getMenus().get(0));
                 break;
             default:
-                System.out.println("Opção inválida.");
+                MenuPrincipalView.opcaoInvalida();
         }
     }
 

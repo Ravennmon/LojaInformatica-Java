@@ -5,6 +5,7 @@ import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Usuario;
 import model.pagamento.MetodoDePagamento;
+import view.MenuPrincipalView;
 import view.checkout.MetodoDePagamentoView;
 
 public class MetodoDePagamentoController extends MenuBase {
@@ -25,7 +26,7 @@ public class MetodoDePagamentoController extends MenuBase {
                 return;
             } 
 
-            System.out.println("Opção inválida.");
+            MenuPrincipalView.opcaoInvalida();
         }
 
         selecionaMetodoDePagamento(opcao);
@@ -33,7 +34,7 @@ public class MetodoDePagamentoController extends MenuBase {
 
     public void selecionaMetodoDePagamento(int opcao){
         if(opcao > ecommerceController.getMetodosDePagamento().size()){
-            System.out.println("Opção inválida.");
+            MenuPrincipalView.opcaoInvalida();
             return;
         }
 

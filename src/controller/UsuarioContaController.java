@@ -3,6 +3,7 @@ package controller;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Usuario;
+import view.MenuPrincipalView;
 import view.UsuarioContaView;
 import view.UsuarioView;
 
@@ -32,7 +33,7 @@ public class UsuarioContaController extends MenuBase {
                 menuController.setMenuAtual(menuController.getMenus().get(0));
                 break;
             default:
-                System.out.println("Opção inválida.");
+                MenuPrincipalView.opcaoInvalida();
         }
     }
 

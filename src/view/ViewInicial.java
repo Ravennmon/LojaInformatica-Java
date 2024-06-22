@@ -23,14 +23,12 @@ import controller.menu.MenuController;
 import model.Categoria;
 import model.FormaDeEntrega;
 import model.Produto;
-import model.Usuario;
 import model.pagamento.MetodoDePagamento;
 import util.factories.CartaoFactory;
 import util.factories.CategoriaFactory;
 import util.factories.CollectionFactory;
 import util.factories.FormaDePagamentoFactory;
 import util.factories.ProdutoFactory;
-import util.factories.UsuarioFactory;
 import util.factories.factoriesController.MenuControllerFactory;
 
 public class ViewInicial {
@@ -41,10 +39,9 @@ public class ViewInicial {
         ecommerceController = MenuControllerFactory.criarEcommerceController();
         menuController = MenuControllerFactory.criarMenuController();
 
-        fakeUser(ecommerceController);
-        fakeProdutosInfomatica(ecommerceController);
-        fakeMetodosDePagamento(ecommerceController);
-        fakeFormasDePagamentos(ecommerceController);
+        addProdutosInfomatica();
+        addMetodosDePagamento();
+        addFormasDeEntrega();
 
         MenuBase menuPrincipal = new MenuPrincipal(menuController, ecommerceController);
         UsuarioController usuarioController = MenuControllerFactory.criarUsuarioController(menuController, ecommerceController);
@@ -88,13 +85,7 @@ public class ViewInicial {
         }
     }
 
-     private static void fakeUser(EcommerceController ecommerceController) {
-        Usuario usuario = UsuarioFactory.criarUsuario("Teste", "teste@teste.com", "123", "123");
-        ecommerceController.adicionarUsuario(usuario);
-        ecommerceController.setUsuarioLogado(usuario);
-    }
-
-    private static void fakeProdutosInfomatica(EcommerceController ecommerceController)
+    private void addProdutosInfomatica()
     {
         Categoria categoria = CategoriaFactory.criarCategoria("Periféricos", "Periféricos de computador");
         Produto produto1 = ProdutoFactory.criarProduto("Mouse Razer", "3200 DPI", 150, 10, categoria);
@@ -107,7 +98,7 @@ public class ViewInicial {
         ecommerceController.setProdutos(produtos);
     }
 
-    private static void fakeMetodosDePagamento(EcommerceController ecommerceController){
+    private void addMetodosDePagamento(){
         MetodoDePagamento cartaoDeCredito = CartaoFactory.criarCartao("Cartão de Crédito", true, false);
         MetodoDePagamento cartaoDeDebito = CartaoFactory.criarCartao("Cartão de Débito", true, false);
 
@@ -117,7 +108,7 @@ public class ViewInicial {
         ecommerceController.setMetodosDePagamento(metodosDePagamento);
     }
 
-    private static void fakeFormasDePagamentos(EcommerceController ecommerceController){
+    private void addFormasDeEntrega(){
         FormaDeEntrega retiradaLoja = FormaDePagamentoFactory.criarFormaDePagamento("Retirar na loja", 0);
         FormaDeEntrega entregaNormal = FormaDePagamentoFactory.criarFormaDePagamento("Entrega Normal", 10);
         FormaDeEntrega entregaExpressa = FormaDePagamentoFactory.criarFormaDePagamento("Entrega Expressa", 20);

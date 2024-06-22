@@ -6,6 +6,7 @@ import controller.menu.MenuController;
 import model.Carrinho;
 import model.Produto;
 import util.Util;
+import view.MenuPrincipalView;
 import view.checkout.CarrinhoView;
 
 public class CarrinhoController extends MenuBase {
@@ -37,7 +38,7 @@ public class CarrinhoController extends MenuBase {
                 menuController.setMenuAtual(menuController.getMenus().get(0));
                 break;
             default:
-                System.out.println("Opção inválida.");
+                MenuPrincipalView.opcaoInvalida();
         }
     }
 

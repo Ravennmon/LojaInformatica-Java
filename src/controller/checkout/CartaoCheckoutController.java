@@ -7,6 +7,7 @@ import model.UsuarioCartao;
 import model.Usuario;
 import util.Util;
 import view.CartaoCheckoutView;
+import view.MenuPrincipalView;
 import view.UsuarioCartaoView;
 
 public class CartaoCheckoutController extends MenuBase {
@@ -32,7 +33,7 @@ public class CartaoCheckoutController extends MenuBase {
                 menuController.setMenuAtual(menuController.getMenus().get(0));
                 break;
             default:
-                System.out.println("Opção inválida.");
+                MenuPrincipalView.opcaoInvalida();
         }
     }
 

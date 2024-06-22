@@ -6,6 +6,7 @@ import model.Endereco;
 import model.Usuario;
 import util.Util;
 import view.EnderecoView;
+import view.MenuPrincipalView;
 
 public class EnderecoController extends MenuBase {
     public EnderecoController(MenuController menuController, EcommerceController ecommerceController) {
@@ -36,7 +37,7 @@ public class EnderecoController extends MenuBase {
                 menuController.setMenuAtual(menuController.getMenus().get(0));
                 break;
             default:
-                System.out.println("Opção inválida.");
+                MenuPrincipalView.opcaoInvalida();
         }
     }
 
