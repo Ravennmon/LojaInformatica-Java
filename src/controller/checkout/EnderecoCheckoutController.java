@@ -5,6 +5,7 @@ import controller.menu.MenuController;
 import model.Ecommerce;
 import model.Endereco;
 import model.Usuario;
+import util.Util;
 import view.EnderecoView;
 import view.ErroView;
 import view.MenuPrincipalView;
@@ -55,13 +56,13 @@ public class EnderecoCheckoutController extends MenuBase {
             Usuario usuario = ecommerce.getUsuarioLogado();
             usuario.addEndereco(endereco);
             usuario.getCarrinho().setEnderecoEntrega(endereco);
+            Util.salvarLogEndereco(endereco);
     
             avancaCheckout();
         } catch (Exception e) {
             ErroView.mostrarErro("\nErro ao cadastrar endereço: " + e.getMessage() + "\n");
         }
     }
-
     
     public void selecionarEndereco() {
         try {
@@ -72,13 +73,13 @@ public class EnderecoCheckoutController extends MenuBase {
             Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
             
             usuario.getCarrinho().setEnderecoEntrega(endereco);
+            Util.salvarLogEndereco(endereco);
     
             avancaCheckout();
     
         } catch (Exception e) {
             ErroView.mostrarErro("\nErro ao selecionar endereço: " + e.getMessage() + "\n");
         }
-
     }
 
     private void avancaCheckout() {

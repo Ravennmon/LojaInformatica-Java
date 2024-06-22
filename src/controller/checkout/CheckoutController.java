@@ -14,6 +14,7 @@ import model.Usuario;
 import model.pagamento.MetodoDePagamento;
 import view.ErroView;
 import view.MenuPrincipalView;
+import util.Util;
 import view.checkout.CheckoutView;
 
 public class CheckoutController extends MenuBase {
@@ -43,7 +44,6 @@ public class CheckoutController extends MenuBase {
     public void confirmarCompra() {
         try {
             Carrinho carrinho = ecommerce.getUsuarioLogado().getCarrinho();
-
             Usuario usuario = carrinho.getUsuario();
             List<ProdutoCarrinho> produtos = carrinho.getProdutos();
             Endereco enderecoEntrega = carrinho.getEnderecoEntrega();
@@ -56,9 +56,10 @@ public class CheckoutController extends MenuBase {
             usuario.getPedidos().add(pedido);
     
             menuController.setMenuAtual(menuController.getMenus().get(8));
+            Util.salvarLogConfirmarCompra(carrinho, usuario, pedido, enderecoEntrega, formaDeEntrega);
     
         } catch (Exception e) {
-            ErroView.mostrarErro("\nErro ao confirmar compra" + e.getMessage() + "\n");
+            ErroView.mostrarErro("\nErro ao confirmar compra" + e.getMessage() + "\n");            
         }
     }
 

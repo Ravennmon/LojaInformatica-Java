@@ -6,6 +6,7 @@ import model.Ecommerce;
 import model.Usuario;
 import model.pagamento.MetodoDePagamento;
 import view.ErroView;
+import util.Util;
 import view.MenuPrincipalView;
 import view.checkout.MetodoDePagamentoView;
 
@@ -30,35 +31,36 @@ public class MetodoDePagamentoController extends MenuBase {
                 menuController.setMenuAtual(menuController.getMenus().get(0));
                 return;
             } 
-
             MenuPrincipalView.opcaoInvalida();
+            System.out.println("Opção inválida.");
         }
-
         selecionaMetodoDePagamento(opcao);
+
     }
 
     public void selecionaMetodoDePagamento(int opcao){
-        if(opcao > ecommerce.getMetodosDePagamento().size()){
-            MenuPrincipalView.opcaoInvalida();
-            return;
-        }
-
         try {
+            if(opcao > ecommerce.getMetodosDePagamento().size()){
+                MenuPrincipalView.opcaoInvalida();
+                return;
+            }
+
             Usuario usuario =  ecommerce.getUsuarioLogado();
 
             MetodoDePagamento metodoDePagamento = ecommerce.getMetodosDePagamento().get(opcao - 1);
     
             usuario.getCarrinho().setMetodoDePagamento(metodoDePagamento);
     
+            usuario.getCarrinho().setMetodoDePagamento(metodoDePagamento);
             if(metodoDePagamento.isCartao()){
                 menuController.setMenuAtual(menuController.getMenus().get(11));
                 return;
             }
-    
+            Util.salvarLogPagamento(metodoDePagamento.getDescricao());
             this.menuController.setMenuAtual(menuController.getMenus().get(10));
         } catch (Exception e) {
             ErroView.mostrarErro("\nErro ao selecionar método de pagamento: " + e.getMessage() + "\n");
         }
-
+        
     }
 }

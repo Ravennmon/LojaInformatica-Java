@@ -27,13 +27,11 @@ public class FormaDeEntregaController extends MenuBase {
                 menuController.setMenuAtual(menuController.getMenus().get(0));
                 return;
             } 
-
             MenuPrincipalView.opcaoInvalida();
+            System.out.println("Opção inválida.");
+
         }
-
         selecionaFormaDePagamento(opcao);
-
-
     }
 
     public void selecionaFormaDePagamento(int opcao){
@@ -42,6 +40,7 @@ public class FormaDeEntregaController extends MenuBase {
             ecommerce.getUsuarioLogado().getCarrinho().setFormaDeEntrega(formaDeEntrega);
             menuController.setMenuAtual(menuController.getMenus().get(7));
             Util.salvarLogFormaDeEntrega(formaDeEntrega.getNome(), formaDeEntrega.getValor());
+            
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao selecionar a forma de entrega: " + e.getMessage());
         }

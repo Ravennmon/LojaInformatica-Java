@@ -42,17 +42,11 @@ public class ProdutoController extends MenuBase {
     public void selecionaProduto(int opcao){
         try {
             Produto produto = ecommerce.getProdutos().get(opcao - 1);
-    
             List<ProdutoCarrinho> produtosCarrinho =  ecommerce.getUsuarioLogado().getCarrinho().getProdutos();
-    
             Carrinho carrinho = ecommerce.getUsuarioLogado().getCarrinho();
-    
             carrinho.adicionarProduto(produto, 1);
-
             produto.removerQuantidadeEstoque(produto, 1);
-            
             ProdutoView.selecionaProduto(produtosCarrinho, produto);
-
             Util.salvarLogProduto(produto.getNome(), produto.getDescricao(), produto.getPreco());
             
         } catch (Exception e) {

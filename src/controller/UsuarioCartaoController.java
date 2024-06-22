@@ -3,6 +3,7 @@ package controller;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.UsuarioCartao;
+import util.Util;
 import model.Ecommerce;
 import model.Usuario;
 import view.ErroView;
@@ -48,8 +49,10 @@ public class UsuarioCartaoController extends MenuBase {
 
             Usuario usuario = ecommerce.getUsuarioLogado();
             usuario.addCartao(cartao);
+            Util.salvarLogCartaoCadastro(cartao);
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao cadastrar o cartão: " + e.getMessage());
+
         }
     }
 
@@ -77,6 +80,8 @@ public class UsuarioCartaoController extends MenuBase {
             cartao.setCredito(cartaoAlterado.isCredito());
             cartao.setDebito(cartaoAlterado.isDebito());
 
+            Util.salvarLogCartaoEditado(cartao);
+
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao editar o cartão: " + e.getMessage());
         } 
@@ -89,6 +94,7 @@ public class UsuarioCartaoController extends MenuBase {
             Usuario usuario = ecommerce.getUsuarioLogado();
             UsuarioCartao cartao = usuario.getCartoes().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
             usuario.getCartoes().remove(cartao);
+            Util.salvarLogCartaoExcluido(cartao);
         
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao excluir o cartão: " + e.getMessage());

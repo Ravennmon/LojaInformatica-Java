@@ -50,7 +50,6 @@ public class EnderecoController extends MenuBase {
             Usuario usuario = ecommerce.getUsuarioLogado();
             usuario.addEndereco(endereco);
             usuario.getCarrinho().setEnderecoEntrega(endereco);
-
             menuController.setMenuAtual(menuController.getMenus().get(6));
             Util.salvarLogEndereco(endereco);
 
@@ -67,11 +66,10 @@ public class EnderecoController extends MenuBase {
     public void editarEndereco() {
         try {
             visualizarEnderecos();
+
             int id = EnderecoView.informarIdEndereco();
-    
             Usuario usuario = ecommerce.getUsuarioLogado();
             Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
-    
             Endereco enderecoAlterado = EnderecoView.cadastrarEndereco();
             endereco.setCep(enderecoAlterado.getCep());
             endereco.setBairro(enderecoAlterado.getBairro());   
@@ -96,6 +94,7 @@ public class EnderecoController extends MenuBase {
             Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
             usuario.getEnderecos().remove(endereco);
             Util.salvarLogEnderecoExcluido(endereco);
+
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao excluir o endereço: " + e.getMessage());
         }

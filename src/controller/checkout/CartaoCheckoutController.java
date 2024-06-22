@@ -3,6 +3,7 @@ package controller.checkout;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.UsuarioCartao;
+import util.Util;
 import model.Ecommerce;
 import model.Usuario;
 import view.CartaoCheckoutView;
@@ -44,6 +45,8 @@ public class CartaoCheckoutController extends MenuBase {
             Usuario usuario = ecommerce.getUsuarioLogado();
             usuario.addCartao(cartao);
             setCarrinhoCartao(usuario, cartao);  
+            UsuarioCartaoView.cartaoSucesso();
+            Util.salvarLogCartaoCadastro(cartao);
 
         } catch (Exception e) {
             ErroView.mostrarErro("\nErro ao cadastrar cartão.\n");
@@ -69,9 +72,11 @@ public class CartaoCheckoutController extends MenuBase {
             UsuarioCartao cartao = usuario.getCartoes().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
             
             setCarrinhoCartao(usuario, cartao);
+            Util.salvarLogCartaoSelecionado(cartao);
     
         } catch (Exception e) {
-            ErroView.mostrarErro("\nErro ao selecionar cartão:" + e.getMessage() + "\n");
+            ErroView.mostrarErro("\nErro ao selecionar cartão:" + e.getMessage() + "\n");;
+            
         }
     }
 

@@ -6,6 +6,7 @@ import model.Ecommerce;
 import model.Usuario;
 import view.ErroView;
 import view.MenuPrincipalView;
+import util.Util;
 import view.UsuarioContaView;
 import view.UsuarioView;
 
@@ -57,8 +58,10 @@ public class UsuarioContaController extends MenuBase {
             usuario.setEmail(usuarioAlterado.getEmail());
             usuario.setSenha(usuarioAlterado.getSenha());
             usuario.setTelefone(usuarioAlterado.getTelefone());
+            Util.salvarLogEditarConta(usuario);
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao editar a conta: " + e.getMessage());
+            
         }
     }
     
@@ -70,6 +73,7 @@ public class UsuarioContaController extends MenuBase {
     
             menuController.setMenuAtual(menuController.getMenus().get(0));
             UsuarioContaView.excluirConta();
+            Util.salvarLogEcxcluirConta(usuario);
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao excluir a conta: " + e.getMessage());
         }

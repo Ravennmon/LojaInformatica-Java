@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import model.Carrinho;
 import model.Endereco;
+import model.FormaDeEntrega;
+import model.Pedido;
 import model.Usuario;
+import model.UsuarioCartao;
+import model.pagamento.Cartao;
 
 public class Util {
     private static int idAtual = 0;
@@ -194,6 +199,167 @@ public class Util {
 
         } catch (Exception e) {
             System.out.println("Erro ao salvar o log da forma de entrega: " + e.getMessage());
+        }
+    }
+
+    public static void salvarLogCartaoCadastro(UsuarioCartao cartao){
+        try {
+            List<String> logs = new ArrayList<>();
+            logs.add("Cartao cadastrado:");
+            logs.add("\nNumero: " + cartao.getNumero());
+            logs.add("Nome: " + cartao.getTitular());
+            logs.add("Data de Validade: " + cartao.getValidade());
+            logs.add("CVV: " + cartao.getCvv());
+            logs.add("data/hora: " + java.time.LocalDateTime.now() + "\n");
+            Log.salvar(logs, "logCartao");
+
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar o log do cartao: " + e.getMessage());
+        }
+    }
+
+    public static void salvarLogCartaoEditado(UsuarioCartao cartao){
+        try {
+            List<String> logs = new ArrayList<>();
+            logs.add("Cartao editado:");
+            logs.add("\nNumero: " + cartao.getNumero());
+            logs.add("Nome: " + cartao.getTitular());
+            logs.add("Data de Validade: " + cartao.getValidade());
+            logs.add("CVV: " + cartao.getCvv());
+            logs.add("data/hora: " + java.time.LocalDateTime.now() + "\n");
+            Log.salvar(logs, "logCartao");
+
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar o log do cartao: " + e.getMessage());
+        }
+    }
+
+    public static void salvarLogCartaoExcluido(UsuarioCartao cartao){
+        try {
+            List<String> logs = new ArrayList<>();
+            logs.add("Cartao editado:");
+            logs.add("\nNumero: " + cartao.getNumero());
+            logs.add("Nome: " + cartao.getTitular());
+            logs.add("Data de Validade: " + cartao.getValidade());
+            logs.add("CVV: " + cartao.getCvv());
+            logs.add("data/hora: " + java.time.LocalDateTime.now() + "\n");
+            Log.salvar(logs, "logCartao");
+
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar o log do cartao: " + e.getMessage());
+        }
+    }
+
+    public static void salvarLogCartaoSelecionado(UsuarioCartao cartao){
+        try {
+            List<String> logs = new ArrayList<>();
+            logs.add("Cartao cadastrado:");
+            logs.add("\nNumero: " + cartao.getNumero());
+            logs.add("Nome: " + cartao.getTitular());
+            logs.add("Data de Validade: " + cartao.getValidade());
+            logs.add("CVV: " + cartao.getCvv());
+            logs.add("data/hora: " + java.time.LocalDateTime.now() + "\n");
+            Log.salvar(logs, "logCartao");
+
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar o log do cartao: " + e.getMessage());
+        }
+    }
+
+    public static void salvarLogPedido(Pedido pedido){
+        try {
+            List<String> logs = new ArrayList<>();
+            logs.add("Pedido realizado:");
+            logs.add("\nUsuario: " + pedido.getUsuario().getNome());
+            logs.add("Produtos: ");
+            for (int i = 0; i < pedido.getProdutos().size(); i++) {
+                logs.add("Nome: " + pedido.getProdutos().get(i).getProduto().getNome());
+                logs.add("Descricao: " + pedido.getProdutos().get(i).getProduto().getDescricao());
+                logs.add("Preco: " + pedido.getProdutos().get(i).getProduto().getPreco());
+                logs.add("Quantidade: " + pedido.getProdutos().get(i).getQuantidade());
+            }
+            logs.add("data/hora: " + java.time.LocalDateTime.now() + "\n");
+            Log.salvar(logs, "logPedido");
+
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar o log do pedido: " + e.getMessage());
+        }
+    }
+    public static void salvarLogPedidoCancelado(Pedido pedido){
+        try {
+            List<String> logs = new ArrayList<>();
+            logs.add("Pedido Cancelado:");
+            logs.add("\nUsuario: " + pedido.getUsuario().getNome());
+            logs.add("Produtos: ");
+            for (int i = 0; i < pedido.getProdutos().size(); i++) {
+                logs.add("Nome: " + pedido.getProdutos().get(i).getProduto().getNome());
+                logs.add("Descricao: " + pedido.getProdutos().get(i).getProduto().getDescricao());
+                logs.add("Preco: " + pedido.getProdutos().get(i).getProduto().getPreco());
+                logs.add("Quantidade: " + pedido.getProdutos().get(i).getQuantidade());
+            }
+            logs.add("data/hora: " + java.time.LocalDateTime.now() + "\n");
+            Log.salvar(logs, "logPedido");
+
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar o log do pedido: " + e.getMessage());
+        }
+    }
+
+    public static void salvarLogEditarConta(Usuario usuario){
+        try {
+            List<String> logs = new ArrayList<>();
+            logs.add("Conta editada:");
+            logs.add("\nNome: " + usuario.getNome());
+            logs.add("Telefone: " + usuario.getTelefone());
+            logs.add("Email: " + usuario.getEmail());
+            logs.add("data/hora: " + java.time.LocalDateTime.now() + "\n");
+            Log.salvar(logs, "logUsuario");
+
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar o log do usuário: " + e.getMessage());
+        }
+    }
+    public static void salvarLogEcxcluirConta(Usuario usuario){
+        try {
+            List<String> logs = new ArrayList<>();
+            logs.add("Conta Excluida:");
+            logs.add("\nNome: " + usuario.getNome());
+            logs.add("Telefone: " + usuario.getTelefone());
+            logs.add("Email: " + usuario.getEmail());
+            logs.add("data/hora: " + java.time.LocalDateTime.now() + "\n");
+            Log.salvar(logs, "logUsuario");
+
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar o log do usuário: " + e.getMessage());
+        }
+    }
+
+    public static void salvarLogConfirmarCompra(Carrinho carrinho, Usuario usuario, Pedido pedido, Endereco endereco, FormaDeEntrega formaEntrega){
+        try {
+            List<String> logs = new ArrayList<>();
+            logs.add("Compra confirmada:");
+            logs.add("\nUsuario: " + usuario.getNome());
+            logs.add("Produtos: ");
+            for (int i = 0; i < carrinho.getProdutos().size(); i++) {
+                logs.add("Nome: " + carrinho.getProdutos().get(i).getProduto().getNome());
+                logs.add("Descricao: " + carrinho.getProdutos().get(i).getProduto().getDescricao());
+                logs.add("Preco: " + carrinho.getProdutos().get(i).getProduto().getPreco());
+                logs.add("Quantidade: " + carrinho.getProdutos().get(i).getQuantidade());
+            }
+            logs.add("Endereco: ");
+            logs.add("Rua: " + endereco.getRua());
+            logs.add("Numero: " + endereco.getNumero());
+            logs.add("Complemento: " + endereco.getComplemento());
+            logs.add("Bairro: " + endereco.getBairro());
+            logs.add("Cidade: " + endereco.getCidade());
+            logs.add("Estado: " + endereco.getEstado());
+            logs.add("CEP: " + endereco.getCep());
+            logs.add("Forma de entrega: " + formaEntrega.getNome());
+            logs.add("data/hora: " + java.time.LocalDateTime.now() + "\n");
+            Log.salvar(logs, "logCompra");
+
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar o log da compra: " + e.getMessage());
         }
     }
 }
