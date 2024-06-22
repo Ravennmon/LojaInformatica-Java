@@ -10,7 +10,6 @@ import model.FormaDeEntrega;
 import model.Pedido;
 import model.Usuario;
 import model.UsuarioCartao;
-import model.pagamento.Cartao;
 
 public class Util {
     private static int idAtual = 0;
@@ -26,7 +25,7 @@ public class Util {
 
     public static String nextLine(String mensagem){
         Scanner sc = new Scanner(System.in);
-        System.out.println(mensagem);
+        System.out.println("\n" + mensagem);
         return sc.nextLine();
     }
 
