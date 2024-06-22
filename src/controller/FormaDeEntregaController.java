@@ -3,6 +3,7 @@ package controller;
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.FormaDeEntrega;
+import util.Util;
 import view.FormaDeEntregaView;
 
 
@@ -33,8 +34,13 @@ public class FormaDeEntregaController extends MenuBase {
     }
 
     public void selecionaFormaDePagamento(int opcao){
-        FormaDeEntrega formaDeEntrega = ecommerceController.getFormasDeEntrega().get(opcao - 1);
-        ecommerceController.getUsuarioLogado().getCarrinho().setFormaDeEntrega(formaDeEntrega);
-        menuController.setMenuAtual(menuController.getMenus().get(7));
+         try {
+            FormaDeEntrega formaDeEntrega = ecommerceController.getFormasDeEntrega().get(opcao - 1);
+            ecommerceController.getUsuarioLogado().getCarrinho().setFormaDeEntrega(formaDeEntrega);
+            menuController.setMenuAtual(menuController.getMenus().get(7));
+            Util.salvarLogFormaDeEntrega(formaDeEntrega.getNome(), formaDeEntrega.getValor());
+        } catch (Exception e) {
+            System.out.println("Erro ao selecionar a forma de entrega: " + e.getMessage());
+        }
     }
 }

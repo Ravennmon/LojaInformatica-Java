@@ -5,8 +5,10 @@ import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Carrinho;
 import model.Produto;
+import model.ProdutoCarrinho;
 import util.Util;
 import view.checkout.CarrinhoView;
+import model.Usuario;
 
 public class CarrinhoController extends MenuBase {
     public CarrinhoController(MenuController menuController, EcommerceController ecommerceController) {
@@ -42,40 +44,82 @@ public class CarrinhoController extends MenuBase {
     }
 
     public void visualizarProdutos() {
-        System.out.println("Produtos no carrinho:");
-        ecommerceController.getUsuarioLogado().getCarrinho().getProdutos().forEach(System.out::println);
+        try {
+            System.out.println("Produtos no carrinho:");
+            ecommerceController
+                .getUsuarioLogado()
+                .getCarrinho()
+                .getProdutos()
+                .forEach(produtoCarrinho -> System.out.println(produtoCarrinho.getProduto() + ", quantidade no carrinho: " + produtoCarrinho.getQuantidade()));
+        } catch (NullPointerException e) {
+            System.out.println("\nNenhum usuário está logado ou o carrinho está vazio.\n");
+        }
     }
 
     public void adicionarProduto() {
-        System.out.println("Adicionar Produto:");
-        String nome = Util.nextLine("Digite o nome do produto:");
-        int quantidade = Util.nextInt("Digite a quantidade:");
+        try {
+            System.out.println("Adicionar Produto:");
+            String nome = Util.nextLine("Digite o nome do produto:");
+            int quantidade = 0;
+            try {
+                quantidade = Util.nextInt("Digite a quantidade:");
+            } catch (NumberFormatException e) {
+                System.out.println("\nPor favor, digite um número válido para a quantidade.\n");
+                return;
+            }
+            Produto produto = ecommerceController.getProdutos().stream().filter(p -> p.getNome().equalsIgnoreCase(nome)).findFirst().orElse(null);
+            if (produto == null) {
+                System.out.println("\nProduto não encontrado.\n");
+                return;
+            }
+            if(produto.getQuantidadeEstoque() < quantidade){
+                System.out.println("\nQuantidade indisponível.\n");
+                return;
+            }
+            Usuario usuarioLogado = ecommerceController.getUsuarioLogado();
+            if (usuarioLogado == null) {
+                System.out.println("\nNenhum usuário está logado.\n");
+                return;
+            }
+            usuarioLogado.getCarrinho().adicionarProduto(produto, quantidade);
 
-        Produto produto = ecommerceController.getProdutos().stream().filter(p -> p.getNome().equals(nome)).findFirst().orElse(null);
-
-        if (produto == null) {
-            System.out.println("Produto não encontrado.");
-            return;
+            produto.removerQuantidadeEstoque(produto, quantidade);
+    
+            Util.salvarLogProduto(produto.getNome(), produto.getDescricao(), produto.getPreco(), quantidade);
+        } catch (Exception e) {
+            System.out.println("\nOcorreu um erro ao adicionar o produto: " + e.getMessage() + "\n");
         }
-
-        if(produto.getQuantidadeEstoque() < quantidade){
-            System.out.println("Quantidade indisponível.");
-            return;
-        }
-        
-
-        ecommerceController.getUsuarioLogado().getCarrinho().adicionarProduto(produto, 1);
     }
 
     public void removerProduto() {
-        System.out.println("Remover Produto:");
-        System.out.println("Digite o nome do produto:");
-        String nome = Util.nextLine("Digite o nome do produto:");
-
-        
-        Carrinho carrinho = ecommerceController.getUsuarioLogado().getCarrinho();
-
-        carrinho.getProdutos().stream().filter(p -> p.getProduto().getNome().equals(nome)).findFirst().ifPresent(carrinho::removerProduto);
+        try {
+            System.out.println("Remover Produto:");
+            String nome = Util.nextLine("Digite o nome do produto:");
+            Produto produto = ecommerceController.getProdutos().stream().filter(p -> p.getNome().equalsIgnoreCase(nome)).findFirst().orElse(null);
+            ProdutoCarrinho produtoCarrinho = ecommerceController.getUsuarioLogado().getCarrinho().getProdutos().stream().filter(p -> p.getProduto().getNome().equalsIgnoreCase(nome)).findFirst().orElse(null);
+            if (produtoCarrinho == null) {
+                System.out.println("\nProduto não encontrado.\n");
+                return;
+            }
+    
+            Usuario usuarioLogado = ecommerceController.getUsuarioLogado();
+    
+            Util.salvarLogProdutoRemovido(produtoCarrinho.getProduto().getNome(), produtoCarrinho.getProduto().getDescricao(), produtoCarrinho.getProduto().getPreco());
+            if (usuarioLogado == null) {
+                System.out.println("\nNenhum usuário está logado.\n");
+                return;
+            }
+    
+            try {
+                usuarioLogado.getCarrinho().removerProduto(produtoCarrinho);
+                produto.adicionarQuantidadeEstoque(produto, produtoCarrinho.getQuantidade());
+                System.out.println("\nProduto removido com sucesso.\n");
+            } catch (Exception e) {
+                System.out.println("\nO produto não está no carrinho.\n");
+            }
+        } catch (Exception e) {
+            System.out.println("\nOcorreu um erro ao remover o produto: " + e.getMessage() + "\n");
+        }
     }
 
     public void listarProdutos() {

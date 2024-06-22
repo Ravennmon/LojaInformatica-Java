@@ -109,8 +109,8 @@ public class Carrinho {
 
     @Override
     public String toString() {
-        return "Carrinho [id=" + id + ", usuario=" + usuario + ", produtos=" + produtos + ", metodoDePagamento="
-                + metodoDePagamento + ", formaDeEntrega=" + formaDeEntrega + ", enderecoEntrega=" + enderecoEntrega
-                + ", valorTotal=" + valorTotal + ", cartao=" + cartao + "]";
+        return "Carrinho [id= " + id + ", Usuario= " + usuario + ", Produtos= " + produtos + ", Metodo de pagamento= "
+                + metodoDePagamento + ", Forma de entrega= " + formaDeEntrega + ", Endereco entrega= " + enderecoEntrega
+                + ", Valor total= " + valorTotal + ", Cartao= " + cartao + "]";
     }      
 }

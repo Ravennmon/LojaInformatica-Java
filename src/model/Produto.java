@@ -19,6 +19,14 @@ public class Produto {
         this.categoria = categoria;
     }
 
+    public void removerQuantidadeEstoque(Produto produto, int quantidade) {
+        produto.setQuantidadeEstoque(produto.getQuantidadeEstoque() - quantidade);
+    }
+
+    public void adicionarQuantidadeEstoque(Produto produto, int quantidade) {
+        produto.setQuantidadeEstoque(produto.getQuantidadeEstoque() + quantidade);
+    }
+
     public int getId() {
         return id;
     }
@@ -69,8 +77,8 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco
-                + ", quantidadeEstoque=" + quantidadeEstoque + ", categoria=" + categoria + "]";
+        return "Produto [Id= " + id + ", Nome= " + nome + ", Descricao= " + descricao + ", Preco= " + preco
+                + ", QuantidadeEstoque= " + quantidadeEstoque + ", Categoria= " + categoria + "]";
     }
 
     

@@ -9,7 +9,6 @@ import model.Carrinho;
 import model.Endereco;
 import model.FormaDeEntrega;
 import model.Pedido;
-import model.Produto;
 import model.ProdutoCarrinho;
 import model.Usuario;
 import model.pagamento.MetodoDePagamento;

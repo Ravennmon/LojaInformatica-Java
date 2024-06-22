@@ -1,0 +1,240 @@
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 2
+data/hora: 2024-06-22T09:13:55.660890100
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:13:35.100475100
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:13:33.828181700
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:13:33.171893500
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:13:32.779784700
+
+Produto removido do carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:13:06.420751800
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:12:54.963501400
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:12:54.444599900
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:12:53.890408200
+
+Produto removido do carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:11:12.876122600
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:10:59.892391400
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:10:58.235374800
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:10:57.069198800
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:10:45.308012600
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:10:42.556188500
+
+Produto removido do carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:09:13.788388500
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:08:40.899490200
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:08:40.252399400
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:08:38.843588100
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:04:03.555304600
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:03:56.819897100
+
+Produto adiocionado ao carrinho:
+
+Nome: Monitor 24
+Descricao: 144Hz
+Preco: 1000.0
+Quantidade: 1
+data/hora: 2024-06-22T09:02:42.512637700
+
+Produto removido do carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T09:01:27.828354
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 3
+data/hora: 2024-06-22T09:01:12.309423600
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 2
+data/hora: 2024-06-22T08:55:49.180427900
+
+Produto removido do carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T08:55:16.524204600
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T08:54:58.730212500
+
+Produto adiocionado ao carrinho:
+
+Nome: Monitor 24
+Descricao: 144Hz
+Preco: 1000.0
+Quantidade: 1
+data/hora: 2024-06-22T08:46:59.578296700
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 2
+data/hora: 2024-06-22T08:33:57.052508700
+
+Produto removido do carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T08:30:57.245582
+

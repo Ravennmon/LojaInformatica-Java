@@ -113,9 +113,9 @@ public class EcommerceController {
 
     @Override
     public String toString() {
-        return "EcommerceController [produtos=" + produtos + ", usuarios=" + usuarios + ", pedidos=" + pedidos
-                + ", metodosDePagamento=" + metodosDePagamento + ", formasDeEntrega=" + formasDeEntrega
-                + ", usuarioLogado=" + usuarioLogado + "]";
+        return "EcommerceController [produtos= " + produtos + ", Usuarios= " + usuarios + ", Pedidos= " + pedidos
+                + ", Metodos de pagamento= " + metodosDePagamento + ", Forma de entrega= " + formasDeEntrega
+                + ", Usuario logado= " + usuarioLogado + "]";
     }
     
 }

@@ -1,0 +1,22 @@
+Endereco Editado:
+
+Endereco: sdfsdfsdgfsfdgfera
+Numero: 63541654
+Complemento: 654165
+Bairro: sdfsdfsdf
+Cidade: sdfsdfsd
+Estado: fsdfsdf
+CEP: fdasfsdf
+data/hora: 2024-06-22T09:40:56.947378700
+
+Endereco selecionado:
+
+Endereco: 6545646
+Numero: 654654
+Complemento: 65465465
+Bairro: 65465546
+Cidade: 6546546
+Estado: 654565654
+CEP: 8549495
+data/hora: 2024-06-22T09:40:01.674207900
+
