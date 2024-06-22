@@ -117,5 +117,6 @@ public void removerProduto() {
 
     public void listarProdutos() {
         ecommerceController.getProdutos().forEach(System.out::println);
+        
     }
 }
