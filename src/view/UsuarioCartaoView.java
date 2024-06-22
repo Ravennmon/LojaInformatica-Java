@@ -16,6 +16,8 @@ public class UsuarioCartaoView {
     }
 
     public static UsuarioCartao cadastrarUsuarioCartao(){
+        Util.limpaConsole();
+        
         String numeroCartao = Util.nextLine("Informe o número do cartão:");
         String nomeTitular = Util.nextLine("Informe o nome do titular:");
         String validade = Util.nextLine("Informe a validade:");
@@ -30,6 +32,8 @@ public class UsuarioCartaoView {
     }
 
     public static void visualizarUsuarioCartaos(List<UsuarioCartao> cartoes) {
+        Util.limpaConsole();
+
         if(cartoes.isEmpty()){
             System.out.println("Nenhum cartão cadastrado.");
             return;

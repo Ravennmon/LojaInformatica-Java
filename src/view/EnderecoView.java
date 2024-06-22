@@ -6,7 +6,7 @@ import model.Endereco;
 import util.Util;
 
 public class EnderecoView {
-    public static void mostraMenu() {
+    public static void mostraMenu() {        
         System.out.println("Endereco:");
         System.out.println("1. Adicionar endereco");
         System.out.println("2. Visualizar enderecos");
@@ -16,6 +16,8 @@ public class EnderecoView {
     }
 
     public static Endereco cadastrarEndereco(){
+        Util.limpaConsole();
+        
         String cep = Util.nextLine("Informe o CEP:");
 
         String estado = Util.nextLine("Informe o estado:");
@@ -34,6 +36,8 @@ public class EnderecoView {
     }
 
     public static void visualizarEnderecos(List<Endereco> enderecos) {
+        Util.limpaConsole();
+
         if(enderecos.isEmpty()){
             System.out.println("Nenhum endereço cadastrado.");
             return;

@@ -1,9 +1,12 @@
 package view.checkout;
 
 import model.Ecommerce;
+import util.Util;
 
 public class CheckoutView {
     public static void mostraMenu(Ecommerce ecommerce) {
+        Util.limpaConsole();
+        
         System.out.println("Produtos no carrinho:");
         ecommerce.getUsuarioLogado().getCarrinho().getProdutos().forEach(System.out::println);
 

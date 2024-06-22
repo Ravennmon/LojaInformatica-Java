@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.Pedido;
 import model.ProdutoCarrinho;
+import util.Util;
 
 public class PedidoView {
     public static void mostraMenu() {
@@ -14,6 +15,8 @@ public class PedidoView {
     }
 
     public static void visualizarPedidos(List<Pedido> pedidos) {
+        Util.limpaConsole();
+
         if(pedidos.isEmpty()){
             System.out.println("Nenhum pedido encontrado.");
             return;
@@ -25,6 +28,8 @@ public class PedidoView {
     }
 
     public static void mostrarPedido(Pedido pedido) {
+        Util.limpaConsole();
+        
         System.out.println("--------------------");
         System.out.println("");
         System.out.println("Pedido: " + pedido.getId());

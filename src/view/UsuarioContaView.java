@@ -4,7 +4,7 @@ import model.Usuario;
 import util.Util;
 
 public class UsuarioContaView {
-    public static void mostraMenu() {
+    public static void mostraMenu() {        
         System.out.println("Usuario:");
         System.out.println("1. Visualizar conta");
         System.out.println("2. Editar conta");
@@ -13,12 +13,18 @@ public class UsuarioContaView {
     }
 
     public static void visualizarConta(Usuario usuario) {
+        Util.limpaConsole();
+
         System.out.println("Nome: " + usuario.getNome());
         System.out.println("Email: " + usuario.getEmail());
         System.out.println("Telefone: " + usuario.getTelefone());
+
+        System.out.println();
     }
 
     public static Usuario editarConta(Usuario usuario) {
+        Util.limpaConsole();
+
         try {
             String nome = Util.nextLine("Digite seu nome:");
             String telefone = Util.nextLine("Digite seu telefone:");
@@ -32,6 +38,7 @@ public class UsuarioContaView {
                 senhaConfirmacao = Util.nextLine("Confirme sua senha");
             }
             Util.salvarLogEditarConta(usuario);
+            Util.limpaConsole();
             return new Usuario(nome, email, senha, telefone);
             
         } catch (Exception e) {

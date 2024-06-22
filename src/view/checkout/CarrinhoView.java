@@ -14,6 +14,8 @@ public class CarrinhoView {
     }
 
     public static void visualizarProdutos(Ecommerce ecommerce) {
+        Util.limpaConsole();
+        
         try {
             System.out.println("Produtos no carrinho:");
             ecommerce
