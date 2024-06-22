@@ -43,26 +43,32 @@ public class EnderecoCheckoutController extends MenuBase {
     }
 
     public void cadastrarEndereco() {
-        Endereco endereco = EnderecoView.cadastrarEndereco();
-
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        usuario.addEndereco(endereco);
-        usuario.getCarrinho().setEnderecoEntrega(endereco);
-
-        avancaCheckout();
+        try {
+            Endereco endereco = EnderecoView.cadastrarEndereco();
+            Usuario usuario = ecommerceController.getUsuarioLogado();
+            usuario.addEndereco(endereco);
+            usuario.getCarrinho().setEnderecoEntrega(endereco);
+            Util.salvarLogEndereco(endereco);
+            avancaCheckout();
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastrar o endereço: " + e.getMessage());
+        }
     }
-
     
     public void selecionarEndereco() {
-        visualizarEnderecos();
-        int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja selecionar:"));
-
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
-        
-        usuario.getCarrinho().setEnderecoEntrega(endereco);
-
-        avancaCheckout();
+        try {
+            visualizarEnderecos();
+            int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja selecionar:"));
+            Usuario usuario = ecommerceController.getUsuarioLogado();
+            Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
+            usuario.getCarrinho().setEnderecoEntrega(endereco);
+            Util.salvarLogEndereco(endereco);
+            avancaCheckout();
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao selecionar o endereço: " + e.getMessage());
+        }
     }
 
     private void avancaCheckout() {
