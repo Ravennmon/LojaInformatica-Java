@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import util.Util;
+import util.factories.CollectionFactory;
 
 public class Usuario {
     private int id;
@@ -23,9 +24,9 @@ public class Usuario {
         this.senha = senha;
         this.telefone = telefone;
         this.carrinho = new Carrinho(this);
-        this.enderecos = new ArrayList<>();
-        this.pedidos = new ArrayList<>();
-        this.cartoes = new ArrayList<>();
+        this.enderecos = CollectionFactory.createArrayList();
+        this.pedidos = CollectionFactory.createArrayList();
+        this.cartoes = CollectionFactory.createArrayList();
     }
 
     public void addEndereco(Endereco endereco){

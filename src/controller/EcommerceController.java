@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.FormaDeEntrega;
@@ -9,16 +8,22 @@ import model.Produto;
 import model.ProdutoCarrinho;
 import model.Usuario;
 import model.pagamento.MetodoDePagamento;
+import util.factories.CollectionFactory;
 
 public class EcommerceController {
-    private List<Produto> produtos = new ArrayList<>();
-    private List<Usuario> usuarios = new ArrayList<>();
-    private List<Pedido> pedidos = new ArrayList<>();
-    private List<MetodoDePagamento> metodosDePagamento = new ArrayList<>();
-    private List<FormaDeEntrega> formasDeEntrega = new ArrayList<>();
+    private List<Produto> produtos;
+    private List<Usuario> usuarios;
+    private List<Pedido> pedidos;
+    private List<MetodoDePagamento> metodosDePagamento;
+    private List<FormaDeEntrega> formasDeEntrega;
     private Usuario usuarioLogado;
 
     public EcommerceController() {
+        this.produtos = CollectionFactory.createArrayList();
+        this.usuarios = CollectionFactory.createArrayList();
+        this.pedidos = CollectionFactory.createArrayList();
+        this.metodosDePagamento = CollectionFactory.createArrayList();
+        this.formasDeEntrega = CollectionFactory.createArrayList();
 
     }
 

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import util.factories.CollectionFactory;
+
 public abstract class Log {
 
 public static void salvar(List<String> textos, String nome) throws Exception{
@@ -38,7 +40,7 @@ public static void salvar(List<String> textos, String nome) throws Exception{
 }
 
 public static List<String> ler(String nome) throws Exception{
-    List<String> textos = new ArrayList<>();
+    List<String> textos = CollectionFactory.createArrayList();
 
     String nomeArquivo = "log/"+ nome + ".txt";
     try{

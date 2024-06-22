@@ -1,8 +1,5 @@
 package view;
 
-import java.util.List;
-
-import controller.EcommerceController;
 import model.Usuario;
 import util.Util;
 
@@ -36,5 +33,11 @@ public class UsuarioContaView {
         }
 
         return new Usuario(nome, email, senha, telefone);
+    }
+
+    public static void excluirConta(){
+        System.out.println("Conta excluída com sucesso.");
+        System.out.println();
+        
     }
 }

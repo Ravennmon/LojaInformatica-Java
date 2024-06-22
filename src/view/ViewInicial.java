@@ -28,6 +28,7 @@ import model.Usuario;
 import model.pagamento.MetodoDePagamento;
 import util.factories.CartaoFactory;
 import util.factories.CategoriaFactory;
+import util.factories.CollectionFactory;
 import util.factories.FormaDePagamentoFactory;
 import util.factories.ProdutoFactory;
 import util.factories.UsuarioFactory;
@@ -60,7 +61,7 @@ public class ViewInicial {
         CartaoCheckoutController cartaoCheckoutController = MenuControllerFactory.criarCartaoCheckoutController(menuController, ecommerceController);
         UsuarioContaController usuarioContaController = MenuControllerFactory.criarUsuarioContaController(menuController, ecommerceController);
 
-        List<IMenu> menus = new ArrayList<>();
+        List<IMenu> menus = CollectionFactory.createArrayList();
         menus.addAll(Arrays.asList(
             menuPrincipal, 
             usuarioController, 
@@ -101,7 +102,7 @@ public class ViewInicial {
         Produto produto2 = ProdutoFactory.criarProduto("Teclado Mecânico", "Switch Cherry MX", 300, 5, categoria);
         Produto produto3 = ProdutoFactory.criarProduto("Monitor 24", "144Hz", 1000, 3, categoria);
 
-        List<Produto> produtos = new ArrayList<>();
+        List<Produto> produtos = CollectionFactory.createArrayList();
 
         produtos.addAll(Arrays.asList(produto1, produto2, produto3));
         ecommerceController.setProdutos(produtos);
@@ -111,7 +112,7 @@ public class ViewInicial {
         MetodoDePagamento cartaoDeCredito = CartaoFactory.criarCartao("Cartão de Crédito", true, false);
         MetodoDePagamento cartaoDeDebito = CartaoFactory.criarCartao("Cartão de Débito", true, false);
 
-        List<MetodoDePagamento> metodosDePagamento = new ArrayList<>();
+        List<MetodoDePagamento> metodosDePagamento = CollectionFactory.createArrayList();
         metodosDePagamento.addAll(Arrays.asList(cartaoDeCredito, cartaoDeDebito));
 
         ecommerceController.setMetodosDePagamento(metodosDePagamento);
@@ -122,7 +123,7 @@ public class ViewInicial {
         FormaDeEntrega entregaNormal = FormaDePagamentoFactory.criarFormaDePagamento("Entrega Normal", 10);
         FormaDeEntrega entregaExpressa = FormaDePagamentoFactory.criarFormaDePagamento("Entrega Expressa", 20);
 
-        List<FormaDeEntrega> formasDeEntrega = new ArrayList<>();
+        List<FormaDeEntrega> formasDeEntrega = CollectionFactory.createArrayList();
         formasDeEntrega.addAll(Arrays.asList(entregaNormal, entregaExpressa, retiradaLoja));
 
         ecommerceController.setFormasDeEntrega(formasDeEntrega);

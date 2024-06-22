@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.pagamento.MetodoDePagamento;
 import util.Util;
+import util.factories.CollectionFactory;
 
 public class Carrinho {
     private int id;
@@ -19,7 +20,7 @@ public class Carrinho {
     public Carrinho(Usuario usuario) {
         this.id = Util.gerarId();
         this.usuario = usuario;
-        this.produtos = new ArrayList<>();
+        this.produtos = CollectionFactory.createArrayList();
     }
 
     public void adicionarProduto(Produto produto, int quantidade) {

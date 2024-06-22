@@ -6,6 +6,7 @@ import java.util.List;
 
 import model.pagamento.MetodoDePagamento;
 import util.Util;
+import util.factories.CollectionFactory;
 
 public class Pedido {
     private int id;
@@ -34,7 +35,7 @@ public class Pedido {
 
     public void adicionarProduto(ProdutoCarrinho produto) {
         if (produtos == null) {
-            produtos = new ArrayList<>();
+            produtos = CollectionFactory.createArrayList();
         }
 
         produtos.add(produto);

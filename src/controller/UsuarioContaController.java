@@ -57,5 +57,6 @@ public class UsuarioContaController extends MenuBase {
         ecommerceController.getUsuarios().remove(usuario);
 
         menuController.setMenuAtual(menuController.getMenus().get(0));
+        UsuarioContaView.excluirConta();
     }
 }
