@@ -1,6 +1,6 @@
 package model;
 
-import util.Util;
+import util.GeraId;
 
 public class ProdutoCarrinho {
     private int id;
@@ -10,7 +10,7 @@ public class ProdutoCarrinho {
 
 
     public ProdutoCarrinho(Produto produto, float preco, int quantidade) {
-        this.id = Util.gerarId();
+        this.id = GeraId.getProximoId(ProdutoCarrinho.class);
         this.produto = produto;
         this.preco = preco;
         this.quantidade = quantidade;

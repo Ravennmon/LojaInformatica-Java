@@ -1,6 +1,6 @@
 package model;
 
-import util.Util;
+import util.GeraId;
 
 public class FormaDeEntrega {
     private int id;
@@ -8,7 +8,7 @@ public class FormaDeEntrega {
     private float valor;
 
     public FormaDeEntrega(String nome, float valor) {
-        this.id = Util.gerarId();
+        this.id = GeraId.getProximoId(FormaDeEntrega.class);
         this.nome = nome;
         this.valor = valor;
     }

@@ -1,6 +1,6 @@
 package model;
 
-import util.Util;
+import util.GeraId;
 
 public class Endereco {
     private int id;
@@ -15,7 +15,7 @@ public class Endereco {
     private boolean principal;
 
     public Endereco(String rua, String numero, String complemento, String bairro, String cidade, String estado, String cep, String pais, boolean principal) {
-        this.id = Util.gerarId();
+        this.id = GeraId.getProximoId(Endereco.class);
         this.rua = rua;
         this.numero = numero;
         this.complemento = complemento;

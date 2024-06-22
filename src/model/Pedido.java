@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import model.pagamento.MetodoDePagamento;
-import util.Util;
+import util.GeraId;
 import util.factories.CollectionFactory;
 
 public class Pedido {
@@ -23,7 +23,7 @@ public class Pedido {
     }
 
     public Pedido(Usuario usuario, List<ProdutoCarrinho> produtos, MetodoDePagamento metodoDePagamento, FormaDeEntrega formaDeEntrega, Endereco enderecoEntrega) {
-        this.id = Util.gerarId();
+        this.id = GeraId.getProximoId(Pedido.class);
         this.usuario = usuario;
         this.produtos = produtos;
         this.metodoDePagamento = metodoDePagamento;

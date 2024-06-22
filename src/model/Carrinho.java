@@ -3,7 +3,7 @@ package model;
 import java.util.List;
 
 import model.pagamento.MetodoDePagamento;
-import util.Util;
+import util.GeraId;
 import util.factories.CollectionFactory;
 
 public class Carrinho {
@@ -17,7 +17,7 @@ public class Carrinho {
     private UsuarioCartao cartao;
 
     public Carrinho(Usuario usuario) {
-        this.id = Util.gerarId();
+        this.id = GeraId.getProximoId(Carrinho.class);
         this.usuario = usuario;
         this.produtos = CollectionFactory.createArrayList();
     }

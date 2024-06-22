@@ -1,6 +1,6 @@
 package model;
 
-import util.Util;
+import util.GeraId;
 
 public class UsuarioCartao{
     private int id;
@@ -12,7 +12,7 @@ public class UsuarioCartao{
     private boolean debito;
 
     public UsuarioCartao(String titular, String numero, String validade, String cvv, boolean credito, boolean debito) {
-        this.id = Util.gerarId();
+        this.id = GeraId.getProximoId(UsuarioCartao.class);
         this.titular = titular;
         this.numero = numero;
         this.validade = validade;

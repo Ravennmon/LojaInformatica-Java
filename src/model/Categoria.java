@@ -1,6 +1,6 @@
 package model;
 
-import util.Util;
+import util.GeraId;
 
 public class Categoria {
     private int id;
@@ -8,7 +8,7 @@ public class Categoria {
     private String descricao;
 
     public Categoria(String nome, String descricao) {
-        this.id = Util.gerarId();
+        this.id = GeraId.getProximoId(Categoria.class);
         this.nome = nome;
         this.descricao = descricao;
     }

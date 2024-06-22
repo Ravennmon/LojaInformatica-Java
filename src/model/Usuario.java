@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-import util.Util;
+import util.GeraId;
 import util.factories.CollectionFactory;
 
 public class Usuario {
@@ -17,7 +17,7 @@ public class Usuario {
     private Carrinho carrinho;
 
     public Usuario(String nome, String email, String senha, String telefone) {
-        this.id = Util.gerarId();
+        this.id = GeraId.getProximoId(Usuario.class);
         this.nome = nome;
         this.email = email;
         this.senha = senha;

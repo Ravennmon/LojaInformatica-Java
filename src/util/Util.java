@@ -12,12 +12,6 @@ import model.Usuario;
 import model.UsuarioCartao;
 
 public class Util {
-    private static int idAtual = 0;
-
-    public static synchronized int gerarId() {
-        return ++idAtual;
-    }
-
     public static void limpaConsole() {  
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
