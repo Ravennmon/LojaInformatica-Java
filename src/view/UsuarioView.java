@@ -17,6 +17,8 @@ public class UsuarioView {
     }
 
     public static void menuLogado(){
+        Util.limpaConsole();
+
         System.out.println("1. Enderecos");
         System.out.println("2. Cartoes");
         System.out.println("3. Pedidos");
@@ -26,12 +28,16 @@ public class UsuarioView {
     }
 
     public static void menuDeslogado(){
+        Util.limpaConsole();
+
         System.out.println("1. Cadastrar-se");
         System.out.println("2. Login");
         System.out.println("0. Voltar");
     }
 
     public static Usuario cadastrarUsuario(){
+        Util.limpaConsole();
+
         String nome = Util.nextLine("Digite seu nome:");
         String telefone = Util.nextLine("Digite seu telefone:");
         String email = Util.nextLine("Digite seu email:");
@@ -46,6 +52,8 @@ public class UsuarioView {
     }
 
     public static Usuario login(Ecommerce ecommerce){
+        Util.limpaConsole();
+
         String email = Util.nextLine("Digite seu email:");
         String senha = Util.nextLine("Digite sua senha:");
 
@@ -55,10 +63,14 @@ public class UsuarioView {
     }
 
     public static void loginSucesso(){
+        Util.limpaConsole();
+
         System.out.println("\n Login realizado com sucesso. \n");
     }
 
     public static void loginFalha(){
+        Util.limpaConsole();
+        
         System.out.println("\n Email ou senha inválidos. \n");
     }
 }

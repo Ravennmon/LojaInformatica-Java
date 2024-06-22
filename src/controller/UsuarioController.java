@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import controller.menu.MenuBase;
@@ -11,6 +10,7 @@ import view.ErroView;
 import view.MenuPrincipalView;
 import util.Log;
 import util.Util;
+import util.factories.CollectionFactory;
 import view.UsuarioView;
 
 public class UsuarioController extends MenuBase {
@@ -97,7 +97,7 @@ public class UsuarioController extends MenuBase {
             } else {
                 UsuarioView.loginFalha();
 
-                List<String> logs = new ArrayList<>();
+                List<String> logs = CollectionFactory.createArrayList();
                 logs.add("Tentativa de login falhou.");
 
                 Log.salvar(logs, "logLogin");

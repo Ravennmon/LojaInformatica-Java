@@ -30,8 +30,6 @@ public class ProdutoController extends MenuBase {
                 menuController.setMenuAtual(menuController.getMenus().get(0));
                 return;
             } 
-
-            
         }
 
         try {
