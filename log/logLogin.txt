@@ -1,0 +1,6 @@
+Login efetuado com sucesso:
+
+Email: onorato@onorato.com
+data/hora: 2024-06-21T23:21:29.232263
+
+Tentativa de login falhou.

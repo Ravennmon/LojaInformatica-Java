@@ -1,0 +1,12 @@
+Forma de entrega selecionada:
+
+Forma: Entrega Expressa
+Valor: 20.0
+data/hora: 2024-06-22T00:54:08.440634100
+
+Forma de entrega selecionada:
+
+Forma: Retirar na loja
+Valor: 20.0
+data/hora: 2024-06-22T00:12:27.312329800
+

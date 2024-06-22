@@ -1,0 +1,88 @@
+Endereco selecionado:
+
+Endereco: sdfsdfsdfsdfsdf
+Numero: fsdfsdfsdfsdfsdf
+Complemento: sfdfs
+Bairro: sdfsdfsdfsdf
+Cidade: sdfsdfsd
+Estado: sdfsdf
+CEP: dfsdf
+data/hora: 2024-06-22T00:54:03.687774400
+
+Endereco selecionado:
+
+Endereco: Rua Teste
+Numero: 123
+Complemento: Teste
+Bairro: Teste
+Cidade: 12345678
+Estado: 12345678
+CEP: 12345678
+data/hora: 2024-06-22T00:53:15.297422800
+
+Endereco selecionado:
+
+Endereco: Rua Teste
+Numero: 123
+Complemento: Teste
+Bairro: Teste
+Cidade: 12345678
+Estado: 12345678
+CEP: 12345678
+data/hora: 2024-06-22T00:42:08.384661100
+
+Endereco selecionado:
+
+Endereco: Rua Teste
+Numero: 123
+Complemento: Teste
+Bairro: Teste
+Cidade: 12345678
+Estado: 12345678
+CEP: 12345678
+data/hora: 2024-06-22T00:39:13.712264500
+
+Endereco selecionado:
+
+Endereco: 685496
+Numero: 654654
+Complemento: 6546546
+Bairro: 65464
+Cidade: 65464
+Estado: 635464
+CEP: 654654
+data/hora: 2024-06-22T00:34:00.751667600
+
+Endereco selecionado:
+
+Endereco: Rua Teste
+Numero: 123
+Complemento: Teste
+Bairro: Teste
+Cidade: 12345678
+Estado: 12345678
+CEP: 12345678
+data/hora: 2024-06-22T00:32:13.280197900
+
+Endereco selecionado:
+
+Endereco: sdfsdfsdf
+Numero: sdfsdfsdf
+Complemento: fsdfsdfsdfds
+Bairro: sdfsdfsdfsd
+Cidade: sdfsdfsdf
+Estado: sdfsdfsdf
+CEP: fsdfsdf
+data/hora: 2024-06-22T00:12:24.519853600
+
+Endereco selecionado:
+
+Endereco: 654645
+Numero: 65456465
+Complemento: 6546546
+Bairro: 6546516
+Cidade: 6546546
+Estado: 63546546
+CEP: 1651651
+data/hora: 2024-06-22T00:07:23.944132800
+

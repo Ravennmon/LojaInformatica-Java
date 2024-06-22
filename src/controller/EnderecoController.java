@@ -4,7 +4,9 @@ import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Endereco;
 import model.Usuario;
+import util.Util;
 import view.EnderecoView;
+import view.FormaDeEntregaView;
 
 public class EnderecoController extends MenuBase {
     public EnderecoController(MenuController menuController, EcommerceController ecommerceController) {
@@ -33,15 +35,19 @@ public class EnderecoController extends MenuBase {
     }
 
     public void cadastrarEndereco() {
-        Endereco endereco = EnderecoView.cadastrarEndereco();
-
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        usuario.addEndereco(endereco);
-        usuario.getCarrinho().setEnderecoEntrega(endereco);
-
-        menuController.setMenuAtual(menuController.getMenus().get(6));
+        try {
+            Endereco endereco = EnderecoView.cadastrarEndereco();
+    
+            Usuario usuario = ecommerceController.getUsuarioLogado();
+            usuario.addEndereco(endereco);
+            usuario.getCarrinho().setEnderecoEntrega(endereco);
+    
+            menuController.setMenuAtual(menuController.getMenus().get(6));
+            Util.salvarLogEndereco(endereco);
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastrar o endereço: " + e.getMessage());
+        }
     }
-
-
     
 }

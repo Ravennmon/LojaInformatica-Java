@@ -1,0 +1,136 @@
+Produto adiocionado ao carrinho:
+
+Nome: Monitor 24
+Descricao: 144Hz
+Preco: 1000.0
+Quantidade: 1
+data/hora: 2024-06-22T00:53:35.591323100
+
+Produto adiocionado ao carrinho:
+
+Nome: Monitor 24
+Descricao: 144Hz
+Preco: 1000.0
+Quantidade: 1
+data/hora: 2024-06-22T00:53:31.998810
+
+Produto adiocionado ao carrinho:
+
+Nome: Monitor 24
+Descricao: 144Hz
+Preco: 1000.0
+Quantidade: 1
+data/hora: 2024-06-22T00:52:57.310043500
+
+Produto adiocionado ao carrinho:
+
+Nome: Monitor 24
+Descricao: 144Hz
+Preco: 1000.0
+Quantidade: 1
+data/hora: 2024-06-22T00:41:48.671381300
+
+Produto adiocionado ao carrinho:
+
+Nome: Monitor 24
+Descricao: 144Hz
+Preco: 1000.0
+Quantidade: 1
+data/hora: 2024-06-22T00:38:46.678871800
+
+Produto adiocionado ao carrinho:
+
+Nome: Monitor 24
+Descricao: 144Hz
+Preco: 1000.0
+Quantidade: 1
+data/hora: 2024-06-22T00:31:58.422395
+
+Produto adiocionado ao carrinho:
+
+Nome: Monitor 24
+Descricao: 144Hz
+Preco: 1000.0
+Quantidade: 1
+data/hora: 2024-06-22T00:22:00.142970400
+
+Produto adiocionado ao carrinho:
+
+Nome: Monitor 24
+Descricao: 144Hz
+Preco: 1000.0
+Quantidade: 1
+data/hora: 2024-06-22T00:11:50.397671300
+
+Produto adiocionado ao carrinho:
+
+Nome: Monitor 24
+Descricao: 144Hz
+Preco: 1000.0
+Quantidade: 1
+data/hora: 2024-06-22T00:06:37.398707900
+
+Produto removido do carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-21T23:57:23.905368900
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-21T23:56:58.759296200
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-21T23:56:58.286826500
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-21T23:56:57.726415400
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-21T23:56:57.157907400
+
+Produto cadastrado:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 5
+data/hora: 2024-06-21T23:44:23.472902100
+
+Produto cadastrado:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-21T23:35:32.804089200
+
+Produto cadastrado:
+
+Nome: Monitor 24
+Descrição: 144Hz
+Preço: 1000.0
+Quantidade: 1
+data/hora: 2024-06-21T23:29:28.533443700
+

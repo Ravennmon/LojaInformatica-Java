@@ -1,16 +1,17 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import util.Util;
 
-public class Usuario {
+public class Usuario implements Serializable{
     private int id;
     private String nome;
     private String email;
     private String senha;
-    private String endereco;
+    private Endereco endereco;
     private String telefone;
     private List<Endereco> enderecos = new ArrayList<>();
     private List<Pedido> pedidos = new ArrayList<>();
@@ -61,11 +62,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 
