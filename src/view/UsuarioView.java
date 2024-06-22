@@ -41,12 +41,21 @@ public class UsuarioView {
         String nome = Util.nextLine("Digite seu nome:");
         String telefone = Util.nextLine("Digite seu telefone:");
         String email = Util.nextLine("Digite seu email:");
-        String senha = Util.nextLine("Digite sua senha");
 
         while (!Util.validaEmail(email)) {
             System.out.println("Email inválido.");
             email = Util.nextLine("Digite seu email novamente:");
         }
+
+        String senha = Util.nextLine("Digite sua senha");
+        String senhaConfirmacao = Util.nextLine("Confirme sua senha");
+
+        while (!senha.equals(senhaConfirmacao)) {
+            System.out.println("\n Senhas não conferem. \n");
+            senha = Util.nextLine("Digite sua senha");
+            senhaConfirmacao = Util.nextLine("Confirme sua senha");
+        }
+
 
         return new Usuario(nome, email, senha, telefone);
     }

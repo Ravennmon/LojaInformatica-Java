@@ -82,7 +82,7 @@ public class UsuarioController extends MenuBase {
             Util.salvarLogUsuario(usuario);
             
         } catch (Exception e) {
-            System.out.println("Erro ao cadastrar usuário: " + e.getMessage());
+            ErroView.mostrarErro("Erro ao cadastrar usuário: " + e.getMessage());
         }
     }
 
