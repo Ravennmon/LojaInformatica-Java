@@ -34,6 +34,7 @@ public class MenuController {
 
     public void mostraMenuAtual() {
         menuAtual.mostraMenu();
+        gerenciaOpcao();
     }
 
     public void gerenciaOpcao() {

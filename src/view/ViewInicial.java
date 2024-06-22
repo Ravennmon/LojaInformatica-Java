@@ -24,6 +24,7 @@ import model.Usuario;
 import model.pagamento.MetodoDePagamento;
 import util.factories.CartaoFactory;
 import util.factories.CategoriaFactory;
+import util.factories.EnderecoFactory;
 import util.factories.FormaDePagamentoFactory;
 import util.factories.ProdutoFactory;
 import util.factories.UsuarioFactory;
@@ -62,7 +63,6 @@ public class ViewInicial {
     public void mostrarMenu() {
         while (true) {
             menuController.mostraMenuAtual();
-            menuController.gerenciaOpcao();
         }
     }
 
@@ -96,9 +96,9 @@ public class ViewInicial {
     }
 
     private static void fakeFormasDePagamentos(EcommerceController ecommerceController){
-        FormaDeEntrega retiradaLoja = FormaDePagamentoFactory.criarFormaDePagamento("Retirar na loja", 20);
-        FormaDeEntrega entregaNormal = FormaDePagamentoFactory.criarFormaDePagamento("Entrega Normal", 10);
-        FormaDeEntrega entregaExpressa = FormaDePagamentoFactory.criarFormaDePagamento("Entrega Expressa", 20);
+        FormaDeEntrega retiradaLoja = FormaDePagamentoFactory.criarFormaDePagamento("Retirar na loja", 20f);
+        FormaDeEntrega entregaNormal = FormaDePagamentoFactory.criarFormaDePagamento("Entrega Normal", 10f);
+        FormaDeEntrega entregaExpressa = FormaDePagamentoFactory.criarFormaDePagamento("Entrega Expressa", 20f);
 
         List<FormaDeEntrega> formasDeEntrega = new ArrayList<>();
         formasDeEntrega.addAll(Arrays.asList(entregaNormal, entregaExpressa, retiradaLoja));

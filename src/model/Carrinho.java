@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,7 +8,7 @@ import dto.CarrinhoRepository;
 import model.pagamento.MetodoDePagamento;
 import util.Util;
 
-public class Carrinho implements CarrinhoRepository{
+public class Carrinho implements CarrinhoRepository, Serializable{
     
     private int id;
     private Usuario usuario;
@@ -73,11 +74,11 @@ public class Carrinho implements CarrinhoRepository{
     }
 
     public float getValorTotal() {
-        return valorTotal;
+        return valorTotal + formaDeEntrega.getValor();
     }
 
     public void setValorTotal(float valorTotal) {
-        this.valorTotal = valorTotal;
+        this.valorTotal = valorTotal + formaDeEntrega.getValor();
     }
     
     public MetodoDePagamento getMetodoDePagamento() {
@@ -107,7 +108,7 @@ public class Carrinho implements CarrinhoRepository{
     @Override
     public String toString() {
         return "Carrinho [id=" + id + ", usuario=" + usuario + ", produtos=" + produtos + ", metodoDePagamento="
-                + metodoDePagamento + ", formaDeEntrega=" + formaDeEntrega + ", enderecoEntrega=" + enderecoEntrega
+                + metodoDePagamento + ", formaDeEntrega=" + formaDeEntrega.getNome() + ", enderecoEntrega=" + enderecoEntrega
                 + ", valorTotal=" + valorTotal + "]";
     }  
     

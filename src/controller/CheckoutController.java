@@ -1,6 +1,6 @@
 package controller;
 
-import java.util.List;
+import java.util.Map;
 
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
@@ -39,15 +39,12 @@ public class CheckoutController extends MenuBase {
 
     public void confirmarCompra() {
         Carrinho carrinho = ecommerceController.getUsuarioLogado().getCarrinho();
-
         Usuario usuario = carrinho.getUsuario();
-        List<Produto> produtos = carrinho.getProdutos();
+        Map<Produto, Integer> produtos = carrinho.getProdutos();
         Endereco enderecoEntrega = carrinho.getEnderecoEntrega();
         FormaDeEntrega formaDeEntrega = carrinho.getFormaDeEntrega();
         MetodoDePagamento metodoDePagamento = carrinho.getMetodoDePagamento();
-        
         Pedido pedido = new Pedido(usuario, produtos, metodoDePagamento, formaDeEntrega, enderecoEntrega);
-
         ecommerceController.getPedidos().add(pedido);
         usuario.getPedidos().add(pedido);
 

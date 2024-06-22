@@ -1,0 +1,27 @@
+Usuario cadastrado:
+
+Nome: henrique
+Telefone: 999755209
+Email: onorato@onorato.com
+data/hora: 2024-06-21T23:21:15.716466900
+
+Usuario cadastrado:
+
+Nome: teste data e hora 
+Telefone: 121313
+Email: hahhaha@jsdh.vcom
+
+data/hora: 2024-06-21T23:06:40.628537800
+Usuário cadastrado:
+
+Nome: teste 3 
+Telefone: 65465
+Email: hsdhfh@jkhfkjds.com
+
+Usuário cadastrado:
+Nome: teste
+Telefone: 987498
+Email: teste@log.com
+Nome: Henrique
+Telefone: 98846138
+Email: onorato@onorato.com

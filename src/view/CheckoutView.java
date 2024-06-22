@@ -5,11 +5,12 @@ import controller.EcommerceController;
 public class CheckoutView {
     public static void mostraMenu(EcommerceController ecommerceController) {
         System.out.println("Produtos no carrinho:");
-        ecommerceController.getUsuarioLogado().getCarrinho().getProdutos().forEach(System.out::println);
+        ecommerceController.getUsuarioLogado().getCarrinho().getProdutos().forEach((produto, quantidade) -> System.out.println(produto + ": " + quantidade));
 
         System.out.println("--------------------------------------------------");
 
-        System.out.println("Forma de entrega: " + ecommerceController.getUsuarioLogado().getCarrinho().getFormaDeEntrega().getNome());
+        System.out.println("Forma de entrega: " + ecommerceController.getUsuarioLogado().getCarrinho().getFormaDeEntrega().getNome() + " - Frete: " + 
+        ecommerceController.getUsuarioLogado().getCarrinho().getFormaDeEntrega().getValor());
 
         System.out.println("--------------------------------------------------");
 

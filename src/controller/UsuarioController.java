@@ -1,8 +1,14 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Usuario;
+import util.Log;
+import util.Util;
+import util.factories.UsuarioFactory;
 import view.UsuarioView;
 
 public class UsuarioController extends MenuBase {
@@ -33,20 +39,21 @@ public class UsuarioController extends MenuBase {
     }
 
     public void cadastrarUsuario() {
-<<<<<<< HEAD
+    try {
         String nome = Util.nextLine("Digite seu nome:");
         String telefone = getTelefoneValido();
         String email = getEmailValido();
         String senha = Util.nextLine("Digite sua senha");
         Usuario usuario = UsuarioFactory.criarUsuario(nome, email, senha, telefone);
-=======
-        Usuario usuario = UsuarioView.cadastrarUsuario();
-
->>>>>>> 71db87af833fd8124b4ac0b9d9ed114372408f40
         ecommerceController.adicionarUsuario(usuario);
-        
+
+        Util.salvarLogUsuario(nome, telefone, email);
+
         System.out.println("\nUsuário cadastrado com sucesso.\n");
+    } catch (Exception e) {
+        System.out.println("Erro ao cadastrar o usuário: " + e.getMessage());
     }
+}
 
     private String getTelefoneValido() {
         String telefone;
@@ -71,14 +78,26 @@ public class UsuarioController extends MenuBase {
     }
 
     public void login() {
-        Usuario usuario = UsuarioView.login(ecommerceController);
-
-        if (usuario != null) {
-            ecommerceController.setUsuarioLogado(usuario);
-            System.out.println("\nLogin efetuado com sucesso.\n");
-        } else {
-            System.out.println("\nEmail ou senha inválidos.\n");
+        try {
+            Usuario usuario = UsuarioView.login(ecommerceController);
+    
+            if (usuario != null) {
+                ecommerceController.setUsuarioLogado(usuario);
+                Util.salvarLogLogin(usuario.getEmail());
+                System.out.println("\nLogin efetuado com sucesso.\n");
+            } else {
+                System.out.println("\nEmail ou senha inválidos.\n");
+    
+                List<String> logs = new ArrayList<>();
+                logs.add("Tentativa de login falhou.");
+    
+                Log.salvar(logs, "logLogin");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao realizar o login: " + e.getMessage());
         }
     }
+
+    
     
 }

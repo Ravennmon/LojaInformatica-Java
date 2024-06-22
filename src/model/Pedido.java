@@ -1,16 +1,17 @@
 package model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import model.pagamento.MetodoDePagamento;
 import util.Util;
 
-public class Pedido {
+public class Pedido implements Serializable{
     private int id;
     private Usuario usuario;
-    private List<Produto> produtos;
+    private Map<Produto, Integer> produtos;
     private MetodoDePagamento metodoDePagamento;
     private FormaDeEntrega formaDeEntrega;
     private Endereco enderecoEntrega;
@@ -21,7 +22,7 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Usuario usuario, List<Produto> produtos, MetodoDePagamento metodoDePagamento, FormaDeEntrega formaDeEntrega, Endereco enderecoEntrega) {
+    public Pedido(Usuario usuario, Map<Produto, Integer> produtos, MetodoDePagamento metodoDePagamento, FormaDeEntrega formaDeEntrega, Endereco enderecoEntrega) {
         this.id = Util.gerarId();
         this.usuario = usuario;
         this.produtos = produtos;
@@ -33,10 +34,11 @@ public class Pedido {
 
     public void adicionarProduto(Produto produto) {
         if (produtos == null) {
-            produtos = new ArrayList<>();
+            produtos = new HashMap<Produto,Integer>();
         }
 
-        produtos.add(produto);
+        Integer quantidade = produtos.getOrDefault(produto, 0);
+        produtos.put(produto, quantidade + 1);
         valorTotal += produto.getPreco();
     }
 
@@ -50,8 +52,10 @@ public class Pedido {
     public float calculaValorTotal() {
         float valorTotal = 0.0f;
 
-        for (Produto produto : produtos) {
-            valorTotal += produto.getPreco();
+        for (Map.Entry<Produto, Integer> entry : produtos.entrySet()) {
+            Produto produto = entry.getKey();
+            Integer quantidade = entry.getValue();
+            valorTotal += produto.getPreco() * quantidade;
         }
 
         return valorTotal;
@@ -78,11 +82,11 @@ public class Pedido {
         this.usuario = usuario;
     }
 
-    public List<Produto> getProdutos() {
+    public Map<Produto, Integer> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(List<Produto> produtos) {
+    public void setProdutos(Map<Produto, Integer> produtos) {
         this.produtos = produtos;
     }
 

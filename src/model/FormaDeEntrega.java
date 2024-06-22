@@ -1,8 +1,10 @@
 package model;
 
+import java.io.Serializable;
+
 import util.Util;
 
-public class FormaDeEntrega {
+public class FormaDeEntrega implements Serializable{
     private int id;
     private String nome;
     private float valor;
@@ -10,6 +12,7 @@ public class FormaDeEntrega {
     public FormaDeEntrega(String nome, float valor) {
         this.id = Util.gerarId();
         this.nome = nome;
+        this.valor = valor;
     }
 
     public int getId() {

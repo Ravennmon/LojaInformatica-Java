@@ -1,8 +1,10 @@
 package model;
 
+import java.io.Serializable;
+
 import util.Util;
 
-public class Endereco {
+public class Endereco implements Serializable{
     private int id;
     private String rua;
     private String numero;

@@ -1,0 +1,45 @@
+Metodo de pagamento selecionado:
+
+Metodo: Cartão de Crédito
+data/hora: 2024-06-22T00:53:46.815286900
+
+Metodo de pagamento selecionado:
+
+Metodo: Cartão de Crédito
+data/hora: 2024-06-22T00:53:10.711441600
+
+Metodo de pagamento selecionado:
+
+Metodo: Cartão de Crédito
+data/hora: 2024-06-22T00:42:04.999562100
+
+Metodo de pagamento selecionado:
+
+Metodo: Cartão de Crédito
+data/hora: 2024-06-22T00:39:11.471085100
+
+Metodo de pagamento selecionado:
+
+Metodo: Cartão de Crédito
+data/hora: 2024-06-22T00:32:09.767292700
+
+Metodo de pagamento selecionado:
+
+Metodo: Cartão de Crédito
+data/hora: 2024-06-22T00:22:16.431427700
+
+Metodo de pagamento selecionado:
+
+Metodo: Cartão de Débito
+data/hora: 2024-06-22T00:12:06.838886500
+
+Metodo de pagamento selecionado:
+
+Metodo: Cartão de Crédito
+data/hora: 2024-06-22T00:06:56.087600900
+
+Metodo de pagamento selecionado:
+
+Metodo: Cartão de Débito
+data/hora: 2024-06-21T23:57:44.574620800
+
