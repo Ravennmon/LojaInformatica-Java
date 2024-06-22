@@ -13,6 +13,7 @@ import model.ProdutoCarrinho;
 import model.Usuario;
 import model.pagamento.MetodoDePagamento;
 import view.MenuPrincipalView;
+import util.Util;
 import view.checkout.CheckoutView;
 
 public class CheckoutController extends MenuBase {
@@ -40,20 +41,22 @@ public class CheckoutController extends MenuBase {
     }
 
     public void confirmarCompra() {
-        Carrinho carrinho = ecommerceController.getUsuarioLogado().getCarrinho();
-
-        Usuario usuario = carrinho.getUsuario();
-        List<ProdutoCarrinho> produtos = carrinho.getProdutos();
-        Endereco enderecoEntrega = carrinho.getEnderecoEntrega();
-        FormaDeEntrega formaDeEntrega = carrinho.getFormaDeEntrega();
-        MetodoDePagamento metodoDePagamento = carrinho.getMetodoDePagamento();
-        
-        Pedido pedido = new Pedido(usuario, produtos, metodoDePagamento, formaDeEntrega, enderecoEntrega);
-
-        ecommerceController.getPedidos().add(pedido);
-        usuario.getPedidos().add(pedido);
-
-        menuController.setMenuAtual(menuController.getMenus().get(8));
+        try {
+            Carrinho carrinho = ecommerceController.getUsuarioLogado().getCarrinho();
+            Usuario usuario = carrinho.getUsuario();
+            List<ProdutoCarrinho> produtos = carrinho.getProdutos();
+            Endereco enderecoEntrega = carrinho.getEnderecoEntrega();
+            FormaDeEntrega formaDeEntrega = carrinho.getFormaDeEntrega();
+            MetodoDePagamento metodoDePagamento = carrinho.getMetodoDePagamento();
+            Pedido pedido = new Pedido(usuario, produtos, metodoDePagamento, formaDeEntrega, enderecoEntrega);
+            ecommerceController.getPedidos().add(pedido);
+            usuario.getPedidos().add(pedido);
+            menuController.setMenuAtual(menuController.getMenus().get(8));
+            Util.salvarLogConfirmarCompra(carrinho, usuario, pedido, enderecoEntrega, formaDeEntrega);
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao confirmar a compra: " + e.getMessage());
+        }
     }
 
 

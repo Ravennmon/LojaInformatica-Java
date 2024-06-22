@@ -12,7 +12,6 @@ public class UsuarioContaView {
         System.out.println("0. Voltar");
     }
 
-
     public static void visualizarConta(Usuario usuario) {
         System.out.println("Nome: " + usuario.getNome());
         System.out.println("Email: " + usuario.getEmail());
@@ -20,19 +19,25 @@ public class UsuarioContaView {
     }
 
     public static Usuario editarConta(Usuario usuario) {
-        String nome = Util.nextLine("Digite seu nome:");
-        String telefone = Util.nextLine("Digite seu telefone:");
-        String email = Util.nextLine("Digite seu email:");
-        String senha = Util.nextLine("Digite sua senha");
-        String senhaConfirmacao = Util.nextLine("Confirme sua senha");
-
-        while (!senha.equals(senhaConfirmacao)) {
-            System.out.println("Senhas não conferem.");
-            senha = Util.nextLine("Digite sua senha");
-            senhaConfirmacao = Util.nextLine("Confirme sua senha");
+        try {
+            String nome = Util.nextLine("Digite seu nome:");
+            String telefone = Util.nextLine("Digite seu telefone:");
+            String email = Util.nextLine("Digite seu email:");
+            String senha = Util.nextLine("Digite sua senha");
+            String senhaConfirmacao = Util.nextLine("Confirme sua senha");
+    
+            while (!senha.equals(senhaConfirmacao)) {
+                System.out.println("Senhas não conferem.");
+                senha = Util.nextLine("Digite sua senha");
+                senhaConfirmacao = Util.nextLine("Confirme sua senha");
+            }
+            Util.salvarLogEditarConta(usuario);
+            return new Usuario(nome, email, senha, telefone);
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao editar conta: " + e.getMessage());
+            return null;
         }
-
-        return new Usuario(nome, email, senha, telefone);
     }
 
     public static void excluirConta(){
@@ -40,4 +45,5 @@ public class UsuarioContaView {
         System.out.println();
         
     }
+
 }

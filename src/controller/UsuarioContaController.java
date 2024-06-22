@@ -4,6 +4,7 @@ import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Usuario;
 import view.MenuPrincipalView;
+import util.Util;
 import view.UsuarioContaView;
 import view.UsuarioView;
 
@@ -43,21 +44,39 @@ public class UsuarioContaController extends MenuBase {
     }
 
     public void editarConta() {
-        Usuario usuarioAlterado = UsuarioView.cadastrarUsuario();
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-
-        usuario.setNome(usuarioAlterado.getNome());
-        usuario.setEmail(usuarioAlterado.getEmail());
-        usuario.setSenha(usuarioAlterado.getSenha());
-        usuario.setTelefone(usuarioAlterado.getTelefone());
+        try {
+            Usuario usuarioAlterado = UsuarioView.cadastrarUsuario();
+            Usuario usuario = ecommerceController.getUsuarioLogado();
+            usuario.setNome(usuarioAlterado.getNome());
+            usuario.setEmail(usuarioAlterado.getEmail());
+            usuario.setSenha(usuarioAlterado.getSenha());
+            usuario.setTelefone(usuarioAlterado.getTelefone());
+            Util.salvarLogEditarConta(usuario);
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao editar conta: " + e.getMessage());
+        }
     }
     
     public void excluirConta() {
+<<<<<<< HEAD
         Usuario usuario = ecommerceController.getUsuarioLogado();
         ecommerceController.setUsuarioLogado(null);
         ecommerceController.getUsuarios().remove(usuario);
 
         menuController.setMenuAtual(menuController.getMenus().get(0));
         UsuarioContaView.excluirConta();
+=======
+        try {
+            Usuario usuario = ecommerceController.getUsuarioLogado();
+            ecommerceController.setUsuarioLogado(null);
+            ecommerceController.getUsuarios().remove(usuario);
+            menuController.setMenuAtual(menuController.getMenus().get(0));
+            Util.salvarLogEcxcluirConta(usuario);
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao excluir conta: " + e.getMessage());
+        }
+>>>>>>> 9670d0c (logs e tratamentos de erro.)
     }
 }
