@@ -43,11 +43,9 @@ public class EnderecoController extends MenuBase {
     public void cadastrarEndereco() {
         try {
             Endereco endereco = EnderecoView.cadastrarEndereco();
-
             Usuario usuario = ecommerceController.getUsuarioLogado();
             usuario.addEndereco(endereco);
             usuario.getCarrinho().setEnderecoEntrega(endereco);
-
             menuController.setMenuAtual(menuController.getMenus().get(6));
             Util.salvarLogEndereco(endereco);
 
@@ -65,10 +63,8 @@ public class EnderecoController extends MenuBase {
         try {
             visualizarEnderecos();
             int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja editar:"));
-    
             Usuario usuario = ecommerceController.getUsuarioLogado();
             Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
-    
             Endereco enderecoAlterado = EnderecoView.cadastrarEndereco();
             endereco.setCep(enderecoAlterado.getCep());
             endereco.setBairro(enderecoAlterado.getBairro());   
@@ -88,11 +84,11 @@ public class EnderecoController extends MenuBase {
         try {
             visualizarEnderecos();
             int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja excluir:"));
-    
             Usuario usuario = ecommerceController.getUsuarioLogado();
             Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
             usuario.getEnderecos().remove(endereco);
             Util.salvarLogEnderecoExcluido(endereco);
+
         } catch (Exception e) {
             System.out.println("Erro ao excluir o endereço: " + e.getMessage());
         }

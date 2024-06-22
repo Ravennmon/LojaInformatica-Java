@@ -25,10 +25,8 @@ public class MetodoDePagamentoController extends MenuBase {
                 menuController.setMenuAtual(menuController.getMenus().get(0));
                 return;
             } 
-
             System.out.println("Opção inválida.");
         }
-
         selecionaMetodoDePagamento(opcao);
     }
 
@@ -38,18 +36,13 @@ public class MetodoDePagamentoController extends MenuBase {
                 System.out.println("Opção inválida.");
                 return;
             }
-    
             Usuario usuario =  ecommerceController.getUsuarioLogado();
-    
             MetodoDePagamento metodoDePagamento = ecommerceController.getMetodosDePagamento().get(opcao - 1);
-    
             usuario.getCarrinho().setMetodoDePagamento(metodoDePagamento);
-    
             if(metodoDePagamento.isCartao()){
                 menuController.setMenuAtual(menuController.getMenus().get(11));
                 return;
             }
-    
             this.menuController.setMenuAtual(menuController.getMenus().get(10));
             Util.salvarLogPagamento(metodoDePagamento.getDescricao());
             

@@ -1,0 +1,32 @@
+Cartao editado:
+
+Numero: sdfsdgsd
+Nome: sdfsdfsdf
+Data de Validade: sdfsdfsdfs
+CVV: sdfsdfsdf
+data/hora: 2024-06-22T15:40:08.700933700
+
+Cartao cadastrado:
+
+Numero: sdfsdgsd
+Nome: sdfsdfsdf
+Data de Validade: sdfsdfsdfs
+CVV: sdfsdfsdf
+data/hora: 2024-06-22T15:39:47.452313700
+
+Cartao editado:
+
+Numero: gfsdgfdgd
+Nome: 654654
+Data de Validade: 65496496
+CVV: 65465
+data/hora: 2024-06-22T15:39:25.147915800
+
+Cartao cadastrado:
+
+Numero: 5456465456
+Nome: henriuwqre
+Data de Validade: 6546546
+CVV: 65465456
+data/hora: 2024-06-22T15:38:21.569280200
+

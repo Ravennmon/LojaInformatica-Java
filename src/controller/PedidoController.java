@@ -40,24 +40,23 @@ public class PedidoController extends MenuBase {
     }
     
     public void cancelarPedido() {
-        visualizarPedidos();
-
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-
-        if(usuario.getPedidos().isEmpty()){
-            return;
+        try {
+            visualizarPedidos();
+            Usuario usuario = ecommerceController.getUsuarioLogado();
+            if(usuario.getPedidos().isEmpty()){
+                return;
+            }
+            int id = Integer.parseInt(Util.nextLine("Informe o id do pedido que deseja cancelar:"));
+            Pedido pedido = usuario.getPedidos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
+            if(pedido.getSituacao().equals("Cancelado")){
+                System.out.println("Pedido já está cancelado");
+                return;
+            }
+            pedido.setSituacao("Cancelado");
+            Util.salvarLogPedidoCancelado(pedido);
+        } catch (Exception e) {
+            System.out.println("Erro ao cancelar pedido: " + e.getMessage());
         }
-
-        int id = Integer.parseInt(Util.nextLine("Informe o id do pedido que deseja cancelar:"));
-        
-        Pedido pedido = usuario.getPedidos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
-        
-        if(pedido.getSituacao().equals("Cancelado")){
-            System.out.println("Pedido já está cancelado");
-            return;
-        }
-
-        pedido.setSituacao("Cancelado");
     }
     
 }

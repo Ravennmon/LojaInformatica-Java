@@ -41,10 +41,14 @@ public class UsuarioCartaoController extends MenuBase {
     }
 
     public void cadastrarUsuarioCartao() {
-        UsuarioCartao cartao = UsuarioCartaoView.cadastrarUsuarioCartao();
-
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        usuario.addCartao(cartao);
+        try {
+            UsuarioCartao cartao = UsuarioCartaoView.cadastrarUsuarioCartao();
+            Usuario usuario = ecommerceController.getUsuarioLogado();
+            usuario.addCartao(cartao);
+            Util.salvarLogCartaoCadastro(cartao);
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastrar cartão: " + e.getMessage());
+        }
     }
 
     public void visualizarUsuarioCartaos() {
@@ -53,27 +57,37 @@ public class UsuarioCartaoController extends MenuBase {
     }
 
     public void editarUsuarioCartao() {
-        visualizarUsuarioCartaos();
-        int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja editar:"));
+        try {
+            visualizarUsuarioCartaos();
+            int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja editar:"));
+            Usuario usuario = ecommerceController.getUsuarioLogado();
+            UsuarioCartao cartao = usuario.getCartoes().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
+            UsuarioCartao cartaoAlterado = UsuarioCartaoView.cadastrarUsuarioCartao();
+            cartao.setTitular(cartaoAlterado.getTitular());
+            cartao.setNumero(cartaoAlterado.getNumero());
+            cartao.setValidade(cartaoAlterado.getValidade());
+            cartao.setCvv(cartaoAlterado.getCvv());
+            cartao.setCredito(cartaoAlterado.isCredito());
+            cartao.setDebito(cartaoAlterado.isDebito());
+            Util.salvarLogCartaoEditado(cartao);
 
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        UsuarioCartao cartao = usuario.getCartoes().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
-
-        UsuarioCartao cartaoAlterado = UsuarioCartaoView.cadastrarUsuarioCartao();
-        cartao.setTitular(cartaoAlterado.getTitular());
-        cartao.setNumero(cartaoAlterado.getNumero());
-        cartao.setValidade(cartaoAlterado.getValidade());
-        cartao.setCvv(cartaoAlterado.getCvv());
-        cartao.setCredito(cartaoAlterado.isCredito());
-        cartao.setDebito(cartaoAlterado.isDebito());
+        } catch (Exception e) {
+            System.out.println("Erro ao editar cartão: " + e.getMessage());
+        }
     }
     
     public void excluirUsuarioCartao() {
-        visualizarUsuarioCartaos();
-        int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja excluir:"));
+        try {
+            visualizarUsuarioCartaos();
+            int id = Integer.parseInt(Util.nextLine("Informe o id do cartão que deseja excluir:"));
+            Usuario usuario = ecommerceController.getUsuarioLogado();
+            UsuarioCartao cartao = usuario.getCartoes().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
+            usuario.getCartoes().remove(cartao);
+            System.out.println("Cartão excluído com sucesso.");
+            Util.salvarLogCartaoExcluido(cartao);
 
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        UsuarioCartao cartao = usuario.getCartoes().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
-        usuario.getCartoes().remove(cartao);
+        } catch (Exception e) {
+            System.out.println("Erro ao excluir cartão: " + e.getMessage());
+        }
     }
 }

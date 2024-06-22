@@ -37,11 +37,16 @@ public class CartaoCheckoutController extends MenuBase {
     }
 
     public void cadastrarCartao() {
-        UsuarioCartao cartao = UsuarioCartaoView.cadastrarUsuarioCartao();
-
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        usuario.addCartao(cartao);
-        setCarrinhoCartao(usuario, cartao);
+        try {
+            UsuarioCartao cartao = UsuarioCartaoView.cadastrarUsuarioCartao();
+            Usuario usuario = ecommerceController.getUsuarioLogado();
+            usuario.addCartao(cartao);
+            setCarrinhoCartao(usuario, cartao);
+            System.out.println("Cartão cadastrado com sucesso!");
+            Util.salvarLogCartaoCadastro(cartao);
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastrar cartão: " + e.getMessage());
+        }
     }
 
     public void visualizarUsuarioCartaos() {
@@ -51,18 +56,21 @@ public class CartaoCheckoutController extends MenuBase {
 
     
     public void selecionarCartao() {
-        visualizarUsuarioCartaos();
-        int id = Integer.parseInt(Util.nextLine("Informe o id do cartão que deseja utilizar:"));
-
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        UsuarioCartao cartao = usuario.getCartoes().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
-        
-        setCarrinhoCartao(usuario, cartao);
+        try {
+            visualizarUsuarioCartaos();
+            int id = Integer.parseInt(Util.nextLine("Informe o id do cartão que deseja utilizar:"));
+            Usuario usuario = ecommerceController.getUsuarioLogado();
+            UsuarioCartao cartao = usuario.getCartoes().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
+            setCarrinhoCartao(usuario, cartao);
+            Util.salvarLogCartaoSelecionado(cartao);
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao selecionar cartão: " + e.getMessage());
+        }
     }
 
     private void setCarrinhoCartao(Usuario usuario, UsuarioCartao cartao) {
         usuario.getCarrinho().setCartao(cartao);
-
         menuController.setMenuAtual(menuController.getMenus().get(10));
     }
 }
