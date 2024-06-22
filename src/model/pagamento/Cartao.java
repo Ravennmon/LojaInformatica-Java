@@ -34,6 +34,6 @@ public class Cartao extends MetodoDePagamento{
 
     @Override
     public String toString() {
-        return "Cartao [credito=" + credito + ", debito=" + debito + "]";
+        return "Cartao [Credito= " + credito + ", Debito= " + debito + "]";
     }
 }

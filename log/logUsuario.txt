@@ -1,0 +1,7 @@
+Usuario cadastrado:
+
+Nome: teste
+Telefone: 123465
+Email: onotrato@oasid.com
+data/hora: 2024-06-22T09:21:00.946429100
+

@@ -7,7 +7,11 @@ import controller.menu.MenuController;
 import model.Carrinho;
 import model.Produto;
 import model.ProdutoCarrinho;
+<<<<<<< HEAD
 import view.MenuPrincipalView;
+=======
+import util.Util;
+>>>>>>> 020e90df3550f51aff67dfae4d3e9348576a53ae
 import view.ProdutoView;
 
 public class ProdutoController extends MenuBase {
@@ -22,27 +26,40 @@ public class ProdutoController extends MenuBase {
 
     @Override
     public void opcao(int opcao, MenuController menuController) {
-        if(opcao < 1){
+        if(opcao < 1 || opcao > ecommerceController.getProdutos().size()){
             if(opcao == 0){
                 menuController.setMenuAtual(menuController.getMenus().get(0));
                 return;
             } 
 
-            MenuPrincipalView.opcaoInvalida();
+            
         }
 
-        selecionaProduto(opcao);
+        try {
+            selecionaProduto(opcao);
+        } catch (IndexOutOfBoundsException e) {
+            MenuPrincipalView.opcaoInvalida();
+        }
     }
 
     public void selecionaProduto(int opcao){
-        Produto produto = ecommerceController.getProdutos().get(opcao - 1);
+        try {
+            Produto produto = ecommerceController.getProdutos().get(opcao - 1);
+    
+            List<ProdutoCarrinho> produtosCarrinho =  ecommerceController.getUsuarioLogado().getCarrinho().getProdutos();
+    
+            Carrinho carrinho = ecommerceController.getUsuarioLogado().getCarrinho();
+    
+            carrinho.adicionarProduto(produto, 1);
 
-        List<ProdutoCarrinho> produtosCarrinho =  ecommerceController.getUsuarioLogado().getCarrinho().getProdutos();
+            produto.removerQuantidadeEstoque(produto, 1);
+            
+            ProdutoView.selecionaProduto(produtosCarrinho, produto);
 
-        Carrinho carrinho = ecommerceController.getUsuarioLogado().getCarrinho();
-
-        carrinho.adicionarProduto(produto, 1);
-
-        ProdutoView.selecionaProduto(produtosCarrinho, produto);
+            Util.salvarLogProduto(produto.getNome(), produto.getDescricao(), produto.getPreco());
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao selecionar o produto: " + e.getMessage());
+        }
     }
 }

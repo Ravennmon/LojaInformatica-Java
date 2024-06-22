@@ -1,9 +1,14 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Usuario;
 import view.MenuPrincipalView;
+import util.Log;
+import util.Util;
 import view.UsuarioView;
 
 public class UsuarioController extends MenuBase {
@@ -69,18 +74,34 @@ public class UsuarioController extends MenuBase {
     }
 
     public void cadastrarUsuario() {
-        Usuario usuario = UsuarioView.cadastrarUsuario();
-
-        ecommerceController.adicionarUsuario(usuario);
+        try {
+            Usuario usuario = UsuarioView.cadastrarUsuario();
+            ecommerceController.adicionarUsuario(usuario);
+            Util.salvarLogUsuario(usuario);
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastrar usuário: " + e.getMessage());
+        }
     }
 
     public void login() {
-        Usuario usuario = UsuarioView.login(ecommerceController);
+        try {
+            Usuario usuario = UsuarioView.login(ecommerceController);
 
-        if (usuario != null) {
-            ecommerceController.setUsuarioLogado(usuario);
-        } else {
-            System.out.println("Email ou senha inválidos.");
+            if (usuario != null) {
+                ecommerceController.setUsuarioLogado(usuario);
+                Util.salvarLogLogin(usuario.getEmail());
+                System.out.println("\nLogin efetuado com sucesso.\n");
+            } else {
+                System.out.println("\nEmail ou senha inválidos.\n");
+
+                List<String> logs = new ArrayList<>();
+                logs.add("Tentativa de login falhou.");
+
+                Log.salvar(logs, "logLogin");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao realizar o login: " + e.getMessage());
         }
     }
     

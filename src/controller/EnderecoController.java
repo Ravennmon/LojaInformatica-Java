@@ -42,11 +42,19 @@ public class EnderecoController extends MenuBase {
     }
 
     public void cadastrarEndereco() {
-        Endereco endereco = EnderecoView.cadastrarEndereco();
+        try {
+            Endereco endereco = EnderecoView.cadastrarEndereco();
 
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        usuario.addEndereco(endereco);
-        usuario.getCarrinho().setEnderecoEntrega(endereco);
+            Usuario usuario = ecommerceController.getUsuarioLogado();
+            usuario.addEndereco(endereco);
+            usuario.getCarrinho().setEnderecoEntrega(endereco);
+
+            menuController.setMenuAtual(menuController.getMenus().get(6));
+            Util.salvarLogEndereco(endereco);
+
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastrar o endereço: " + e.getMessage());
+        }
     }
 
     public void visualizarEnderecos() {
@@ -55,29 +63,39 @@ public class EnderecoController extends MenuBase {
     }
 
     public void editarEndereco() {
-        visualizarEnderecos();
-        int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja editar:"));
-
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
-
-        Endereco enderecoAlterado = EnderecoView.cadastrarEndereco();
-        endereco.setCep(enderecoAlterado.getCep());
-        endereco.setBairro(enderecoAlterado.getBairro());   
-        endereco.setCidade(enderecoAlterado.getCidade());
-        endereco.setComplemento(enderecoAlterado.getComplemento());
-        endereco.setEstado(enderecoAlterado.getEstado());
-        endereco.setRua(enderecoAlterado.getRua());
-        endereco.setNumero(enderecoAlterado.getNumero());
-   
+        try {
+            visualizarEnderecos();
+            int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja editar:"));
+    
+            Usuario usuario = ecommerceController.getUsuarioLogado();
+            Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
+    
+            Endereco enderecoAlterado = EnderecoView.cadastrarEndereco();
+            endereco.setCep(enderecoAlterado.getCep());
+            endereco.setBairro(enderecoAlterado.getBairro());   
+            endereco.setCidade(enderecoAlterado.getCidade());
+            endereco.setComplemento(enderecoAlterado.getComplemento());
+            endereco.setEstado(enderecoAlterado.getEstado());
+            endereco.setRua(enderecoAlterado.getRua());
+            endereco.setNumero(enderecoAlterado.getNumero());
+            Util.salvarLogEnderecoEditado(endereco);
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao editar o endereço: " + e.getMessage());
+        }
     }
     
     public void excluirEndereco() {
-        visualizarEnderecos();
-        int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja excluir:"));
-
-        Usuario usuario = ecommerceController.getUsuarioLogado();
-        Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
-        usuario.getEnderecos().remove(endereco);
+        try {
+            visualizarEnderecos();
+            int id = Integer.parseInt(Util.nextLine("Informe o id do endereço que deseja excluir:"));
+    
+            Usuario usuario = ecommerceController.getUsuarioLogado();
+            Endereco endereco = usuario.getEnderecos().stream().filter(e -> e.getId() == id).findFirst().orElse(null);
+            usuario.getEnderecos().remove(endereco);
+            Util.salvarLogEnderecoExcluido(endereco);
+        } catch (Exception e) {
+            System.out.println("Erro ao excluir o endereço: " + e.getMessage());
+        }
     }
 }
