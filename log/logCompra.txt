@@ -5,6 +5,79 @@ Produtos:
 Nome: Mouse Razer
 Descricao: 3200 DPI
 Preco: 150.0
+Quantidade: 3
+Nome: Teclado Mecânico
+Descricao: Switch Cherry MX
+Preco: 300.0
+Quantidade: 1
+Endereco: 
+Rua: aRiadsa
+Numero: 123
+Complemento: 
+Bairro: FDasd
+Cidade: Curiti
+Estado: PR
+CEP: 80730360
+Forma de entrega: Entrega Normal
+data/hora: 2024-06-22T22:42:20.794812
+
+Compra confirmada:
+
+Usuario: Renan 
+Produtos: 
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 3
+Nome: Teclado Mecânico
+Descricao: Switch Cherry MX
+Preco: 300.0
+Quantidade: 2
+Endereco: 
+Rua: Rua kkkk
+Numero: 233
+Complemento: 
+Bairro: Batel
+Cidade: Curitiba
+Estado: PR
+CEP: 80730350
+Forma de entrega: Entrega Normal
+data/hora: 2024-06-22T22:40:35.144569
+
+Compra confirmada:
+
+Usuario: Renan Santos
+Produtos: 
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 3
+Nome: Teclado Mecânico
+Descricao: Switch Cherry MX
+Preco: 300.0
+Quantidade: 2
+Nome: Monitor 24"
+Descricao: 144Hz
+Preco: 1000.0
+Quantidade: 1
+Endereco: 
+Rua: Rua kkkkkk
+Numero: 233
+Complemento: 
+Bairro: Bigorrilho
+Cidade: Curitib
+Estado: PR
+CEP: 80730350
+Forma de entrega: Entrega Normal
+data/hora: 2024-06-22T22:36:56.460485
+
+Compra confirmada:
+
+Usuario: Renan Santos
+Produtos: 
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
 Quantidade: 2
 Nome: Teclado Mecânico
 Descricao: Switch Cherry MX

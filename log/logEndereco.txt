@@ -1,5 +1,60 @@
 Endereco selecionado:
 
+Endereco: aRiadsa
+Numero: 123
+Complemento: 
+Bairro: FDasd
+Cidade: Curiti
+Estado: PR
+CEP: 80730360
+data/hora: 2024-06-22T22:42:17.639359
+
+Endereco selecionado:
+
+Endereco: aRiadsa
+Numero: 123
+Complemento: 
+Bairro: FDasd
+Cidade: Curiti
+Estado: PR
+CEP: 80730360
+data/hora: 2024-06-22T22:41:53.745051
+
+Endereco selecionado:
+
+Endereco: Rua kkkk
+Numero: 233
+Complemento: 
+Bairro: Batel
+Cidade: Curitiba
+Estado: PR
+CEP: 80730350
+data/hora: 2024-06-22T22:40:31.977078
+
+Endereco selecionado:
+
+Endereco: Rua kkkkkk
+Numero: 233
+Complemento: 
+Bairro: Bigorrilho
+Cidade: Curitib
+Estado: PR
+CEP: 80730350
+data/hora: 2024-06-22T22:36:46.843713
+
+Endereco selecionado:
+
+Endereco: Rua kkkkkk
+Numero: 233
+Complemento: 
+Bairro: Bigorrilho
+Cidade: Curitib
+Estado: PR
+CEP: 80730350
+data/hora: 2024-06-22T22:36:04.846130
+
+Endereco selecionado:
+
 Endereco: Rua kkkkkk
 Numero: 1233
 Complemento: 

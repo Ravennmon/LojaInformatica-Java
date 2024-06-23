@@ -4,6 +4,126 @@ Nome: Teclado Mecânico
 Descricao: Switch Cherry MX
 Preco: 300.0
 Quantidade: 1
+data/hora: 2024-06-22T22:42:11.518129
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T22:42:09.322120
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T22:42:08.945531
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T22:42:08.550822
+
+Produto adiocionado ao carrinho:
+
+Nome: Teclado Mecânico
+Descricao: Switch Cherry MX
+Preco: 300.0
+Quantidade: 1
+data/hora: 2024-06-22T22:39:55.910282
+
+Produto adiocionado ao carrinho:
+
+Nome: Teclado Mecânico
+Descricao: Switch Cherry MX
+Preco: 300.0
+Quantidade: 1
+data/hora: 2024-06-22T22:39:55.210783
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T22:39:54.303207
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T22:39:53.960254
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T22:39:53.551800
+
+Produto adiocionado ao carrinho:
+
+Nome: Monitor 24"
+Descricao: 144Hz
+Preco: 1000.0
+Quantidade: 1
+data/hora: 2024-06-22T22:36:27.243125
+
+Produto adiocionado ao carrinho:
+
+Nome: Teclado Mecânico
+Descricao: Switch Cherry MX
+Preco: 300.0
+Quantidade: 1
+data/hora: 2024-06-22T22:36:26.666549
+
+Produto adiocionado ao carrinho:
+
+Nome: Teclado Mecânico
+Descricao: Switch Cherry MX
+Preco: 300.0
+Quantidade: 1
+data/hora: 2024-06-22T22:36:26.270562
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T22:36:25.618932
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T22:36:25.092427
+
+Produto adiocionado ao carrinho:
+
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 1
+data/hora: 2024-06-22T22:36:24.652438
+
+Produto adiocionado ao carrinho:
+
+Nome: Teclado Mecânico
+Descricao: Switch Cherry MX
+Preco: 300.0
+Quantidade: 1
 data/hora: 2024-06-22T22:25:39.528320
 
 Produto adiocionado ao carrinho:

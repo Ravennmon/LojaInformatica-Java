@@ -43,6 +43,7 @@ public class Carrinho {
         if (produtos.remove(produto)) {
             valorTotal -= produto.getPreco() * produto.getQuantidade();
         }
+
     }
 
     public int getId() {
@@ -58,7 +59,7 @@ public class Carrinho {
     }
 
     public float getValorTotal() {
-        return valorTotal;
+        return valorTotal + formaDeEntrega.getValor();
     }
 
     public MetodoDePagamento getMetodoDePagamento() {

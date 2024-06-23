@@ -1,5 +1,45 @@
 Cartao cadastrado:
 
+Numero: 344343
+Nome: Renan
+Data de Validade: 02/23
+CVV: 233
+data/hora: 2024-06-22T22:42:16.488170
+
+Cartao cadastrado:
+
+Numero: 344343
+Nome: Renan
+Data de Validade: 02/23
+CVV: 233
+data/hora: 2024-06-22T22:42:04.681951
+
+Cartao cadastrado:
+
+Numero: 44444
+Nome: Renan Santos
+Data de Validade: 02/23
+CVV: 233
+data/hora: 2024-06-22T22:40:13.832707
+
+Cartao cadastrado:
+
+Numero: 455555
+Nome: Renan Santos
+Data de Validade: 02/23
+CVV: 233
+data/hora: 2024-06-22T22:36:44.613280
+
+Cartao cadastrado:
+
+Numero: 455555
+Nome: Renan Santos
+Data de Validade: 02/23
+CVV: 233
+data/hora: 2024-06-22T22:36:17.888089
+
+Cartao cadastrado:
+
 Numero: 455555
 Nome: Renan Santos
 Data de Validade: 02/23

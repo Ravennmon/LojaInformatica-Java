@@ -1,6 +1,27 @@
 Usuario cadastrado:
 
 Nome: Renan Santos
+Telefone: 41 9942323
+Email: renan.santos@hipe.cc
+data/hora: 2024-06-22T22:41:29.737926
+
+Usuario cadastrado:
+
+Nome: Renan 
+Telefone: 4123131
+Email: renan.santos@hipe.cc
+data/hora: 2024-06-22T22:39:41.140571
+
+Usuario cadastrado:
+
+Nome: Renan Santos
+Telefone: 41 993232
+Email: renan.santos@hipe.cc
+data/hora: 2024-06-22T22:35:38.895580
+
+Usuario cadastrado:
+
+Nome: Renan Santos
 Telefone: 41 3123123-3232131
 Email: renan.santos@hipe.cc
 data/hora: 2024-06-22T22:32:24.136107

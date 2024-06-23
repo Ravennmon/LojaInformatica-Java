@@ -2,6 +2,24 @@ Forma de entrega selecionada:
 
 Forma: Entrega Normal
 Valor: 10.0
+data/hora: 2024-06-22T22:42:18.807453
+
+Forma de entrega selecionada:
+
+Forma: Entrega Normal
+Valor: 10.0
+data/hora: 2024-06-22T22:40:33.243191
+
+Forma de entrega selecionada:
+
+Forma: Entrega Normal
+Valor: 10.0
+data/hora: 2024-06-22T22:36:51.710551
+
+Forma de entrega selecionada:
+
+Forma: Entrega Normal
+Valor: 10.0
 data/hora: 2024-06-22T22:26:29.575780
 
 Forma de entrega selecionada:

@@ -23,7 +23,7 @@ public class Pedido {
     public Pedido(Usuario usuario, List<ProdutoCarrinho> produtos, MetodoDePagamento metodoDePagamento, FormaDeEntrega formaDeEntrega, Endereco enderecoEntrega) {
         this.id = GeraId.getProximoId(Pedido.class);
         this.usuario = Objects.requireNonNull(usuario, "Usuario não pode ser nulo");
-        this.produtos = CollectionFactory.createArrayList();
+        this.produtos = produtos;
         this.metodoDePagamento = Objects.requireNonNull(metodoDePagamento, "MetodoDePagamento não pode ser nulo");
         this.formaDeEntrega = Objects.requireNonNull(formaDeEntrega, "FormaDeEntrega não pode ser nulo");
         this.enderecoEntrega = Objects.requireNonNull(enderecoEntrega, "EnderecoEntrega não pode ser nulo");
@@ -34,19 +34,23 @@ public class Pedido {
 
     public void adicionarProduto(ProdutoCarrinho produto) {
         produtos.add(produto);
-        valorTotal += produto.getPreco();
+        valorTotal += produto.getPreco() * produto.getQuantidade();
     }
 
     public void removerProduto(ProdutoCarrinho produto) {
         if (produtos.remove(produto)) {
-            valorTotal -= produto.getPreco();
+            valorTotal -= (produto.getPreco() * produto.getQuantidade());
         }
     }
 
     public float calculaValorTotal() {
-        return produtos.stream()
-                .map(ProdutoCarrinho::getPreco)
-                .reduce(0.0f, Float::sum);
+        float total = 0;
+
+        for (ProdutoCarrinho produto : produtos) {
+            total += produto.getPreco() * produto.getQuantidade();
+        }
+
+        return total + formaDeEntrega.getValor();
     }
 
     public void processarPedido() {
