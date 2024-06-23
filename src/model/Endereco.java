@@ -11,6 +11,7 @@ public class Endereco {
     private String cidade;
     private String estado;
     private String cep;
+    private int usuarioId;
 
     public Endereco(String cep, String estado, String cidade, String bairro, String rua, String numero, String complemento) {
         this.id = GeraId.getProximoId(Endereco.class);
@@ -98,13 +99,18 @@ public class Endereco {
         this.cep = cep;
     }
 
+    public int getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
     @Override
     public String toString() {
         return "Endereco [id=" + id + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento
-                + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", cep=" + cep + "]";
+                + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", cep=" + cep + ", usuarioId="
+                + usuarioId + "]";
     }
-
-    
-
-
 }

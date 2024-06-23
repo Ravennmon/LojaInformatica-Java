@@ -10,6 +10,7 @@ public class UsuarioCartao{
     private String cvv;
     private boolean credito;
     private boolean debito;
+    private int usuarioId;
 
     public UsuarioCartao(String titular, String numero, String validade, String cvv, boolean credito, boolean debito) {
         this.id = GeraId.getProximoId(UsuarioCartao.class);
@@ -85,9 +86,19 @@ public class UsuarioCartao{
         this.debito = debito;
     }
 
+    public int getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
     @Override
     public String toString() {
-        return "Usuario Cartao [Id= " + id + ", Titular= " + titular + ", Numero= " + numero + ", Validade= " + validade
-                + ", Cvv= " + cvv + ", Credito= " + credito + ", Debito= " + debito + "]";
+        return "UsuarioCartao [id=" + id + ", titular=" + titular + ", numero=" + numero + ", validade=" + validade
+                + ", cvv=" + cvv + ", credito=" + credito + ", debito=" + debito + ", usuarioId=" + usuarioId + "]";
     }
+
+    
 }

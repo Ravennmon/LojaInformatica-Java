@@ -29,10 +29,12 @@ public class Usuario {
     }
 
     public void addEndereco(Endereco endereco){
+        endereco.setUsuarioId(this.id);
         this.enderecos.add(endereco);
     }
 
     public void addCartao(UsuarioCartao cartao){
+        cartao.setUsuarioId(this.id);
         this.cartoes.add(cartao);
     }
     
