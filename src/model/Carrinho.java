@@ -1,45 +1,47 @@
+
 package model;
 
 import java.util.List;
+import java.util.Objects;
 
 import model.pagamento.MetodoDePagamento;
 import util.GeraId;
 import util.factories.CollectionFactory;
 
 public class Carrinho {
-    private int id;
+    private final int id;
     private Usuario usuario;
     private List<ProdutoCarrinho> produtos;
+    private float valorTotal;
     private MetodoDePagamento metodoDePagamento;
     private FormaDeEntrega formaDeEntrega;
     private Endereco enderecoEntrega;
-    private float valorTotal;
     private UsuarioCartao cartao;
 
     public Carrinho(Usuario usuario) {
         this.id = GeraId.getProximoId(Carrinho.class);
-        this.usuario = usuario;
+        this.usuario = Objects.requireNonNull(usuario, "Usuario cannot be null");
         this.produtos = CollectionFactory.createArrayList();
     }
 
     public void adicionarProduto(Produto produto, int quantidade) {
-        ProdutoCarrinho produtoCarrinho = produtos.stream().filter(p -> p.getProduto().getId() == produto.getId()).findFirst().orElse(null);
+        ProdutoCarrinho produtoCarrinho = produtos.stream()
+                .filter(p -> p.getProduto().getId() == produto.getId())
+                .findFirst()
+                .orElse(null);
 
         if (produtoCarrinho != null) {
             produtoCarrinho.adicionarQuantidade(quantidade);
-            valorTotal += produto.getPreco() * quantidade;
         } else {
-            ProdutoCarrinho novoProdutoCarrinho = new ProdutoCarrinho(produto, produto.getPreco(), quantidade);
-
-            produtos.add(novoProdutoCarrinho);
-            valorTotal += produto.getPreco();
+            produtoCarrinho = new ProdutoCarrinho(produto, produto.getPreco(), quantidade);
+            produtos.add(produtoCarrinho);
         }
+        valorTotal += produto.getPreco() * quantidade;
     }
 
     public void removerProduto(ProdutoCarrinho produto) {
-        if (produtos != null) {
-            produtos.remove(produto);
-            valorTotal -= produto.getPreco();
+        if (produtos.remove(produto)) {
+            valorTotal -= produto.getPreco() * produto.getQuantidade();
         }
     }
 
@@ -47,34 +49,18 @@ public class Carrinho {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public Usuario getUsuario() {
         return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     public List<ProdutoCarrinho> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(List<ProdutoCarrinho> produtos) {
-        this.produtos = produtos;
-    }
-
     public float getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(float valorTotal) {
-        this.valorTotal = valorTotal;
-    }
-    
     public MetodoDePagamento getMetodoDePagamento() {
         return metodoDePagamento;
     }
@@ -109,8 +95,9 @@ public class Carrinho {
 
     @Override
     public String toString() {
-        return "Carrinho [id= " + id + ", Usuario= " + usuario + ", Produtos= " + produtos + ", Metodo de pagamento= "
-                + metodoDePagamento + ", Forma de entrega= " + formaDeEntrega + ", Endereco entrega= " + enderecoEntrega
-                + ", Valor total= " + valorTotal + ", Cartao= " + cartao + "]";
-    }      
+        return "Carrinho [id=" + id + ", usuario=" + usuario + ", produtos=" + produtos + ", valorTotal=" + valorTotal
+                + ", metodoDePagamento=" + metodoDePagamento + ", formaDeEntrega=" + formaDeEntrega
+                + ", enderecoEntrega=" + enderecoEntrega + ", cartao=" + cartao + "]";
+    }
+
 }

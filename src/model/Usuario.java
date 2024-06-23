@@ -6,7 +6,7 @@ import util.GeraId;
 import util.factories.CollectionFactory;
 
 public class Usuario {
-    private int id;
+    private final int id;
     private String nome;
     private String email;
     private String senha;
@@ -38,10 +38,6 @@ public class Usuario {
     
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNome() {

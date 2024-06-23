@@ -3,7 +3,7 @@ package model;
 import util.GeraId;
 
 public class Produto {
-    private int id;
+    private final int id;
     private String nome;
     private String descricao;
     private float preco;
@@ -29,10 +29,6 @@ public class Produto {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNome() {

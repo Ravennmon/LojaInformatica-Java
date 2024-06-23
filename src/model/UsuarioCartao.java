@@ -3,7 +3,7 @@ package model;
 import util.GeraId;
 
 public class UsuarioCartao{
-    private int id;
+    private final int id;
     private String titular;
     private String numero;
     private String validade;
@@ -24,11 +24,7 @@ public class UsuarioCartao{
     public int getId() {
         return id;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    
     public String getTitular() {
         return titular;
     }

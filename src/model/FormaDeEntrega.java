@@ -3,7 +3,7 @@ package model;
 import util.GeraId;
 
 public class FormaDeEntrega {
-    private int id;
+    private final int id;
     private String nome;
     private float valor;
 
@@ -15,10 +15,6 @@ public class FormaDeEntrega {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNome() {

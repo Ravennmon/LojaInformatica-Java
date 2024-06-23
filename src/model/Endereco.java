@@ -3,7 +3,7 @@ package model;
 import util.GeraId;
 
 public class Endereco {
-    private int id;
+    private final int id;
     private String rua;
     private String numero;
     private String complemento;
@@ -29,10 +29,6 @@ public class Endereco {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getRua() {

@@ -3,7 +3,7 @@ package model;
 import util.GeraId;
 
 public class ProdutoCarrinho {
-    private int id;
+    private final int id;
     private Produto produto;
     private float preco;
     private int quantidade;
@@ -19,12 +19,6 @@ public class ProdutoCarrinho {
     public int getId() {
         return id;
     }
-
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
 
     public Produto getProduto() {
         return produto;
