@@ -1,5 +1,16 @@
 Endereco selecionado:
 
+Endereco: Rua kkkkkk
+Numero: 1233
+Complemento: 
+Bairro: Bigorrilho
+Cidade: Curitiba
+Estado: PR
+CEP: 80730350
+data/hora: 2024-06-22T22:32:50.386174
+
+Endereco selecionado:
+
 Endereco: Rua kkkkk
 Numero: 1343
 Complemento: 
