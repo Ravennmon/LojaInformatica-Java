@@ -1,8 +1,8 @@
 package controller;
 
-import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.UsuarioCartao;
+import util.Serializador;
 import util.Util;
 import util.enums.MenuType;
 import model.Ecommerce;
@@ -13,15 +13,15 @@ import view.UsuarioCartaoView;
 
 import java.util.NoSuchElementException;
 
-public class UsuarioCartaoController extends MenuBase {
+public class UsuarioCartaoController extends BaseController {
     private static final int OPCAO_CADASTRAR_USUARIO_CARTAO = 1;
     private static final int OPCAO_VISUALIZAR_USUARIO_CARTAO = 2;
     private static final int OPCAO_EDITAR_USUARIO_CARTAO = 3;
     private static final int OPCAO_EXCLUIR_USUARIO_CARTAO = 4;
     private static final int OPCAO_MENU_PRINCIPAL = 0;
 
-    public UsuarioCartaoController(MenuController menuController, Ecommerce ecommerce) {
-        super(menuController, ecommerce);
+    public UsuarioCartaoController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        super(menuController, ecommerce, serializador);
     }
 
     @Override
@@ -59,6 +59,7 @@ public class UsuarioCartaoController extends MenuBase {
             Usuario usuario = ecommerce.getUsuarioLogado();
             usuario.addCartao(cartao);
             Util.salvarLogCartaoCadastro(cartao);
+            serializarObjeto(usuario, usuario.getNome() + "_Cartao_" + cartao.getId());
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao cadastrar o cartão: " + e.getMessage());
         }
@@ -86,6 +87,7 @@ public class UsuarioCartaoController extends MenuBase {
             atualizarCartao(cartao, cartaoAlterado);
 
             Util.salvarLogCartaoEditado(cartao);
+            serializarObjeto(cartaoAlterado, usuario.getNome() + "_Cartao_" + cartaoAlterado.getId());
         } catch (NoSuchElementException e) {
             ErroView.mostrarErro(e.getMessage());
         } catch (Exception e) {
@@ -104,6 +106,7 @@ public class UsuarioCartaoController extends MenuBase {
 
             usuario.getCartoes().remove(cartao);
             Util.salvarLogCartaoExcluido(cartao);
+            serializarObjeto(cartao, usuario.getNome() + "_Cartao_" + cartao.getId());
         } catch (NoSuchElementException e) {
             ErroView.mostrarErro(e.getMessage());
         } catch (Exception e) {

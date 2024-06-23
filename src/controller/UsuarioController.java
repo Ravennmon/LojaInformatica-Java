@@ -2,19 +2,19 @@ package controller;
 
 import java.util.List;
 
-import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Ecommerce;
 import model.Usuario;
 import view.ErroView;
 import view.MenuPrincipalView;
 import util.Log;
+import util.Serializador;
 import util.Util;
 import util.enums.MenuType;
 import util.factories.CollectionFactory;
 import view.UsuarioView;
 
-public class UsuarioController extends MenuBase {
+public class UsuarioController extends BaseController {
     private static final int OPCAO_LOGADO_ENDERECO = 1;
     private static final int OPCAO_LOGADO_USUARIO_CARTAO = 2;
     private static final int OPCAO_LOGADO_PEDIDO = 3;
@@ -25,8 +25,8 @@ public class UsuarioController extends MenuBase {
     private static final int OPCAO_MENU_PRINCIPAL = 0;
 
     
-    public UsuarioController(MenuController menuController, Ecommerce ecommerce) {
-        super(menuController, ecommerce);
+    public UsuarioController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        super(menuController, ecommerce, serializador);
     }
 
     @Override
@@ -91,6 +91,7 @@ public class UsuarioController extends MenuBase {
             Usuario usuario = UsuarioView.cadastrarUsuario();
             ecommerce.adicionarUsuario(usuario);
             Util.salvarLogUsuario(usuario);
+            serializarObjeto(usuario, usuario.getNome() + "_Usuario_" + usuario.getId());
             
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao cadastrar usuário: " + e.getMessage());

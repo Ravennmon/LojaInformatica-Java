@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import util.Util;
+import view.ErroView;
 
 public class MenuController {
     private IMenu menuAtual;
@@ -41,7 +42,7 @@ public class MenuController {
             int opcao = scanner.nextInt();
             menuAtual.opcao(opcao, this);
         } catch (InputMismatchException e) {
-            System.out.println("Opção inválida. Por favor, insira um número.");
+            ErroView.mostrarErro("Opção inválida. Por favor, insira um número.");
             scanner.nextLine(); 
         }
     }

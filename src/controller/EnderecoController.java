@@ -1,25 +1,25 @@
 package controller;
 
-import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Ecommerce;
 import model.Endereco;
 import model.Usuario;
+import util.Serializador;
 import util.Util;
 import util.enums.MenuType;
 import view.EnderecoView;
 import view.ErroView;
 import view.MenuPrincipalView;
 
-public class EnderecoController extends MenuBase {
+public class EnderecoController extends BaseController {
     private static final int CADASTRAR_ENDERECO = 1;
     private static final int VISUALIZAR_ENDERECOS = 2;
     private static final int EDITAR_ENDERECO = 3;
     private static final int EXCLUIR_ENDERECO = 4;
     private static final int MENU_PRINCIPAL = 0;
 
-    public EnderecoController(MenuController menuController, Ecommerce ecommerce) {
-        super(menuController, ecommerce);
+    public EnderecoController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        super(menuController, ecommerce, serializador);
     }
 
     @Override
@@ -58,6 +58,7 @@ public class EnderecoController extends MenuBase {
             usuario.getCarrinho().setEnderecoEntrega(endereco);
             menuNavegacao(menuController, MenuType.USUARIO_CONTROLLER);
             Util.salvarLogEndereco(endereco);
+            serializarObjeto(usuario, usuario.getNome() + "_Endereco_" + endereco.getId());
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao cadastrar o endereço: " + e.getMessage());
         }
@@ -81,6 +82,7 @@ public class EnderecoController extends MenuBase {
             Endereco enderecoAlterado = EnderecoView.cadastrarEndereco();
             atualizarEndereco(endereco, enderecoAlterado);
             Util.salvarLogEnderecoEditado(endereco);
+            serializarObjeto(enderecoAlterado, usuario.getNome() + "_Endereco_" + endereco.getId());
         } catch (IllegalArgumentException e) {
             ErroView.mostrarErro("Erro ao editar o endereço: " + e.getMessage());
         } catch (Exception e) {
@@ -100,6 +102,7 @@ public class EnderecoController extends MenuBase {
 
             usuario.getEnderecos().remove(endereco);
             Util.salvarLogEnderecoExcluido(endereco);
+            serializarObjeto(endereco, usuario.getNome() + "_Endereco_" + endereco.getId());
         } catch (IllegalArgumentException e) {
             ErroView.mostrarErro("Erro ao excluir o endereço: " + e.getMessage());
         } catch (Exception e) {

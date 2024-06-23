@@ -1,19 +1,20 @@
 package controller.checkout;
 
-import controller.menu.MenuBase;
+import controller.BaseController;
 import controller.menu.MenuController;
 import model.Ecommerce;
 import model.Usuario;
 import model.pagamento.MetodoDePagamento;
 import view.ErroView;
+import util.Serializador;
 import util.Util;
 import util.enums.MenuType;
 import view.MenuPrincipalView;
 import view.checkout.MetodoDePagamentoView;
 
-public class MetodoDePagamentoController extends MenuBase {
-    public MetodoDePagamentoController(MenuController menuController, Ecommerce ecommerce) {
-        super(menuController, ecommerce);
+public class MetodoDePagamentoController extends BaseController {
+    public MetodoDePagamentoController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        super(menuController, ecommerce, serializador);
     }
 
     @Override

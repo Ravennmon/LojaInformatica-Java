@@ -1,3 +1,4 @@
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -5,6 +6,7 @@ import java.util.List;
 import controller.menu.*;
 import model.*;
 import model.pagamento.MetodoDePagamento;
+import util.Serializador;
 import util.enums.MenuType;
 import util.factories.*;
 import util.factories.factoriesController.MenuControllerFactory;
@@ -14,31 +16,32 @@ public class App {
     public static void main(String[] args) {
         Ecommerce ecommerce = MenuControllerFactory.criarEcommerce();
         MenuController menuController = MenuControllerFactory.criarMenuController();
+        Serializador serializador = new Serializador();
         
-        bootEcommerce(ecommerce, menuController);
+        bootEcommerce(ecommerce, menuController, serializador);
         
         new ViewInicial().mostrarMenu(menuController);
     }
 
-    private static void bootEcommerce(Ecommerce ecommerce, MenuController menuController) {
+    private static void bootEcommerce(Ecommerce ecommerce, MenuController menuController, Serializador serializador) {
         addProdutosInformatica(ecommerce);
         addMetodosDePagamento(ecommerce);
         addFormasDeEntrega(ecommerce);
                 
         List<IMenu> menus = new ArrayList<>(Arrays.asList(
-            MenuControllerFactory.criarMenuPrincipal(menuController, ecommerce),
-            MenuControllerFactory.criarUsuarioController(menuController, ecommerce),
-            MenuControllerFactory.criarUsuarioContaController(menuController, ecommerce),
-            MenuControllerFactory.criarEnderecoController(menuController, ecommerce),
-            MenuControllerFactory.criarUsuarioCartaoController(menuController, ecommerce),
-            MenuControllerFactory.criarPedidoController(menuController, ecommerce),
-            MenuControllerFactory.criarProdutoController(menuController, ecommerce),
-            MenuControllerFactory.criarCarrinhoController(menuController, ecommerce),
-            MenuControllerFactory.criarCheckoutController(menuController, ecommerce),
-            MenuControllerFactory.criarMetodoDePagamentoController(menuController, ecommerce),
-            MenuControllerFactory.criarCartaoCheckoutController(menuController, ecommerce),
-            MenuControllerFactory.criarEnderecoCheckoutController(menuController, ecommerce),
-            MenuControllerFactory.criarFormaDeEntregaController(menuController, ecommerce)
+            MenuControllerFactory.criarMenuPrincipal(menuController, ecommerce, serializador),
+            MenuControllerFactory.criarUsuarioController(menuController, ecommerce, serializador),
+            MenuControllerFactory.criarUsuarioContaController(menuController, ecommerce, serializador),
+            MenuControllerFactory.criarEnderecoController(menuController, ecommerce, serializador),
+            MenuControllerFactory.criarUsuarioCartaoController(menuController, ecommerce, serializador),
+            MenuControllerFactory.criarPedidoController(menuController, ecommerce, serializador),
+            MenuControllerFactory.criarProdutoController(menuController, ecommerce, serializador),
+            MenuControllerFactory.criarCarrinhoController(menuController, ecommerce, serializador),
+            MenuControllerFactory.criarCheckoutController(menuController, ecommerce, serializador),
+            MenuControllerFactory.criarMetodoDePagamentoController(menuController, ecommerce, serializador),
+            MenuControllerFactory.criarCartaoCheckoutController(menuController, ecommerce, serializador),
+            MenuControllerFactory.criarEnderecoCheckoutController(menuController, ecommerce, serializador),
+            MenuControllerFactory.criarFormaDeEntregaController(menuController, ecommerce, serializador)
         ));
 
         menuController.setMenus(menus);

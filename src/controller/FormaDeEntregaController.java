@@ -1,20 +1,20 @@
 package controller;
 
-import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Ecommerce;
 import model.FormaDeEntrega;
+import util.Serializador;
 import util.Util;
 import util.enums.MenuType;
 import view.ErroView;
 import view.FormaDeEntregaView;
 import view.MenuPrincipalView;
 
-public class FormaDeEntregaController extends MenuBase {
+public class FormaDeEntregaController extends BaseController {
     private static final int MENU_PRINCIPAL = 0;
 
-    public FormaDeEntregaController(MenuController menuController, Ecommerce ecommerce) {
-        super(menuController, ecommerce);
+    public FormaDeEntregaController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        super(menuController, ecommerce, serializador);
     }
 
     @Override

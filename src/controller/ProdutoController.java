@@ -2,7 +2,6 @@ package controller;
 
 import java.util.List;
 
-import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Carrinho;
 import model.Ecommerce;
@@ -10,13 +9,14 @@ import model.Produto;
 import model.ProdutoCarrinho;
 import view.ErroView;
 import view.MenuPrincipalView;
+import util.Serializador;
 import util.Util;
 import util.enums.MenuType;
 import view.ProdutoView;
 
-public class ProdutoController extends MenuBase {
-    public ProdutoController(MenuController menuController, Ecommerce ecommerce) {
-        super(menuController, ecommerce);
+public class ProdutoController extends BaseController {
+    public ProdutoController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        super(menuController, ecommerce, serializador);
     }
 
     @Override
@@ -48,6 +48,7 @@ public class ProdutoController extends MenuBase {
             produto.removerQuantidadeEstoque(produto, 1);
             ProdutoView.selecionaProduto(produtosCarrinho, produto);
             Util.salvarLogProduto(produto.getNome(), produto.getDescricao(), produto.getPreco());
+            serializarObjeto(carrinho, "Carrinho_" + carrinho.getId());
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao selecionar o produto: " + e.getMessage());
         }

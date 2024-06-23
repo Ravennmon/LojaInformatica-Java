@@ -4,6 +4,7 @@ import controller.*;
 import controller.checkout.*;
 import controller.menu.MenuController;
 import model.Ecommerce;
+import util.Serializador;
 
 public class MenuControllerFactory {
 
@@ -15,55 +16,55 @@ public class MenuControllerFactory {
         return new MenuController();
     }
 
-    public static MenuPrincipal criarMenuPrincipal(MenuController menuController, Ecommerce ecommerce) {
-        return new MenuPrincipal(menuController, ecommerce);
+    public static MenuPrincipal criarMenuPrincipal(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        return new MenuPrincipal(menuController, ecommerce, serializador);
     }
 
-    public static UsuarioController criarUsuarioController(MenuController menuController, Ecommerce ecommerce) {
-        return new UsuarioController(menuController, ecommerce);
+    public static UsuarioController criarUsuarioController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        return new UsuarioController(menuController, ecommerce, serializador);
     }
 
-    public static CarrinhoController criarCarrinhoController(MenuController menuController, Ecommerce ecommerce) {
-        return new CarrinhoController(menuController, ecommerce);
+    public static CarrinhoController criarCarrinhoController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        return new CarrinhoController(menuController, ecommerce, serializador);
     }
 
-    public static ProdutoController criarProdutoController(MenuController menuController, Ecommerce ecommerce) {
-        return new ProdutoController(menuController, ecommerce);
+    public static ProdutoController criarProdutoController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        return new ProdutoController(menuController, ecommerce, serializador);
     }
 
-    public static CheckoutController criarCheckoutController(MenuController menuController, Ecommerce ecommerce) {
-        return new CheckoutController(menuController, ecommerce);
+    public static CheckoutController criarCheckoutController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        return new CheckoutController(menuController, ecommerce, serializador);
     }
 
-    public static MetodoDePagamentoController criarMetodoDePagamentoController(MenuController menuController, Ecommerce ecommerce) {
-        return new MetodoDePagamentoController(menuController, ecommerce);
+    public static MetodoDePagamentoController criarMetodoDePagamentoController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        return new MetodoDePagamentoController(menuController, ecommerce, serializador);
     }
 
-    public static FormaDeEntregaController criarFormaDeEntregaController(MenuController menuController, Ecommerce ecommerce) {
-        return new FormaDeEntregaController(menuController, ecommerce);
+    public static FormaDeEntregaController criarFormaDeEntregaController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        return new FormaDeEntregaController(menuController, ecommerce, serializador);
     }
 
-    public static EnderecoController criarEnderecoController(MenuController menuController, Ecommerce ecommerce) {
-        return new EnderecoController(menuController, ecommerce);
+    public static EnderecoController criarEnderecoController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        return new EnderecoController(menuController, ecommerce, serializador);
     }
 
-    public static PedidoController criarPedidoController(MenuController menuController, Ecommerce ecommerce) {
-        return new PedidoController(menuController, ecommerce);
+    public static PedidoController criarPedidoController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        return new PedidoController(menuController, ecommerce, serializador);
     }
 
-    public static UsuarioCartaoController criarUsuarioCartaoController(MenuController menuController, Ecommerce ecommerce) {
-        return new UsuarioCartaoController(menuController, ecommerce);
+    public static UsuarioCartaoController criarUsuarioCartaoController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        return new UsuarioCartaoController(menuController, ecommerce, serializador);
     }
 
-    public static EnderecoCheckoutController criarEnderecoCheckoutController(MenuController menuController, Ecommerce ecommerce) {
-        return new EnderecoCheckoutController(menuController, ecommerce);
+    public static EnderecoCheckoutController criarEnderecoCheckoutController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        return new EnderecoCheckoutController(menuController, ecommerce, serializador);
     }
 
-    public static CartaoCheckoutController criarCartaoCheckoutController(MenuController menuController, Ecommerce ecommerce) {
-        return new CartaoCheckoutController(menuController, ecommerce);
+    public static CartaoCheckoutController criarCartaoCheckoutController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        return new CartaoCheckoutController(menuController, ecommerce, serializador);
     }
 
-    public static UsuarioContaController criarUsuarioContaController(MenuController menuController, Ecommerce ecommerce) {
-        return new UsuarioContaController(menuController, ecommerce);
+    public static UsuarioContaController criarUsuarioContaController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        return new UsuarioContaController(menuController, ecommerce, serializador);
     }
 }

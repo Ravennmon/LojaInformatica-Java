@@ -1,10 +1,11 @@
 package controller.checkout;
 
-import controller.menu.MenuBase;
+import controller.BaseController;
 import controller.menu.MenuController;
 import model.Ecommerce;
 import model.Endereco;
 import model.Usuario;
+import util.Serializador;
 import util.Util;
 import util.enums.MenuType;
 import view.EnderecoView;
@@ -12,13 +13,13 @@ import view.ErroView;
 import view.MenuPrincipalView;
 import view.checkout.EnderecoCheckoutView;
 
-public class EnderecoCheckoutController extends MenuBase {
+public class EnderecoCheckoutController extends BaseController {
     private static final int OPCAO_CADASTRAR_ENDERECO = 1;
     private static final int OPCAO_SELECIONAR_ENDERECO = 2;
     private static final int OPCAO_MENU_PRINCIPAL = 0;
 
-    public EnderecoCheckoutController(MenuController menuController, Ecommerce ecommerce) {
-        super(menuController, ecommerce);
+    public EnderecoCheckoutController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        super(menuController, ecommerce, serializador);
     }
 
     @Override
@@ -61,7 +62,9 @@ public class EnderecoCheckoutController extends MenuBase {
 
             usuario.addEndereco(endereco);
             usuario.getCarrinho().setEnderecoEntrega(endereco);
+
             Util.salvarLogEndereco(endereco);
+            serializarObjeto(endereco, usuario.getNome() + "_Endereco_" + endereco.getId());
 
             avancaCheckout();
         } catch (Exception e) {
@@ -83,6 +86,7 @@ public class EnderecoCheckoutController extends MenuBase {
 
             usuario.getCarrinho().setEnderecoEntrega(endereco);
             Util.salvarLogEndereco(endereco);
+            serializarObjeto(endereco, usuario.getNome() + "_Endereco_" + endereco.getId());
 
             avancaCheckout();
         } catch (IllegalArgumentException e) {

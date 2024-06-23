@@ -1,5 +1,12 @@
 Usuario cadastrado:
 
+Nome: Renan Santos
+Telefone: 41 99542-6237
+Email: renan.santos@hipe.cc
+data/hora: 2024-06-22T20:28:10.645352
+
+Usuario cadastrado:
+
 Nome: teste
 Telefone: 123465
 Email: onotrato@oasid.com

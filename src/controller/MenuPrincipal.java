@@ -1,19 +1,19 @@
 package controller;
 
-import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Ecommerce;
+import util.Serializador;
 import util.enums.MenuType;
 import view.MenuPrincipalView;
 
-public class MenuPrincipal extends MenuBase {
+public class MenuPrincipal extends BaseController {
     private static final int OPCAO_USUARIO = 1;
     private static final int OPCAO_PRODUTO = 2;
     private static final int OPCAO_CARRINHO = 3;
     private static final int OPCAO_SAIR = 0;
 
-    public MenuPrincipal(MenuController menuController, Ecommerce ecommerce) {
-        super(menuController, ecommerce);
+    public MenuPrincipal(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        super(menuController, ecommerce, serializador);
     }
 
     @Override

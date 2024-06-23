@@ -1,8 +1,9 @@
 package controller.checkout;
 
-import controller.menu.MenuBase;
+import controller.BaseController;
 import controller.menu.MenuController;
 import model.UsuarioCartao;
+import util.Serializador;
 import util.Util;
 import util.enums.MenuType;
 import model.Ecommerce;
@@ -12,13 +13,13 @@ import view.ErroView;
 import view.MenuPrincipalView;
 import view.UsuarioCartaoView;
 
-public class CartaoCheckoutController extends MenuBase {
+public class CartaoCheckoutController extends BaseController {
     private static final int OPCAO_CADASTRAR_CARTAO = 1;
     private static final int OPCAO_SELECIONAR_CARTAO = 2;
     private static final int OPCAO_MENU_PRINCIPAL = 0;
 
-    public CartaoCheckoutController(MenuController menuController, Ecommerce ecommerce) {
-        super(menuController, ecommerce);
+    public CartaoCheckoutController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        super(menuController, ecommerce, serializador);
     }
 
     @Override
@@ -47,11 +48,14 @@ public class CartaoCheckoutController extends MenuBase {
         try {
             UsuarioCartao cartao = UsuarioCartaoView.cadastrarUsuarioCartao();
 
+
+
             Usuario usuario = ecommerce.getUsuarioLogado();
             usuario.addCartao(cartao);
             setCarrinhoCartao(usuario, cartao);
             UsuarioCartaoView.cartaoSucesso();
             Util.salvarLogCartaoCadastro(cartao);
+            serializarObjeto(cartao, usuario.getNome() + "_Cartao_" + cartao.getId());
 
         } catch (Exception e) {
             ErroView.mostrarErro("\nErro ao cadastrar cartão: " + e.getMessage() + "\n");

@@ -1,24 +1,25 @@
 package controller.checkout;
 
-import controller.menu.MenuBase;
+import controller.BaseController;
 import controller.menu.MenuController;
 import model.Ecommerce;
 import model.Produto;
 import model.ProdutoCarrinho;
+import util.Serializador;
 import util.Util;
 import util.enums.MenuType;
 import view.MenuPrincipalView;
 import view.checkout.CarrinhoView;
 
-public class CarrinhoController extends MenuBase {
+public class CarrinhoController extends BaseController {
     private static final int OPCAO_VISUALIZAR_PRODUTOS = 1;
     private static final int OPCAO_ADICIONAR_PRODUTO = 2;
     private static final int OPCAO_REMOVER_PRODUTO = 3;
     private static final int OPCAO_METODO_PAGAMENTO = 4;
     private static final int OPCAO_MENU_PRINCIPAL = 0;
 
-    public CarrinhoController(MenuController menuController, Ecommerce ecommerce) {
-        super(menuController, ecommerce);
+    public CarrinhoController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        super(menuController, ecommerce, serializador);
     }
 
     @Override
@@ -75,6 +76,8 @@ public class CarrinhoController extends MenuBase {
             produto.removerQuantidadeEstoque(produto, quantidade);
 
             Util.salvarLogProduto(produto.getNome(), produto.getDescricao(), produto.getPreco(), quantidade);
+            serializarObjeto(produto, nome);
+
         } catch (IllegalArgumentException e) {
             CarrinhoView.erro("\nProduto não encontrado: " + e.getMessage() + "\n");
         } catch (Exception e) {
@@ -101,6 +104,7 @@ public class CarrinhoController extends MenuBase {
             ProdutoCarrinho produtoCarrinho = getProdutoCarrinhoByName(nome);
 
             Util.salvarLogProdutoRemovido(produtoCarrinho.getProduto().getNome(), produtoCarrinho.getProduto().getDescricao(), produtoCarrinho.getProduto().getPreco());
+            serializarObjeto(produtoCarrinho, nome);
 
             try {
                 ecommerce.getUsuarioLogado().getCarrinho().removerProduto(produtoCarrinho);

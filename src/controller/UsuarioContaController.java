@@ -1,24 +1,24 @@
 package controller;
 
-import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Ecommerce;
 import model.Usuario;
 import view.ErroView;
 import view.MenuPrincipalView;
+import util.Serializador;
 import util.Util;
 import util.enums.MenuType;
 import view.UsuarioContaView;
 import view.UsuarioView;
 
-public class UsuarioContaController extends MenuBase {
+public class UsuarioContaController extends BaseController {
     private static final int OPCAO_VISUALIZAR_CONTA = 1;
     private static final int OPCAO_EDITAR_CONTA = 2;
     private static final int OPCAO_EXCLUIR_CONTA = 3;
     private static final int OPCAO_MENU_PRINCIPAL = 0;
 
-    public UsuarioContaController(MenuController menuController, Ecommerce ecommerce) {
-        super(menuController, ecommerce);
+    public UsuarioContaController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        super(menuController, ecommerce, serializador);
     }
 
     @Override
@@ -62,7 +62,9 @@ public class UsuarioContaController extends MenuBase {
             Usuario usuario = getUsuarioLogado();
     
             atualizarDadosUsuario(usuario, usuarioAlterado);
+            serializarObjeto(usuario, usuario.getNome() + "_Usuario_" + usuario.getId());
             Util.salvarLogEditarConta(usuario);
+            serializarObjeto(usuario, usuario.getNome() + "_Usuario_" + usuario.getId());
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao editar a conta: " + e.getMessage());
         }
@@ -76,6 +78,7 @@ public class UsuarioContaController extends MenuBase {
     
             UsuarioContaView.excluirConta();
             Util.salvarLogExcluirConta(usuario);
+            serializarObjeto(usuario, usuario.getNome() + "_Usuario_" + usuario.getId());
 
             menuNavegacao(menuController, MenuType.MENU_PRINCIPAL);
         } catch (Exception e) {

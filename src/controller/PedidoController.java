@@ -1,10 +1,10 @@
 package controller;
 
-import controller.menu.MenuBase;
 import controller.menu.MenuController;
 import model.Ecommerce;
 import model.Pedido;
 import model.Usuario;
+import util.Serializador;
 import util.Util;
 import util.enums.MenuType;
 import view.ErroView;
@@ -13,10 +13,10 @@ import view.PedidoView;
 
 import java.util.NoSuchElementException;
 
-public class PedidoController extends MenuBase {
+public class PedidoController extends BaseController {
 
-    public PedidoController(MenuController menuController, Ecommerce ecommerce) {
-        super(menuController, ecommerce);
+    public PedidoController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        super(menuController, ecommerce, serializador);
     }
 
     @Override
@@ -76,6 +76,7 @@ public class PedidoController extends MenuBase {
 
             pedido.setSituacao("Cancelado");
             Util.salvarLogPedidoCancelado(pedido);
+            serializarObjeto(pedido, "Pedido_" + pedido.getId());
             PedidoView.pedidoCancelado();
         } catch (NumberFormatException e) {
             ErroView.mostrarErro("ID de pedido inválido.");

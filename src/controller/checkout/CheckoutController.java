@@ -2,7 +2,7 @@ package controller.checkout;
 
 import java.util.List;
 
-import controller.menu.MenuBase;
+import controller.BaseController;
 import controller.menu.MenuController;
 import model.Carrinho;
 import model.Ecommerce;
@@ -14,17 +14,18 @@ import model.Usuario;
 import model.pagamento.MetodoDePagamento;
 import view.ErroView;
 import view.MenuPrincipalView;
+import util.Serializador;
 import util.Util;
 import util.enums.MenuType;
 import view.checkout.CheckoutView;
 
-public class CheckoutController extends MenuBase {
+public class CheckoutController extends BaseController {
     private static final int OPCAO_CONFIRMAR_COMPRA = 1;
     private static final int OPCAO_MENU_PRINCIPAL = 0;
 
 
-    public CheckoutController(MenuController menuController, Ecommerce ecommerce) {
-        super(menuController, ecommerce);
+    public CheckoutController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        super(menuController, ecommerce, serializador);
     }
 
     @Override
@@ -62,7 +63,8 @@ public class CheckoutController extends MenuBase {
             usuario.getPedidos().add(pedido);
 
             menuNavegacao(menuController, MenuType.PEDIDO_CONTROLLER);
-
+            
+            serializarObjeto(pedido, "Pedido_" + pedido.getId());
             Util.salvarLogConfirmarCompra(carrinho, usuario, pedido, enderecoEntrega, formaDeEntrega);
 
         } catch (Exception e) {
