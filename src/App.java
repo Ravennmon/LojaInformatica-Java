@@ -1,3 +1,11 @@
+/*
+    Equipe:
+    - Renan Luiz dos Santos - 34572309
+    - Francyne Aparecida Leocadio Ramos - 32871708
+    - Henrique Moraes Onorato - 34395857
+    - Pedro Dawybida França - 32871708
+*/
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
