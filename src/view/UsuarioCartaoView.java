@@ -20,7 +20,7 @@ public class UsuarioCartaoView {
         
         String numeroCartao = Util.nextLine("Informe o número do cartão:");
         String nomeTitular = Util.nextLine("Informe o nome do titular:");
-        String validade = Util.nextLine("Informe a validade:");
+        String validade = Util.nextLine("Informe a validade: (MM/AA)");
         String cvv = Util.nextLine("Informe o CVV:");
         String debito = Util.nextLine("O cartão é de débito? (S/N)");
         String credito = Util.nextLine("O cartão é de crédito? (S/N)");
@@ -28,7 +28,12 @@ public class UsuarioCartaoView {
         boolean isDebito = debito.equalsIgnoreCase("S");
         boolean isCredito = credito.equalsIgnoreCase("S");
 
-        return new UsuarioCartao(nomeTitular, numeroCartao, validade, cvv, isCredito, isDebito);
+        try {
+            return new UsuarioCartao(nomeTitular, numeroCartao, validade, cvv, isCredito, isDebito);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     public static void visualizarUsuarioCartoes(List<UsuarioCartao> cartoes) {

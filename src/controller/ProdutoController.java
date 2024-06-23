@@ -40,8 +40,15 @@ public class ProdutoController extends BaseController {
     }
 
     private void selecionaProduto(int opcao) {
+
         try {
             Produto produto = ecommerce.getProdutos().get(opcao - 1);
+
+            if(!ecommerce.isUsuarioLogado()){
+                ProdutoView.visualizaProduto(produto);
+                return;
+            }
+
             List<ProdutoCarrinho> produtosCarrinho =  ecommerce.getUsuarioLogado().getCarrinho().getProdutos();
             Carrinho carrinho = ecommerce.getUsuarioLogado().getCarrinho();
             carrinho.adicionarProduto(produto, 1);

@@ -32,7 +32,12 @@ public class EnderecoView {
 
         String complemento = Util.nextLine("Informe o complemento:");
 
-        return new Endereco(logradouro, numero, complemento, bairro, cidade, estado, cep, estado, false);
+        try {
+            return new Endereco(cep, estado, cidade, bairro, logradouro, numero, complemento);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     public static void visualizarEnderecos(List<Endereco> enderecos) {

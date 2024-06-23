@@ -1,0 +1,35 @@
+Login efetuado com sucesso:
+
+Email: renan.santos@hipe.cc
+data/hora: 2024-06-22T22:27:20.287140
+
+Login efetuado com sucesso:
+
+Email: renan.santos@hipe.cc
+data/hora: 2024-06-22T22:25:34.962985
+
+Login efetuado com sucesso:
+
+Email: renan.santos@hipe.cc
+data/hora: 2024-06-22T22:13:38.038337
+
+Login efetuado com sucesso:
+
+Email: renan.santos@hipe.cc
+data/hora: 2024-06-22T22:09:22.864744
+
+Login efetuado com sucesso:
+
+Email: renan.santos@hipe.cc
+data/hora: 2024-06-22T22:07:43.393268
+
+Login efetuado com sucesso:
+
+Email: renan.santos@hipe.cc
+data/hora: 2024-06-22T22:01:14.173419
+
+Login efetuado com sucesso:
+
+Email: renan.santos@hipe.cc
+data/hora: 2024-06-22T21:58:14.457858
+

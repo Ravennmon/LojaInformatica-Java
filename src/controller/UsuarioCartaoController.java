@@ -59,7 +59,7 @@ public class UsuarioCartaoController extends BaseController {
             Usuario usuario = ecommerce.getUsuarioLogado();
             usuario.addCartao(cartao);
             Util.salvarLogCartaoCadastro(cartao);
-            serializarObjeto(usuario, usuario.getNome() + "_Cartao_" + cartao.getId());
+            serializarObjeto(cartao, "Cartao_" + cartao.getId());
         } catch (Exception e) {
             ErroView.mostrarErro("Erro ao cadastrar o cartão: " + e.getMessage());
         }
@@ -87,7 +87,7 @@ public class UsuarioCartaoController extends BaseController {
             atualizarCartao(cartao, cartaoAlterado);
 
             Util.salvarLogCartaoEditado(cartao);
-            serializarObjeto(cartaoAlterado, usuario.getNome() + "_Cartao_" + cartaoAlterado.getId());
+            serializarObjeto(cartaoAlterado, "Cartao_" + cartaoAlterado.getId());
         } catch (NoSuchElementException e) {
             ErroView.mostrarErro(e.getMessage());
         } catch (Exception e) {
@@ -106,7 +106,7 @@ public class UsuarioCartaoController extends BaseController {
 
             usuario.getCartoes().remove(cartao);
             Util.salvarLogCartaoExcluido(cartao);
-            serializarObjeto(cartao, usuario.getNome() + "_Cartao_" + cartao.getId());
+            serializarObjeto(cartao, "Cartao_" + cartao.getId());
         } catch (NoSuchElementException e) {
             ErroView.mostrarErro(e.getMessage());
         } catch (Exception e) {

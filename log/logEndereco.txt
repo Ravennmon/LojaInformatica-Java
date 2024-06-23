@@ -1,3 +1,47 @@
+Endereco selecionado:
+
+Endereco: Rua kkkkk
+Numero: 1343
+Complemento: 
+Bairro: Bigorrilho
+Cidade: Curitiba
+Estado: PR
+CEP: 80730350
+data/hora: 2024-06-22T22:26:28.088620
+
+Endereco selecionado:
+
+Endereco: Rua kkkk
+Numero: 12323
+Complemento: 
+Bairro: Bigorrilho
+Cidade: Curitiba
+Estado: PR
+CEP: 80730350
+data/hora: 2024-06-22T22:05:40.729403
+
+Endereco selecionado:
+
+Endereco: Rua kkkk
+Numero: 12323
+Complemento: 
+Bairro: Bigorrilho
+Cidade: Curitiba
+Estado: PR
+CEP: 80730350
+data/hora: 2024-06-22T22:03:20.954004
+
+Endereco selecionado:
+
+Endereco: Rua kkkkk
+Numero: 1234
+Complemento: 
+Bairro: Bigorrilho
+Cidade: Curitiba
+Estado: PR
+CEP: 80730350
+data/hora: 2024-06-22T21:58:33.411564
+
 Endereco Editado:
 
 Endereco: sdfsdfsdgfsfdgfera

@@ -1,0 +1,50 @@
+Compra confirmada:
+
+Usuario: Renan Santos
+Produtos: 
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 2
+Nome: Teclado Mecânico
+Descricao: Switch Cherry MX
+Preco: 300.0
+Quantidade: 1
+Endereco: 
+Rua: Rua kkkkk
+Numero: 1343
+Complemento: 
+Bairro: Bigorrilho
+Cidade: Curitiba
+Estado: PR
+CEP: 80730350
+Forma de entrega: Entrega Normal
+data/hora: 2024-06-22T22:26:31.322437
+
+Compra confirmada:
+
+Usuario: Renan Santos
+Produtos: 
+Nome: Mouse Razer
+Descricao: 3200 DPI
+Preco: 150.0
+Quantidade: 5
+Nome: Teclado Mecânico
+Descricao: Switch Cherry MX
+Preco: 300.0
+Quantidade: 7
+Nome: Monitor 24"
+Descricao: 144Hz
+Preco: 1000.0
+Quantidade: 2
+Endereco: 
+Rua: Rua kkkk
+Numero: 12323
+Complemento: 
+Bairro: Bigorrilho
+Cidade: Curitiba
+Estado: PR
+CEP: 80730350
+Forma de entrega: Retirar na loja
+data/hora: 2024-06-22T22:05:43.277354
+

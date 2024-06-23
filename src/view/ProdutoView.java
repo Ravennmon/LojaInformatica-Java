@@ -26,4 +26,10 @@ public class ProdutoView {
         System.out.println("Produto selecionado: " + produto.getNome() + " - R$ " + produto.getPreco() + " - " + produtoCarrinho.getQuantidade() + " unidades");
         System.out.println();
     }
+
+    public static void visualizaProduto(Produto produto){
+        Util.limpaConsole();
+        System.out.println(produto);
+        System.out.println();
+    }
 }

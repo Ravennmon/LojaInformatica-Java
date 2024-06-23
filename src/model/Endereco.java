@@ -11,20 +11,16 @@ public class Endereco {
     private String cidade;
     private String estado;
     private String cep;
-    private String pais;
-    private boolean principal;
 
-    public Endereco(String rua, String numero, String complemento, String bairro, String cidade, String estado, String cep, String pais, boolean principal) {
+    public Endereco(String cep, String estado, String cidade, String bairro, String rua, String numero, String complemento) {
         this.id = GeraId.getProximoId(Endereco.class);
-        this.rua = rua;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.cidade = cidade;
+        setCep(cep);
         this.estado = estado;
-        this.cep = cep;
-        this.pais = pais;
-        this.principal = principal;
+        this.cidade = cidade;
+        this.bairro = bairro;
+        setRua(rua);
+        setNumero(numero);
+        this.complemento = complemento;
     }
 
     public int getId() {
@@ -36,6 +32,9 @@ public class Endereco {
     }
 
     public void setRua(String rua) {
+        if (rua == null || rua.isEmpty()) {
+            throw new IllegalArgumentException("A rua é obrigatória.");
+        }
         this.rua = rua;
     }
 
@@ -44,6 +43,9 @@ public class Endereco {
     }
 
     public void setNumero(String numero) {
+        if (numero == null || numero.isEmpty()) {
+            throw new IllegalArgumentException("O número é obrigatório.");
+        }
         this.numero = numero;
     }
 
@@ -68,6 +70,9 @@ public class Endereco {
     }
 
     public void setCidade(String cidade) {
+        if (cidade == null || cidade.isEmpty()) {
+            throw new IllegalArgumentException("A cidade é obrigatória.");
+        }
         this.cidade = cidade;
     }
 
@@ -76,6 +81,9 @@ public class Endereco {
     }
 
     public void setEstado(String estado) {
+        if (estado == null || estado.isEmpty()) {
+            throw new IllegalArgumentException("O estado é obrigatório.");
+        }
         this.estado = estado;
     }
 
@@ -84,33 +92,19 @@ public class Endereco {
     }
 
     public void setCep(String cep) {
+        if (cep == null || cep.isEmpty()) {
+            throw new IllegalArgumentException("O CEP é obrigatório.");
+        }
         this.cep = cep;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
-
-    public boolean isPrincipal() {
-        return principal;
-    }
-
-    public void setPrincipal(boolean principal) {
-        this.principal = principal;
     }
 
     @Override
     public String toString() {
-        return "Endereco [id= " + id + ", Rua= " + rua + ", Numero= " + numero + ", Complemento= " + complemento
-                + ", Bairro= " + bairro + ", Cidade= " + cidade + ", Estado= " + estado + ", Cep= " + cep + ", Pais= " + pais
-                + ", Principal= " + principal + "]";
+        return "Endereco [id=" + id + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento
+                + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", cep=" + cep + "]";
     }
 
     
 
-    
+
 }

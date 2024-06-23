@@ -4,12 +4,16 @@ import model.Ecommerce;
 import util.Util;
 
 public class CarrinhoView {
-    public static void mostraMenu() {
+    public static void mostraMenu(Ecommerce ecommerce) {
         System.out.println("Carrinho:");
         System.out.println("1. Visualizar Produtos");
         System.out.println("2. Adicionar Produto");
         System.out.println("3. Remover Produto");
-        System.out.println("4. Finalizar Compra");
+
+        if(ecommerce.isUsuarioLogado()){
+            System.out.println("4. Finalizar Compra");
+        }
+
         System.out.println("0. Voltar");
     }
 
@@ -24,7 +28,7 @@ public class CarrinhoView {
                 .getProdutos()
                 .forEach(produtoCarrinho -> System.out.println(produtoCarrinho.getProduto() + ", quantidade no carrinho: " + produtoCarrinho.getQuantidade()));
         } catch (NullPointerException e) {
-            System.out.println("\nNenhum usuário está logado ou o carrinho está vazio.\n");
+            CarrinhoView.usuarioDeslogado();
         }
     }
 
@@ -61,7 +65,7 @@ public class CarrinhoView {
     }
 
     public static void usuarioDeslogado(){
-        System.out.println("\nNenhum usuário está logado.\n");
+        System.out.println("\n Voce precisa estar logado.\n");
     }
 
     public static void produtoAdicionado(){

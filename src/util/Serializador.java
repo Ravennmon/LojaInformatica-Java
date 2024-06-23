@@ -13,9 +13,8 @@ public class Serializador implements ISerializador {
         try (FileOutputStream fileOut = new FileOutputStream("data/" + nomeArquivo + ".ser");
              ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
             out.writeObject(objeto);
-            System.out.println("Objeto serializado e salvo em " + nomeArquivo);
-        } catch (IOException e) {
-            System.out.println("Erro ao serializar objeto: " + e.getMessage());
+        } catch(IOException e) {
+           //
         }
     }
 

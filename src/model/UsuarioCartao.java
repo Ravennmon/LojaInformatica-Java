@@ -13,10 +13,10 @@ public class UsuarioCartao{
 
     public UsuarioCartao(String titular, String numero, String validade, String cvv, boolean credito, boolean debito) {
         this.id = GeraId.getProximoId(UsuarioCartao.class);
-        this.titular = titular;
-        this.numero = numero;
-        this.validade = validade;
-        this.cvv = cvv;
+        setTitular(titular);
+        setNumero(numero);
+        setValidade(validade);
+        setCvv(cvv);
         this.credito = credito;
         this.debito = debito;
     }
@@ -30,6 +30,9 @@ public class UsuarioCartao{
     }
 
     public void setTitular(String titular) {
+        if (titular == null || titular.isEmpty()) {
+            throw new IllegalArgumentException("O titular do cartão é obrigatório.");
+        }
         this.titular = titular;
     }
 
@@ -38,6 +41,9 @@ public class UsuarioCartao{
     }
 
     public void setNumero(String numero) {
+        if (numero == null || numero.isEmpty()) {
+            throw new IllegalArgumentException("O número do cartão é obrigatório.");
+        }
         this.numero = numero;
     }
 
@@ -46,6 +52,9 @@ public class UsuarioCartao{
     }
 
     public void setValidade(String validade) {
+        if (validade == null || validade.isEmpty()) {
+            throw new IllegalArgumentException("A validade do cartão é obrigatória.");
+        }
         this.validade = validade;
     }
 
@@ -54,6 +63,9 @@ public class UsuarioCartao{
     }
 
     public void setCvv(String cvv) {
+        if (cvv == null || cvv.isEmpty()) {
+            throw new IllegalArgumentException("O CVV do cartão é obrigatório.");
+        }
         this.cvv = cvv;
     }
 

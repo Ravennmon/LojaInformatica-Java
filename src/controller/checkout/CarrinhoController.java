@@ -24,7 +24,7 @@ public class CarrinhoController extends BaseController {
 
     @Override
     public void mostraMenu() {
-        CarrinhoView.mostraMenu();
+        CarrinhoView.mostraMenu(ecommerce);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class CarrinhoController extends BaseController {
                 removerProduto();
                 break;
             case OPCAO_METODO_PAGAMENTO:
-                menuNavegacao(menuController, MenuType.METODO_DE_PAGAMENTO_CONTROLLER);
+                finalizarCarrinho();
                 break;
             case OPCAO_MENU_PRINCIPAL:
                 menuNavegacao(menuController, MenuType.MENU_PRINCIPAL);
@@ -83,6 +83,20 @@ public class CarrinhoController extends BaseController {
         } catch (Exception e) {
             CarrinhoView.erro("\nOcorreu um erro ao adicionar o produto: " + e.getMessage() + "\n");
         }
+    }
+
+    private void finalizarCarrinho(){
+        if(!ecommerce.isUsuarioLogado()){
+            MenuPrincipalView.opcaoInvalida();
+            return;
+        }
+
+        if(ecommerce.getUsuarioLogado().getCarrinho().getProdutos().isEmpty()){
+            CarrinhoView.erro("\nO carrinho está vazio.\n");
+            return;
+        }
+
+        menuNavegacao(menuController, MenuType.METODO_DE_PAGAMENTO_CONTROLLER);
     }
 
     private Produto getProdutoByName(String nome) {

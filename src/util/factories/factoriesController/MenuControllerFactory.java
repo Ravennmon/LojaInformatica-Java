@@ -16,8 +16,8 @@ public class MenuControllerFactory {
         return new MenuController();
     }
 
-    public static MenuPrincipal criarMenuPrincipal(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
-        return new MenuPrincipal(menuController, ecommerce, serializador);
+    public static MenuPrincipalController criarMenuPrincipal(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+        return new MenuPrincipalController(menuController, ecommerce, serializador);
     }
 
     public static UsuarioController criarUsuarioController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {

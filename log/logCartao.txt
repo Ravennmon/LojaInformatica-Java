@@ -1,0 +1,72 @@
+Cartao cadastrado:
+
+Numero: 455555
+Nome: Renan Santos
+Data de Validade: 02/23
+CVV: 233
+data/hora: 2024-06-22T22:27:32.032510
+
+Cartao cadastrado:
+
+Numero: 44444
+Nome: Renan Santos
+Data de Validade: 02/23
+CVV: 233
+data/hora: 2024-06-22T22:25:59.334443
+
+Cartao cadastrado:
+
+Numero: 455555
+Nome: Renan Santos
+Data de Validade: 02/23
+CVV: 233
+data/hora: 2024-06-22T22:09:34.257913
+
+Cartao cadastrado:
+
+Numero: 45555
+Nome: Renan Santos
+Data de Validade: 02/23
+CVV: 233
+data/hora: 2024-06-22T22:07:59.867251
+
+Cartao cadastrado:
+
+Numero: 321231
+Nome: Rkkk
+Data de Validade: 20/23
+CVV: 233
+data/hora: 2024-06-22T22:05:31.228189
+
+Cartao editado:
+
+Numero: 4342
+Nome: Renan Santos
+Data de Validade: 20/23
+CVV: 222
+data/hora: 2024-06-22T22:04:35.332470
+
+Cartao editado:
+
+Numero: 4342
+Nome: Renan Santos
+Data de Validade: 20/23
+CVV: 222
+data/hora: 2024-06-22T22:03:37.612358
+
+Cartao cadastrado:
+
+Numero: 45555
+Nome: Renan Santos
+Data de Validade: 02/23
+CVV: 233
+data/hora: 2024-06-22T22:01:25.941876
+
+Cartao cadastrado:
+
+Numero: 45555555
+Nome: Renan Santos
+Data de Validade: 02/23
+CVV: 123
+data/hora: 2024-06-22T21:59:07.325632
+

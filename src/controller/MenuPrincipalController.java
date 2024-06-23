@@ -6,19 +6,19 @@ import util.Serializador;
 import util.enums.MenuType;
 import view.MenuPrincipalView;
 
-public class MenuPrincipal extends BaseController {
+public class MenuPrincipalController extends BaseController {
     private static final int OPCAO_USUARIO = 1;
     private static final int OPCAO_PRODUTO = 2;
     private static final int OPCAO_CARRINHO = 3;
     private static final int OPCAO_SAIR = 0;
 
-    public MenuPrincipal(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
+    public MenuPrincipalController(MenuController menuController, Ecommerce ecommerce, Serializador serializador) {
         super(menuController, ecommerce, serializador);
     }
 
     @Override
     public void mostraMenu() {
-        MenuPrincipalView.mostraMenu();
+        MenuPrincipalView.mostraMenu(ecommerce);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class MenuPrincipal extends BaseController {
                 menuNavegacao(menuController, MenuType.PRODUTO_CONTROLLER);
                 break;
             case OPCAO_CARRINHO:
-                menuNavegacao(menuController, MenuType.CARRINHO_CONTROLLER);
+                selecionaCarrinho();
                 break;
             case OPCAO_SAIR:
                 MenuPrincipalView.saindoMenu();
@@ -40,6 +40,14 @@ public class MenuPrincipal extends BaseController {
             default:
                 MenuPrincipalView.opcaoInvalida();
                 break;
+        }
+    }
+
+    private void selecionaCarrinho() {
+        if (ecommerce.isUsuarioLogado()) {
+            menuNavegacao(menuController, MenuType.CARRINHO_CONTROLLER);
+        } else {
+            MenuPrincipalView.opcaoInvalida();
         }
     }
 }
