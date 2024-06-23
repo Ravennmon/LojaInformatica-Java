@@ -36,11 +36,11 @@ public abstract class BaseController implements IMenu {
     }
 
     public void serializarObjeto(Object objeto, String nomeArquivo) {
-        serializador.serializar(objeto, nomeArquivo + ".ser");
+        serializador.serializar(objeto, nomeArquivo);
     }
 
-    public void deserializarObjeto(Object objeto, String nomeArquivo) {
-        serializador.deserializar(objeto, nomeArquivo + ".ser");
+    public void deserializarObjeto(String nomeArquivo) {
+        serializador.desserializar(nomeArquivo);
     }
 
     

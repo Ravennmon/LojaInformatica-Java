@@ -23,9 +23,9 @@ public class App {
     }
 
     private static void bootEcommerce(Ecommerce ecommerce, MenuController menuController, Serializador serializador) {
-        addProdutosInformatica(ecommerce);
-        addMetodosDePagamento(ecommerce);
-        addFormasDeEntrega(ecommerce);
+        addProdutosInformatica(ecommerce, serializador);
+        addMetodosDePagamento(ecommerce, serializador);
+        addFormasDeEntrega(ecommerce, serializador);
                 
         List<IMenu> menus = new ArrayList<>(Arrays.asList(
             MenuControllerFactory.criarMenuPrincipal(menuController, ecommerce, serializador),
@@ -47,7 +47,7 @@ public class App {
         menuController.setMenuAtual(menus.get(MenuType.MENU_PRINCIPAL.getIndex()));
     }
 
-    private static void addProdutosInformatica(Ecommerce ecommerce) {
+    private static void addProdutosInformatica(Ecommerce ecommerce, Serializador serializador) {
         Categoria perifericos = CategoriaFactory.criarCategoria("Periféricos", "Periféricos de computador");
         Categoria hardware = CategoriaFactory.criarCategoria("Hardware", "Hardware de computador");
         Categoria cadeira = CategoriaFactory.criarCategoria("Cadeira", "Cadeiras gamer");
@@ -64,25 +64,37 @@ public class App {
             ProdutoFactory.criarProduto("Cadeira Gamer", "Gamer", 800, 15, cadeira)
         
         ));
+
+        for(Produto produto : produtos) {
+            serializador.serializar(produto, "Produto_" + produto.getId());
+        }
         
         ecommerce.setProdutos(produtos);
     }
 
-    private static void addMetodosDePagamento(Ecommerce ecommerce) {
+    private static void addMetodosDePagamento(Ecommerce ecommerce, Serializador serializador) {
         List<MetodoDePagamento> metodosDePagamento = new ArrayList<>(Arrays.asList(
             CartaoFactory.criarCartao("Cartão de Crédito", true, false),
             CartaoFactory.criarCartao("Cartão de Débito", true, false)
         ));
+
+        for(MetodoDePagamento metodo : metodosDePagamento) {
+            serializador.serializar(metodo, "MetodoDePagamento_" + metodo.getId());
+        }
         
         ecommerce.setMetodosDePagamento(metodosDePagamento);
     }
 
-    private static void addFormasDeEntrega(Ecommerce ecommerce) {
+    private static void addFormasDeEntrega(Ecommerce ecommerce, Serializador serializador) {
         List<FormaDeEntrega> formasDeEntrega = new ArrayList<>(Arrays.asList(
             FormaDePagamentoFactory.criarFormaDePagamento("Retirar na loja", 0),
             FormaDePagamentoFactory.criarFormaDePagamento("Entrega Normal", 10),
             FormaDePagamentoFactory.criarFormaDePagamento("Entrega Expressa", 20)
         ));
+
+        for(FormaDeEntrega forma : formasDeEntrega) {
+            serializador.serializar(forma, "FormaDeEntrega_" + forma.getId());
+        }
         
         ecommerce.setFormasDeEntrega(formasDeEntrega);
     }
