@@ -7,4 +7,8 @@ public class CollectionFactory {
     public static <T> List<T> createArrayList() {
         return new ArrayList<>();
     }
+
+    public static <T> List<T> createArrayList(int capacidade) {
+        return new ArrayList<>(capacidade);
+    }
 }

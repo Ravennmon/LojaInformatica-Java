@@ -25,7 +25,7 @@ public class Usuario {
         this.carrinho = new Carrinho(this);
         this.enderecos = CollectionFactory.createArrayList();
         this.pedidos = CollectionFactory.createArrayList();
-        this.cartoes = CollectionFactory.createArrayList();
+        this.cartoes = CollectionFactory.createArrayList(5);
     }
 
     public void addEndereco(Endereco endereco){
