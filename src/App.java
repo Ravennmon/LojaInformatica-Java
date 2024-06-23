@@ -1,4 +1,3 @@
-import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -49,12 +48,21 @@ public class App {
     }
 
     private static void addProdutosInformatica(Ecommerce ecommerce) {
-        Categoria categoria = CategoriaFactory.criarCategoria("Periféricos", "Periféricos de computador");
+        Categoria perifericos = CategoriaFactory.criarCategoria("Periféricos", "Periféricos de computador");
+        Categoria hardware = CategoriaFactory.criarCategoria("Hardware", "Hardware de computador");
+        Categoria cadeira = CategoriaFactory.criarCategoria("Cadeira", "Cadeiras gamer");
         
         List<Produto> produtos = new ArrayList<>(Arrays.asList(
-            ProdutoFactory.criarProduto("Mouse Razer", "3200 DPI", 150, 10, categoria),
-            ProdutoFactory.criarProduto("Teclado Mecânico", "Switch Cherry MX", 300, 5, categoria),
-            ProdutoFactory.criarProduto("Monitor 24\"", "144Hz", 1000, 3, categoria)
+            ProdutoFactory.criarProduto("Mouse Razer", "3200 DPI", 150, 10, perifericos),
+            ProdutoFactory.criarProduto("Teclado Mecânico", "Switch Cherry MX", 300, 5, perifericos),
+            ProdutoFactory.criarProduto("Monitor 24\"", "144Hz", 1000, 3, perifericos),
+            ProdutoFactory.criarProduto("Placa de Vídeo", "RTX 3080", 5000, 2, hardware),
+            ProdutoFactory.criarProduto("Processador", "i9 10900k", 3000, 5, hardware),
+            ProdutoFactory.criarProduto("Memória RAM", "32GB DDR4", 1000, 10, hardware),
+            ProdutoFactory.criarProduto("Cadeira Gamer", "DXRacer", 1500, 5, cadeira),
+            ProdutoFactory.criarProduto("Cadeira Gamer", "Racer", 1000, 10, cadeira),
+            ProdutoFactory.criarProduto("Cadeira Gamer", "Gamer", 800, 15, cadeira)
+        
         ));
         
         ecommerce.setProdutos(produtos);
