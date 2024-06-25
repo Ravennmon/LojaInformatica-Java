@@ -44,8 +44,8 @@ public class UsuarioCartaoController extends BaseController {
             case OPCAO_EXCLUIR_USUARIO_CARTAO:
                 excluirUsuarioCartao();
                 break;
-            case OPCAO_MENU_PRINCIPAL:
-                menuNavegacao(menuController, MenuType.MENU_PRINCIPAL);
+            case 0:
+                menuNavegacao(menuController, 0);
                 break;
             default:
                 MenuPrincipalView.opcaoInvalida();

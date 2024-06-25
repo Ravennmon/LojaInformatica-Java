@@ -1,8 +1,10 @@
 package model;
 
+import java.io.Serializable;
+
 import util.GeraId;
 
-public class Produto {
+public class Produto implements Serializable {
     private final int id;
     private String nome;
     private String descricao;

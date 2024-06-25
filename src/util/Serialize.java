@@ -6,14 +6,14 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public abstract class Salvar {
-    private static final File CAMINHO = new File("obj/log.ser");
-
-    public static void salvar(Object obj) throws Exception{
+public abstract class Serialize {
+    public static void store(Object obj, String name) throws Exception{
         try {
-            CAMINHO.getParentFile().mkdirs();
+            File caminho = new File("obj/" + name + ".ser");
 
-            ObjectOutputStream objOutput = new ObjectOutputStream(new FileOutputStream(CAMINHO));
+            caminho.getParentFile().mkdirs();
+
+            ObjectOutputStream objOutput = new ObjectOutputStream(new FileOutputStream(caminho));
             objOutput.writeObject(obj);
             objOutput.close();
         } catch (Exception e) {
@@ -21,10 +21,12 @@ public abstract class Salvar {
         }
     }
 
-    public static Object ler() throws Exception{
+    public static Object get(String name) throws Exception{
         try {
-            if (CAMINHO.exists() && CAMINHO.isFile()) {
-                ObjectInputStream objInput = new ObjectInputStream(new FileInputStream(CAMINHO));
+            File caminho = new File("obj/Produtos.ser");
+
+            if (caminho.exists() && caminho.isFile()) {
+                ObjectInputStream objInput = new ObjectInputStream(new FileInputStream(caminho));
                 return objInput.readObject();
             }
             throw new Exception("Objeto não encontrado");

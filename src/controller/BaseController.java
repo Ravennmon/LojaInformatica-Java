@@ -35,6 +35,10 @@ public abstract class BaseController implements IMenu {
         menuController.setMenuAtual(menuController.getMenus().get(menuType.getIndex()));
     }
 
+    public void menuNavegacao(MenuController menuController, int index) {
+        menuController.setMenuAtual(menuController.getMenus().get(index));
+    }
+
     public void serializarObjeto(Object objeto, String nomeArquivo) {
         serializador.serializar(objeto, nomeArquivo);
     }

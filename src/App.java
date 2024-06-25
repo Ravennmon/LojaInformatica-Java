@@ -14,6 +14,7 @@ import controller.menu.*;
 import model.*;
 import model.pagamento.MetodoDePagamento;
 import util.Serializador;
+import util.Serialize;
 import util.enums.MenuType;
 import util.factories.*;
 import util.factories.factoriesController.MenuControllerFactory;
@@ -60,24 +61,36 @@ public class App {
         Categoria hardware = CategoriaFactory.criarCategoria("Hardware", "Hardware de computador");
         Categoria cadeira = CategoriaFactory.criarCategoria("Cadeira", "Cadeiras gamer");
         
-        List<Produto> produtos = new ArrayList<>(Arrays.asList(
-            ProdutoFactory.criarProduto("Mouse Razer", "3200 DPI", 150, 10, perifericos),
-            ProdutoFactory.criarProduto("Teclado Mecânico", "Switch Cherry MX", 300, 5, perifericos),
-            ProdutoFactory.criarProduto("Monitor 24\"", "144Hz", 1000, 3, perifericos),
-            ProdutoFactory.criarProduto("Placa de Vídeo", "RTX 3080", 5000, 2, hardware),
-            ProdutoFactory.criarProduto("Processador", "i9 10900k", 3000, 5, hardware),
-            ProdutoFactory.criarProduto("Memória RAM", "32GB DDR4", 1000, 10, hardware),
-            ProdutoFactory.criarProduto("Cadeira Gamer", "DXRacer", 1500, 5, cadeira),
-            ProdutoFactory.criarProduto("Cadeira Gamer", "Racer", 1000, 10, cadeira),
-            ProdutoFactory.criarProduto("Cadeira Gamer", "Gamer", 800, 15, cadeira)
-        
-        ));
+        // Produtos produtos = new Produtos(new ArrayList<>(Arrays.asList(
+        //     ProdutoFactory.criarProduto("Mouse Razer", "3200 DPI", 150, 10, perifericos),
+        //     ProdutoFactory.criarProduto("Teclado Mecânico", "Switch Cherry MX", 300, 5, perifericos),
+        //     ProdutoFactory.criarProduto("Monitor 24\"", "144Hz", 1000, 3, perifericos),
+        //     ProdutoFactory.criarProduto("Placa de Vídeo", "RTX 3080", 5000, 2, hardware),
+        //     ProdutoFactory.criarProduto("Processador", "i9 10900k", 3000, 5, hardware),
+        //     ProdutoFactory.criarProduto("Memória RAM", "32GB DDR4", 1000, 10, hardware),
+        //     ProdutoFactory.criarProduto("Cadeira Gamer", "DXRacer", 1500, 5, cadeira),
+        //     ProdutoFactory.criarProduto("Cadeira Gamer", "Racer", 1000, 10, cadeira)
+        // )));
 
-        for(Produto produto : produtos) {
-            serializador.serializar(produto, "Produto_" + produto.getId());
+
+        // try {
+        //     Serialize.store(produtos, "Produtos");
+        // } catch (Exception e) {
+        //     System.out.println(e.getMessage());
+        // }
+        
+        try {
+            List<Produto> ps = new ArrayList<>();
+
+            Produtos produtos2 = (Produtos) Serialize.get("Produtos");
+            produtos2.add(ProdutoFactory.criarProduto("Cadeira Gamer", "Gamer", 800, 15, cadeira));
+
+            produtos2.getProdutos().forEach(p -> ps.add(p));
+            ecommerce.setProdutos(ps);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         
-        ecommerce.setProdutos(produtos);
     }
 
     private static void addMetodosDePagamento(Ecommerce ecommerce, Serializador serializador) {

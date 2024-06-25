@@ -1,8 +1,10 @@
 package model;
 
+import java.io.Serializable;
+
 import util.GeraId;
 
-public class Categoria {
+public class Categoria  implements Serializable {
     private final int id;
     private String nome;
     private String descricao;
